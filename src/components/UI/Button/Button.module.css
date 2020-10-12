@@ -1,0 +1,48 @@
+.Button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 10px;
+  margin: 10px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.Button:first-of-type {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.Button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.Primary {
+  color: #FFFFFF;
+  background-color: #2495f6;
+  margin: auto;
+  width: 100%;
+}
+
+.Primary:disabled {
+  background-color: #b6defe;
+}
+
+.Secondary {
+  color: #000000;
+  margin: auto;
+  width: 100%;
+  box-shadow: 0 2px 3px #ccc;
+  border: 1px solid #eee;
+}
+
+.Tertiary {
+  color: #000;
+  margin: auto;
+  width: 100%;
+  text-decoration: underline;
+}
