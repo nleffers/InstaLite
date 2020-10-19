@@ -34,8 +34,8 @@ const Home = props => {
 
 const mapStateToProps = state => {
   return {
-    loading: state.auth.loading,
-    error: state.auth.error,
+    loading: state.user.loading,
+    error: state.user.error,
     token: state.auth.token,
     isAuthenticated: state.auth.token !== null
   }
