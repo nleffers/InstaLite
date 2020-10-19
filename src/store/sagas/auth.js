@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import * as actions from '../actions/index';
 
-export function* logoutSaga(action) {
+export function* logoutSaga() {
   yield call([localStorage, 'removeItem'], 'token')
   yield call([localStorage, 'removeItem'], 'expirationDate')
   yield call([localStorage, 'removeItem'], 'userId')
@@ -17,7 +17,7 @@ export function* authCheckTimeoutSaga(action) {
 }
 
 export function* authUserSaga(action) {
-  yield put(actions.authStart());
+  yield put(actions.authStart())
   const authData = {
     email: action.email,
     password: action.password,
@@ -34,6 +34,7 @@ export function* authUserSaga(action) {
     yield call([localStorage, 'setItem'], 'token', resp.data.idToken)
     yield call([localStorage, 'setItem'], 'expirationDate', expirationDate)
     yield call([localStorage, 'setItem'], 'userId', resp.data.localId)
+    yield put(actions.userCreate(resp.data.localId, action.username, action.fullName, action.email, action.phone, resp.data.idToken))
     yield put(actions.authSuccess(resp.data.idToken, resp.data.localId))
     yield put(actions.authCheckTimeout(resp.data.expiresIn))
   } catch (err) {

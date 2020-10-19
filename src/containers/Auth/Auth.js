@@ -109,7 +109,14 @@ const Auth = props => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onAuth(controls.email.value, controls.password.value, isSignUp);
+    props.onAuth(
+      controls.email.value,
+      controls.password.value,
+      isSignUp,
+      controls.username.value,
+      controls.fullName.value,
+      controls.phone.value
+    );
   }
 
   const switchAuthModeHandler = () => {
@@ -154,7 +161,6 @@ const Auth = props => {
     authRedirect = <Redirect to={authRedirectPath} />
   }
 
-
   let submit = (
     <Button
       btnType="Tertiary"
@@ -175,7 +181,7 @@ const Auth = props => {
 
   return (
     <div className={classes.Auth}>
-      <h2>Sign into your TargetReact account</h2>
+      <h2>InstaReact</h2>
       {authRedirect}
       <form onSubmit={submitHandler}>
         {form}
@@ -190,16 +196,18 @@ const Auth = props => {
 
 const mapStateToProps = state => {
   return {
+    userId: state.auth.userId,
     loading: state.auth.loading,
     error: state.auth.error,
     authRedirectPath: state.auth.authRedirectPath,
+    token: state.auth.token,
     isAuthenticated: state.auth.token !== null
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password, isSignUp) => dispatch(actions.auth(email, password, isSignUp)),
+    onAuth: (email, password, isSignUp, username, fullName, phone) => dispatch(actions.auth(email, password, isSignUp, username, fullName, phone)),
     onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
   };
 };

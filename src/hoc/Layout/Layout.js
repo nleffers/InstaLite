@@ -2,16 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Aux from '../Aux';
-import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import Toolbar from '../../components/Navigation/Toolbar/DesktopToolbar/DesktopToolbar';
 import classes from './Layout.module.css';
 
 const Layout = props => {
   let toolbar = (
-    <Toolbar />
+    <Toolbar isAuthenticated={props.isAuthenticated} />
   )
-  if (!props.isAuthenticated) {
-    toolbar = null
-  }
+  // if (!props.isAuthenticated) {
+  //   toolbar = null
+  // }
 
   return (
     <Aux>

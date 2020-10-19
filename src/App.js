@@ -10,6 +10,10 @@ const Auth = React.lazy(() => {
   return import('./containers/Auth/Auth')
 });
 
+const Home = React.lazy(() => {
+  return import('./containers/Home/Home')
+})
+
 const App = props => {
   const { onTryAutoSignIn } = props
 
@@ -20,19 +24,20 @@ const App = props => {
   let routes = (
     <Switch>
       <Route path="/auth" component={props => <Auth {...props} />} />
-      {/* <Route path="/" exact component={BurgerBuilder} /> */}
+      <Route path="/" exact component={props => <Home {...props} />} />
       <Redirect to="/" />
     </Switch>
   );
   if (props.isAuthenticated) {
     routes = (
       <Switch>
-        {/* <Route path="/checkout" component={props => <Checkout {...props} />} />
-        <Route path="/cart" component={props => <Cart {...props} />} />
-        <Route path="/profile" component={props => <OrderHistory {...props} />} /> */}
+        {/* <Route path="/inbox" component={props => <Inbox {...props} />} />
+        <Route path="/explore" component={props => <Explore {...props} />} />
+        <Route path="/likes" component={props => <Likes {...props} />} />
+        <Route path="/profile" component={props => <Profile {...props} />} /> */}
         <Route path="/auth" component={props => <Auth {...props} />} />
         <Route path="/logout" component={Logout} />
-        {/* <Route path="/" exact component={BurgerBuilder} /> */}
+        <Route path="/" exact component={props => <Home {...props} />} />
       </Switch>
     )
   }
