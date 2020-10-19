@@ -1,0 +1,17 @@
+.DesktopToolbar {
+  display: none;
+}
+
+@media(min-width: 500px) {
+  .DesktopToolbar {
+    display: initial;
+  }
+
+  .MobileToolbar {
+    display: none;
+  }
+
+  .MobileFooter {
+    display: none;
+  }
+}

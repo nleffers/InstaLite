@@ -1,0 +1,21 @@
+.MobileToolbarNavigationItem {
+  box-sizing: border-box;
+  display: block;
+  margin: 10px;
+  width: 33%;
+  text-align: center;
+}
+
+.MobileToolbarNavigationItem a {
+  box-sizing: border-box;
+  color: #000;
+  display: block;
+  text-decoration: none;
+  width: 100%;
+}
+
+.MobileToolbarNavigationItem a:hover,
+.MobileToolbarNavigationItem a:active,
+.MobileToolbarNavigationItem a.active {
+  color: #40A4C8;
+}

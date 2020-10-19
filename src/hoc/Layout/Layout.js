@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Aux from '../Aux';
-import Toolbar from '../../components/Navigation/Toolbar/DesktopToolbar/DesktopToolbar';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import classes from './Layout.module.css';
 
 const Layout = props => {

@@ -1,0 +1,8 @@
+.MobileToolbarNavigationItems {
+  margin: auto;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}

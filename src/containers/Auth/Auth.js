@@ -181,7 +181,7 @@ const Auth = props => {
 
   return (
     <div className={classes.Auth}>
-      <h2>InstaReact</h2>
+      <h2>InstaLite</h2>
       {authRedirect}
       <form onSubmit={submitHandler}>
         {form}
@@ -196,11 +196,9 @@ const Auth = props => {
 
 const mapStateToProps = state => {
   return {
-    userId: state.auth.userId,
     loading: state.auth.loading,
     error: state.auth.error,
     authRedirectPath: state.auth.authRedirectPath,
-    token: state.auth.token,
     isAuthenticated: state.auth.token !== null
   }
 }
