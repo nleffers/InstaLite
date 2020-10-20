@@ -10,6 +10,7 @@ import classes from './FileUploader.module.css'
 const FileUploader = props => {
   const { icon } = props
   const [imageAsFile, setImageAsFile] = useState('')
+  const [imageUploadedFromThisComponent, setImageUploadedFromThisComponent] = useState(false)
 
   // const allInputs = { imgUrl: '' }
   // const [imageAsUrl, setImageAsUrl] = useState(allInputs)
@@ -29,11 +30,17 @@ const FileUploader = props => {
   const onPictureCreate = useCallback(() => dispatch(actions.pictureCreate(snapShot, userId, token)), [dispatch, snapShot, userId, token])
 
   useEffect(() => {
-    if (imageAsFile !== '') { onPictureUpload(imageAsFile) }
+    if (imageAsFile !== '') {
+      setImageUploadedFromThisComponent(true)
+      onPictureUpload(imageAsFile)
+    }
   }, [onPictureUpload, imageAsFile])
 
   useEffect(() => {
-    if (snapShot) { onPictureCreate() }
+    if (snapShot && imageUploadedFromThisComponent) {
+      onPictureCreate()
+      setImageUploadedFromThisComponent(false)
+    }
   }, [onPictureCreate, snapShot])
 
   const imageAsFileHandler = event => {
