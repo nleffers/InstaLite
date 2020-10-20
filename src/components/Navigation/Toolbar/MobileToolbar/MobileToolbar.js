@@ -1,6 +1,6 @@
 import React from 'react'
 
-import MobileNavigationItems from '../../MobileNavigationItems/MobileToolbarNavigationItems/MobileToolbarNavigationItems'
+import MobileNavigationItems from '../../ToolbarNavigationItems/MobileNavigationItems/MobileToolbarNavigationItems/MobileToolbarNavigationItems'
 // import Search from '../Search/Search'
 import classes from './MobileToolbar.module.css'
 

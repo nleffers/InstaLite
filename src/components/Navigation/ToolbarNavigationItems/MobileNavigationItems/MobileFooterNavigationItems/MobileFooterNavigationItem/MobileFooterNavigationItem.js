@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import classes from './NavigationItem.module.css';
+import Button from '../../../../../UI/Button/Button';
+import classes from './MobileFooterNavigationItem.module.css';
 
-const navigationItem = (props) => (
-  <li className={classes.NavigationItem}>
+const mobileFooterNavigationItem = (props) => (
+  <li className={classes.MobileFooterNavigationItem}>
     <NavLink
       exact={props.exact}
       activeClassName={classes.active}
@@ -13,9 +14,9 @@ const navigationItem = (props) => (
         props.children && props.children.type && props.children.type.name === 'logo' ? { padding: "0" } : null
       }
     >
-      {props.children}
+      <Button btnType={props.icon} />
     </NavLink>
   </li>
-);
+)
 
-export default navigationItem;
+export default mobileFooterNavigationItem;

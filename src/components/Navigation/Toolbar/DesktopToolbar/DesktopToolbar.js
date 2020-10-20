@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Logo from '../../../Logo/Logo'
-import NavigationItems from '../../NavigationItems/NavigationItems'
+import DesktopToolbarNavigationItems from '../../ToolbarNavigationItems/DesktopToolbarNavigationItems/DesktopToolbarNavigationItems'
 // import Search from '../Search/Search'
 import classes from './DesktopToolbar.module.css'
 
@@ -10,7 +10,7 @@ const desktopToolbar = (props) => (
     <Logo />
     {/* <Search /> */}
     <nav className={classes.DesktopOnly}>
-      <NavigationItems isAuthenticated={props.isAuthenticated} />
+      <DesktopToolbarNavigationItems isAuthenticated={props.isAuthenticated} />
     </nav>
   </header>
 )

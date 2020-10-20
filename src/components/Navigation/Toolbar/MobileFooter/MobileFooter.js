@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Aux from '../../../../hoc/Aux'
-import MobileNavigationItems from '../../MobileNavigationItems/MobileFooterNavigationItems/MobileFooterNavigationItems'
+import MobileNavigationItems from '../../ToolbarNavigationItems/MobileNavigationItems/MobileFooterNavigationItems/MobileFooterNavigationItems'
 // import Search from '../Search/Search'
 import classes from './MobileFooter.module.css'
 

@@ -1,11 +1,11 @@
-.NavigationItem {
+.DesktopToolbarNavigationItem {
   box-sizing: border-box;
   display: block;
   margin: 10px;
   width: 25%;
 }
 
-.NavigationItem a {
+.DesktopToolbarNavigationItem a {
   box-sizing: border-box;
   color: #000;
   display: block;
@@ -13,14 +13,14 @@
   width: 100%;
 }
 
-.NavigationItem a:hover,
-.NavigationItem a:active,
-.NavigationItem a.active {
+.DesktopToolbarNavigationItem a:hover,
+.DesktopToolbarNavigationItem a:active,
+.DesktopToolbarNavigationItem a.active {
   color: #40A4C8;
 }
 
 @media (min-width: 500px) {
-  .NavigationItem {
+  .DesktopToolbarNavigationItem {
     align-items: center;
     display: flex;
     height: 100%;
@@ -28,7 +28,7 @@
     width: auto;
   }
 
-  .NavigationItem a {
+  .DesktopToolbarNavigationItem a {
     border-bottom: 4px solid transparent;
     color: black;
     height: 100%;
@@ -36,9 +36,9 @@
     width: auto;
   }
 
-  .NavigationItem a:hover,
-  .NavigationItem a:active,
-  .NavigationItem a.active {
+  .DesktopToolbarNavigationItem a:hover,
+  .DesktopToolbarNavigationItem a:active,
+  .DesktopToolbarNavigationItem a.active {
     text-decoration: underline;
     color: black;
   }
