@@ -174,7 +174,7 @@ const Auth = props => {
         <Button
           btnType="Secondary"
           clicked={switchAuthModeHandler}
-        >Create your TargetReact account</Button>
+        >Create your InstaLite account</Button>
       </Aux>
     )
   }

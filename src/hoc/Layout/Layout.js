@@ -6,12 +6,12 @@ import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import classes from './Layout.module.css';
 
 const Layout = props => {
-  let toolbar = (
-    <Toolbar isAuthenticated={props.isAuthenticated} />
-  )
-  // if (!props.isAuthenticated) {
-  //   toolbar = null
-  // }
+  let toolbar = null
+  if (props.isAuthenticated) {
+    toolbar = (
+      <Toolbar isAuthenticated={props.isAuthenticated} />
+    )
+  }
 
   return (
     <Aux>

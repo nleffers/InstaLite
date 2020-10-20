@@ -31,10 +31,11 @@ const App = props => {
   if (props.isAuthenticated) {
     routes = (
       <Switch>
-        {/* <Route path="/inbox" component={props => <Inbox {...props} />} />
-        <Route path="/explore" component={props => <Explore {...props} />} />
-        <Route path="/likes" component={props => <Likes {...props} />} />
-        <Route path="/profile" component={props => <Profile {...props} />} /> */}
+        {/* <Route path="/newPicture" component={props => <NewPicture {...props} />} /> */}
+        {/* <Route path="/inbox" component={props => <Inbox {...props} />} /> */}
+        {/* <Route path="/explore" component={props => <Explore {...props} />} /> */}
+        {/* <Route path="/likes" component={props => <Likes {...props} />} /> */}
+        {/* <Route path="/profile" component={props => <Profile {...props} />} /> */}
         <Route path="/auth" component={props => <Auth {...props} />} />
         <Route path="/logout" component={Logout} />
         <Route path="/" exact component={props => <Home {...props} />} />
