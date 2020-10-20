@@ -5,33 +5,27 @@ import { storage } from '../../firebase/firebase'
 import * as actions from '../actions/index';
 
 export function* pictureUploadSaga(action) {
+  if (action.image === '') { return console.log('not an image') }
   yield put(actions.pictureUploadStart())
   try {
-    if (action.image === '') { return console.log('not an image') }
-    const uploadTask = storage.ref(`/images/${action.image.name}`).put(action.image)
-    // initiates the firebase side uploading
-    uploadTask.on(
-      'state_changed',
-      (snapShot) => {
-        // put code here that creates a picture in firebase db
-        // yield put(actions.pictureCreate(snapShot, action.userId, action.token))
-        console.log(snapShot)
-      }, err => {
-        console.log(err)
-      }
-    )
-    yield put(actions.pictureUploadSuccess())
+    const uploadTask = yield storage.ref(`/images/${action.image.name}`).put(action.image)
+    yield put(actions.pictureUploadSuccess(uploadTask))
   } catch (err) {
-    yield put(actions.pictureUploadFail(err.response.data.error))
+    yield put(actions.pictureUploadFail(err.response && err.response.data && err.response.data.error))
   }
 }
 
 export function* pictureCreateSaga(action) {
   yield put(actions.pictureCreateStart())
   try {
-    yield axios.post('/pictures.json?auth=' + action.token, action.snapShot)
+    const pictureData = {
+      bucket: action.snapShot.metadata.bucket,
+      path: action.snapShot.metadata.fullPath,
+      userId: action.userId
+    }
+    yield axios.post('/pictures.json?auth=' + action.token, pictureData)
     yield put(actions.pictureCreateSuccess())
   } catch (err) {
-    yield put(actions.pictureCreateFail(err.response.data.error))
+    yield put(actions.pictureCreateFail(err.response && err.response.data && err.response.data.error))
   }
 }

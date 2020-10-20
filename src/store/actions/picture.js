@@ -15,9 +15,10 @@ export const pictureUploadStart = () => {
   }
 }
 
-export const pictureUploadSuccess = () => {
+export const pictureUploadSuccess = snapShot => {
   return {
-    type: actionTypes.PICTURE_UPLOAD_SUCCESS
+    type: actionTypes.PICTURE_UPLOAD_SUCCESS,
+    snapShot: snapShot
   }
 }
 

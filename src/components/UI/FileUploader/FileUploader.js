@@ -22,17 +22,23 @@ const FileUploader = props => {
 
   const userId = useSelector(state => state.auth.userId)
   const token = useSelector(state => state.auth.token)
+  const snapShot = useSelector(state => state.picture.snapShot)
 
   const dispatch = useDispatch()
   const onPictureUpload = useCallback(image => dispatch(actions.pictureUpload(image, userId, token)), [dispatch, userId, token])
+  const onPictureCreate = useCallback(() => dispatch(actions.pictureCreate(snapShot, userId, token)), [dispatch, snapShot, userId, token])
 
   useEffect(() => {
-    onPictureUpload(imageAsFile)
+    if (imageAsFile !== '') { onPictureUpload(imageAsFile) }
   }, [onPictureUpload, imageAsFile])
 
+  useEffect(() => {
+    if (snapShot) { onPictureCreate() }
+  }, [onPictureCreate, snapShot])
+
   const imageAsFileHandler = event => {
-    const image = event.target.files[0]
-    image ? setImageAsFile(image) : setImageAsFile('')
+    const image = event.target.files[0] || ''
+    setImageAsFile(image)
   }
 
   const hiddenFileInput = React.useRef(null)
