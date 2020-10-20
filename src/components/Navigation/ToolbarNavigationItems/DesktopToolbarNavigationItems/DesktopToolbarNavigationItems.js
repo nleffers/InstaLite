@@ -9,7 +9,7 @@ const desktopToolbarNavigationItems = (props) => (
     <DesktopToolbarNavigationItem link="/" exact icon='Home' />
     <DesktopToolbarNavigationItem link="/inbox" icon="Inbox" />
     <DesktopToolbarNavigationItem link="/explore" icon='Search' />
-    <DesktopToolbarNavigationItem link="/likes" icon='Heart' />
+    <DesktopToolbarNavigationItem link="/activity" icon='Heart' />
     <DesktopToolbarNavigationItem link="/profile" icon='Profile' />
     {props.isAuthenticated ? <DesktopToolbarNavigationItem link="/logout" icon="SignOut" /> : <DesktopToolbarNavigationItem link="/auth" icon="SignIn" />}
   </ul>
