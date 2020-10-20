@@ -19,13 +19,9 @@ const FileUploader = props => {
   //     })
   // }
 
-  const firebaseUploadHandler = useCallback(() => {
-    if (imageAsFile === '') {
-      console.error(`not an image, the image file is a ${typeof (imageAsFile)}`)
-      return
-    }
-    debugger
-    const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
+  const firebaseUploadHandler = useCallback(image => {
+    if (image === '') { return console.log('not an image') }
+    const uploadTask = storage.ref(`/images/${image.name}`).put(image)
     // initiates the firebase side uploading
     uploadTask.on(
       'state_changed',
@@ -36,23 +32,21 @@ const FileUploader = props => {
         console.log(err)
       }
     )
-  }, [imageAsFile])
+  }, [])
 
   useEffect(() => {
-    firebaseUploadHandler()
+    firebaseUploadHandler(imageAsFile)
   }, [firebaseUploadHandler, imageAsFile])
 
   const imageAsFileHandler = event => {
     const image = event.target.files[0]
-    debugger
-    if (image) {
-      setImageAsFile(image)
-    }
+    image ? setImageAsFile(image) : setImageAsFile('')
   }
 
   const hiddenFileInput = React.useRef(null)
 
-  const handleClick = () => {
+  const handleClick = event => {
+    event.preventDefault()
     hiddenFileInput.current.click()
   }
 
@@ -64,8 +58,7 @@ const FileUploader = props => {
           className={classes.FileUploader}
           type="file"
           ref={hiddenFileInput}
-          onClick={imageAsFileHandler}
-          onChange={firebaseUploadHandler}
+          onChange={imageAsFileHandler}
         />
       </form>
     </li>

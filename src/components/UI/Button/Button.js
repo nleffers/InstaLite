@@ -4,7 +4,7 @@ import { faCamera, faPlusSquare, faHeart, faSearch, faHome, faUser, faEnvelope, 
 
 import classes from './Button.module.css';
 
-const button = (props) => {
+const button = props => {
   let element = props.children
   switch (props.btnType) {
     case 'Plus':

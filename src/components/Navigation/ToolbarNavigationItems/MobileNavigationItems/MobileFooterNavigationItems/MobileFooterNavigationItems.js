@@ -4,7 +4,7 @@ import FileUploader from '../../../../UI/FileUploader/FileUploader';
 import MobileFooterNavigationItem from './MobileFooterNavigationItem/MobileFooterNavigationItem';
 import classes from './MobileFooterNavigationItems.module.css';
 
-const mobileFooterNavigationItems = (props) => (
+const mobileFooterNavigationItems = () => (
   <ul className={classes.MobileFooterNavigationItems}>
     <MobileFooterNavigationItem link="/" exact icon='Home' />
     <MobileFooterNavigationItem link="/explore" icon='Search' />
