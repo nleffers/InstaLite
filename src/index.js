@@ -9,13 +9,15 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import authReducer from './store/reducers/auth'
+import pictureReducer from './store/reducers/picture'
 import userReducer from './store/reducers/user'
-import { watchAuth, watchUser } from './store/sagas/index'
+import { watchAuth, watchPicture, watchUser } from './store/sagas/index'
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  picture: pictureReducer,
   user: userReducer
 })
 
@@ -24,6 +26,7 @@ const sagaMiddleware = createSagaMiddleware()
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)))
 
 sagaMiddleware.run(watchAuth)
+sagaMiddleware.run(watchPicture)
 sagaMiddleware.run(watchUser)
 
 const app = (

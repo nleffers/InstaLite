@@ -10,6 +10,16 @@ export {
   authCheckTimeout
 } from './auth';
 export {
+  pictureCreate,
+  pictureCreateStart,
+  pictureCreateSuccess,
+  pictureCreateFail,
+  pictureUpload,
+  pictureUploadStart,
+  pictureUploadSuccess,
+  pictureUploadFail
+} from './picture'
+export {
   userCreate,
   userCreateStart,
   userCreateSuccess,

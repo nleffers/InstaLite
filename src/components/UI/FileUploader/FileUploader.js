@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { storage } from '../../../firebase/firebase'
+import { useDispatch, useSelector } from 'react-redux';
 
 import axios from '../../../axios/axios'
 import withErrorHandler from '../../../hoc/withErrorHandler'
 import Button from '../Button/Button'
+import * as actions from '../../../store/actions/index'
 import classes from './FileUploader.module.css'
 
 const FileUploader = props => {
@@ -19,24 +20,15 @@ const FileUploader = props => {
   //     })
   // }
 
-  const firebaseUploadHandler = useCallback(image => {
-    if (image === '') { return console.log('not an image') }
-    const uploadTask = storage.ref(`/images/${image.name}`).put(image)
-    // initiates the firebase side uploading
-    uploadTask.on(
-      'state_changed',
-      (snapShot) => {
-        // put code here that creates a picture in firebase db
-        console.log(snapShot)
-      }, err => {
-        console.log(err)
-      }
-    )
-  }, [])
+  const userId = useSelector(state => state.auth.userId)
+  const token = useSelector(state => state.auth.token)
+
+  const dispatch = useDispatch()
+  const onPictureUpload = useCallback(image => dispatch(actions.pictureUpload(image, userId, token)), [dispatch, userId, token])
 
   useEffect(() => {
-    firebaseUploadHandler(imageAsFile)
-  }, [firebaseUploadHandler, imageAsFile])
+    onPictureUpload(imageAsFile)
+  }, [onPictureUpload, imageAsFile])
 
   const imageAsFileHandler = event => {
     const image = event.target.files[0]
