@@ -8,7 +8,7 @@ import classes from './Toolbar.module.css'
 
 const toolbar = props => (
   <Aux>
-    <DesktopToolbar classes={classes.DesktopToolbar} />
+    <DesktopToolbar isAuthenticated={props.isAuthenticated} classes={classes.DesktopToolbar} />
     <MobileToolbar classes={classes.MobileToolbar} />
     <MobileFooter isAuthenticated={props.isAuthenticated} classes={classes.MobileFooter} />
   </Aux>
