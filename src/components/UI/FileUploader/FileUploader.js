@@ -36,7 +36,7 @@ const FileUploader = props => {
   const imageAsFileHandler = event => {
     const image = event.target.files[0]
     setImageAsFile(imageFile => image)
-    .then(() => firebaseUploadHandler())
+      .then(() => firebaseUploadHandler())
   }
 
   const hiddenFileInput = React.useRef(null)
@@ -46,7 +46,7 @@ const FileUploader = props => {
   }
 
   return (
-    <div>
+    <li className={classes.FileUploader}>
       <form>
         <Button btnType={icon} clicked={handleClick}></Button>
         <input
@@ -56,7 +56,7 @@ const FileUploader = props => {
           onChange={imageAsFileHandler}
         />
       </form>
-    </div>
+    </li>
   )
 }
 

@@ -1,3 +1,10 @@
 .FileUploader {
+  display: block;
+  margin: 10px;
+  text-align: center;
+  width: 33%;
+}
+
+.FileUploader input {
   display: none;
 }
