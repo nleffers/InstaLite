@@ -45,10 +45,10 @@ export const userFetchStart = () => {
   }
 }
 
-export const userFetchSuccess = response => {
+export const userFetchSuccess = snapShot => {
   return {
     type: actionTypes.USER_FETCH_SUCCESS,
-    response: response
+    data: snapShot.data
   }
 }
 

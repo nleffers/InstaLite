@@ -19,18 +19,19 @@ const initialState = {
   error: null
 }
 
-const userFetchSuccess = (state, action) => {
-  debugger
+const userFetchSuccess = (state, data) => {
+  const userObjectId = Object.keys(data)[0]
+  const userObject = data[userObjectId]
   return updateObject(
     state,
     {
-      username: action.username,
-      fullName: action.fullName,
-      website: action.website,
-      bio: action.bio,
-      email: action.email,
-      phone: action.phone,
-      gender: action.gender,
+      username: userObject.username,
+      fullName: userObject.fullName,
+      website: userObject.website,
+      bio: userObject.bio,
+      email: userObject.email,
+      phone: userObject.phone,
+      gender: userObject.gender,
       loading: false
     }
   )
