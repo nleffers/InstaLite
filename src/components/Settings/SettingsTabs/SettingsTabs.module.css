@@ -6,7 +6,9 @@
 @media (min-width: 500px) {
   .SettingsTabs {
     border: 1px solid #ccc;
+    border-right: 0;
     width: 20%;
     height: 100%;
+    display: inline-block;
   }
 }

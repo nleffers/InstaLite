@@ -9,7 +9,8 @@
 @media (min-width: 500px) {
   .Settings {
     margin: auto;
-    padding: 30px;
+    padding-top: 85px;
+    width: 60%;
     height: 80vh;
   }
 

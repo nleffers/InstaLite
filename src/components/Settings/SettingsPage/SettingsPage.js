@@ -6,7 +6,13 @@ import classes from './SettingsPage.module.css'
 const settingsPage = props => {
   return (
     <Aux>
-      <div className={classes.SettingsPage}></div>
+      <div className={classes.SettingsPage}>
+        {/* <ul>
+          <li>
+            Edit Profile
+          </li>
+        </ul> */}
+      </div>
     </Aux>
   )
 }

@@ -3,5 +3,7 @@
     border: 1px solid #ccc;
     width: 70%;
     height: 100%;
+    display: inline-block;
+    vertical-align: top;
   }
 }
