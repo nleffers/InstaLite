@@ -1,0 +1,12 @@
+.SettingsTabs {
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+@media (min-width: 500px) {
+  .SettingsTabs {
+    border: 1px solid #ccc;
+    width: 20%;
+    height: 100%;
+  }
+}

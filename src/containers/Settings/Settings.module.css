@@ -1,0 +1,23 @@
+.Settings {
+  width: 100%;
+}
+
+.DesktopOnly {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .Settings {
+    margin: auto;
+    padding: 30px;
+    height: 80vh;
+  }
+
+  .DesktopOnly {
+    display: initial;
+  }
+
+  .MobileOnly {
+    display: none;
+  }
+}

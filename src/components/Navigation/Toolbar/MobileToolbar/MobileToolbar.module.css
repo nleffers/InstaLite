@@ -1,3 +1,7 @@
+.MobileToolbar {
+  background: #fff;
+}
+
 .MobileOnly {
   display: none;
 }

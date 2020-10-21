@@ -7,11 +7,11 @@ import MobileFooter from './MobileFooter/MobileFooter'
 import classes from './Toolbar.module.css'
 
 const toolbar = props => (
-  <Aux>
+  <div className={classes.Toolbar}>
     <DesktopToolbar isAuthenticated={props.isAuthenticated} classes={classes.DesktopToolbar} />
     <MobileToolbar classes={classes.MobileToolbar} />
     <MobileFooter isAuthenticated={props.isAuthenticated} classes={classes.MobileFooter} />
-  </Aux>
+  </div>
 )
 
 export default toolbar

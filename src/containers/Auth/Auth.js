@@ -109,7 +109,7 @@ const Auth = props => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onAuth(
+    props.onAuthUser(
       controls.email.value,
       controls.password.value,
       isSignUp,

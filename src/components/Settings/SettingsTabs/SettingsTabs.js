@@ -12,16 +12,18 @@ const SettingsTabs = () => {
   }
 
   return (
-    <ul className={classes.SettingsTabs}>
-      <Tab
-        tab="editProfile"
-        clicked={tabClickHandler}
-      />
-      <Tab
+    <div className={classes.SettingsTabs}>
+      <ul>
+        <Tab
+          tab="editProfile"
+          clicked={tabClickHandler}
+        />
+        {/* <Tab
         tab="changePassword"
         clicked={tabClickHandler}
-      />
-    </ul>
+      /> */}
+      </ul>
+    </div>
   )
 }
 
