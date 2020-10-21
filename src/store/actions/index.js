@@ -23,5 +23,13 @@ export {
   userCreate,
   userCreateStart,
   userCreateSuccess,
-  userCreateFail
+  userCreateFail,
+  userFetch,
+  userFetchStart,
+  userFetchSuccess,
+  userFetchFail,
+  userUpdate,
+  userUpdateStart,
+  userUpdateSuccess,
+  userUpdateFail
 } from './user';

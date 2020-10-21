@@ -10,6 +10,7 @@ const mobileToolbarNavigationItems = () => (
     <FileUploader icon="Camera" />
     <MobileToolbarNavigationItem link="/" exact icon='Home' />
     <MobileToolbarNavigationItem link="/inbox" icon="Inbox" />
+    <MobileToolbarNavigationItem link="/settings" icon="Settings" />
   </ul>
 );
 

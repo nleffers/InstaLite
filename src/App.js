@@ -14,6 +14,22 @@ const Home = React.lazy(() => {
   return import('./containers/Home/Home')
 })
 
+const Settings = React.lazy(() => {
+  return import('./containers/Settings/Settings')
+})
+
+// const Profile = React.lazy(() => {
+//   return import('./containers/Profile/Profile')
+// })
+
+// const Inbox = React.lazy(() => {
+//   return import('./containers/Inbox/Inbox')
+// })
+
+// const Activity = React.lazy(() => {
+//   return import('./containers/Activity/Activity')
+// })
+
 const App = props => {
   const { onTryAutoSignIn } = props
 
@@ -31,11 +47,11 @@ const App = props => {
   if (props.isAuthenticated) {
     routes = (
       <Switch>
-        {/* <Route path="/newPicture" component={props => <NewPicture {...props} />} /> */}
         {/* <Route path="/inbox" component={props => <Inbox {...props} />} /> */}
         {/* <Route path="/explore" component={props => <Explore {...props} />} /> */}
         {/* <Route path="/activity" component={props => <Likes {...props} />} /> */}
         {/* <Route path="/profile" component={props => <Profile {...props} />} /> */}
+        <Route path="/settings" component={props => <Settings {...props} />} />
         <Route path="/auth" component={props => <Auth {...props} />} />
         <Route path="/logout" component={Logout} />
         <Route path="/" exact component={props => <Home {...props} />} />

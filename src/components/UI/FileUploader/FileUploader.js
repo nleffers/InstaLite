@@ -41,7 +41,7 @@ const FileUploader = props => {
       onPictureCreate()
       setImageUploadedFromThisComponent(false)
     }
-  }, [onPictureCreate, snapShot])
+  }, [onPictureCreate, snapShot, imageUploadedFromThisComponent])
 
   const imageAsFileHandler = event => {
     const image = event.target.files[0] || ''

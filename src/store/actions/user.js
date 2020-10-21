@@ -24,9 +24,72 @@ export const userCreateSuccess = () => {
   }
 }
 
-export const userCreateFail = (error) => {
+export const userCreateFail = error => {
   return {
     type: actionTypes.USER_CREATE_FAIL,
+    error: error
+  }
+}
+
+export const userFetch = (userId, token) => {
+  return {
+    type: actionTypes.USER_FETCH,
+    userId: userId,
+    token: token
+  }
+}
+
+export const userFetchStart = () => {
+  return {
+    type: actionTypes.USER_FETCH_START
+  }
+}
+
+export const userFetchSuccess = response => {
+  return {
+    type: actionTypes.USER_FETCH_SUCCESS,
+    response: response
+  }
+}
+
+export const userFetchFail = error => {
+  return {
+    type: actionTypes.USER_FETCH_FAIL,
+    error: error
+  }
+}
+
+export const userUpdate = (userId, username, fullName, website, bio, email, phone, gender, token) => {
+  return {
+    type: actionTypes.USER_UPDATE,
+    userId: userId,
+    username: username,
+    fullName: fullName,
+    website: website,
+    bio: bio,
+    email: email,
+    phone: phone,
+    gender: gender,
+    token: token
+  }
+}
+
+export const userUpdateStart = () => {
+  return {
+    type: actionTypes.USER_UPDATE_START
+  }
+}
+
+export const userUpdateSuccess = response => {
+  return {
+    type: actionTypes.USER_UPDATE_SUCCESS,
+    response: response
+  }
+}
+
+export const userUpdateFail = error => {
+  return {
+    type: actionTypes.USER_UPDATE_FAIL,
     error: error
   }
 }
