@@ -7,11 +7,6 @@ const settingsPage = props => {
   return (
     <Aux>
       <div className={classes.SettingsPage}>
-        {/* <ul>
-          <li>
-            Edit Profile
-          </li>
-        </ul> */}
       </div>
     </Aux>
   )

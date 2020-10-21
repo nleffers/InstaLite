@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import Aux from '../../hoc/Aux';
+import Aux from '../../hoc/Aux'
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -96,6 +96,11 @@ const Auth = props => {
     }
   }, [authRedirectPath, onAuthSetRedirectPath])
 
+  let authClasses = [classes.Auth]
+  if (isSignUp) {
+    authClasses=[classes.Auth, classes.SignUp].join(' ')
+  }
+
   const inputChangedHandler = (event, controlName) => {
     const updatedControls = updateObject(controls, {
       [controlName]: updateObject(controls[controlName], {
@@ -161,36 +166,42 @@ const Auth = props => {
     authRedirect = <Redirect to={authRedirectPath} />
   }
 
-  let submit = (
-    <Button
-      btnType="Tertiary"
-      clicked={switchAuthModeHandler}
-    >Or sign in</Button>
-  )
+  let forgotPassword = null
   if (!isSignUp) {
-    submit = (
-      <Aux>
-        <Button btnType="Tertiary">Forgot password?</Button>
-        <Button
-          btnType="Secondary"
-          clicked={switchAuthModeHandler}
-        >Create your InstaLite account</Button>
-      </Aux>
+    forgotPassword = <Button btnType="Tertiary">Forgot password?</Button>
+  }
+
+  let switchModeButton = (
+    <Button
+      btnType="Secondary"
+      clicked={switchAuthModeHandler}
+    >Don't have an account? Sign Up</Button>
+  )
+  if (isSignUp) {
+    switchModeButton = (
+      <Button
+        btnType="Secondary"
+        clicked={switchAuthModeHandler}
+      >Have an account? Log in</Button>
     )
   }
 
   return (
-    <div className={classes.Auth}>
-      <h2>InstaLite</h2>
-      {authRedirect}
-      <form onSubmit={submitHandler}>
-        {form}
-        {errorMessage}
-        <Button btnType="Primary">{isSignUp ? 'Create account' : 'Sign In'}</Button>
-      </form>
-      <br />
-      {submit}
-    </div>
+    <Aux>
+      <div className={authClasses}>
+        <h2>InstaLite</h2>
+        {authRedirect}
+        <form onSubmit={submitHandler}>
+          {form}
+          {errorMessage}
+          <Button btnType="Primary">{isSignUp ? 'Create account' : 'Sign In'}</Button>
+        </form>
+        {forgotPassword}
+      </div>
+      <div className={classes.SwitchAuth}>
+        {switchModeButton}
+      </div>
+    </Aux>
   );
 }
 

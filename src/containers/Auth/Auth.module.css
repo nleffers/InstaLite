@@ -1,13 +1,25 @@
 .Auth {
-  margin: 20px auto;
+  margin: 175px auto 5px;
+  height: 380px;
   width: 80%;
   text-align: center;
-  padding: 10px;
+  padding: 10px 50px;
   box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+
+.SwitchAuth {
+  padding: 5px;
+  margin: 0 auto;
 }
 
 @media (min-width: 600px) {
-  .Auth {
-    width: 500px;
+  .Auth, .SwitchAuth {
+    width: 350px;
+  }
+
+  .SignUp {
+    height: 574px;
+    margin: 25px auto;
   }
 }

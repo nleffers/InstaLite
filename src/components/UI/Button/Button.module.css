@@ -28,6 +28,7 @@
   background-color: #2495f6;
   margin: auto;
   width: 100%;
+  padding: 8px 0;
 }
 
 .Primary:disabled {
@@ -37,6 +38,7 @@
 .Secondary {
   color: #000000;
   margin: auto;
+  padding: 8px 0;
   width: 100%;
   box-shadow: 0 2px 3px #ccc;
   border: 1px solid #eee;
@@ -45,6 +47,7 @@
 .Tertiary {
   color: #000;
   margin: auto;
+  margin-bottom: 16px;
   width: 100%;
   text-decoration: underline;
 }
