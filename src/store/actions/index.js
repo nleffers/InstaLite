@@ -1,13 +1,17 @@
 export {
-  auth,
-  authStart,
-  authSuccess,
-  authFail,
-  authLogout,
-  setAuthRedirectPath,
-  authCheckState,
-  logoutSucceed,
-  authCheckTimeout
+  authUser,
+  authUserStart,
+  authUserSuccess,
+  authUserFail,
+  authUserLogout,
+  authSetRedirectPath,
+  authUserCheckState,
+  authUserLogoutSuccess,
+  authUserCheckTimeout,
+  authUserChangePassword,
+  authUserChangePasswordStart,
+  authUserChangePasswordSuccess,
+  authUserChangePasswordFail
 } from './auth';
 export {
   pictureCreate,

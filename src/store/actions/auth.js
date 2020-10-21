@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 
-export const auth = (email, password, isSignUp, username, fullName, phone) => {
+export const authUser = (email, password, isSignUp, username, fullName, phone) => {
   return {
     type: actionTypes.AUTH_USER,
     username: username,
@@ -12,55 +12,84 @@ export const auth = (email, password, isSignUp, username, fullName, phone) => {
   }
 }
 
-export const authStart = () => {
+export const authUserStart = () => {
   return {
-    type: actionTypes.AUTH_START
+    type: actionTypes.AUTH_USER_START
   }
 }
 
-export const authSuccess = (idToken, userId) => {
+export const authUserSuccess = (idToken, userId) => {
   return {
-    type: actionTypes.AUTH_SUCCESS,
+    type: actionTypes.AUTH_USER_SUCCESS,
     idToken: idToken,
     userId: userId
   }
 }
 
-export const authFail = (err) => {
+export const authUserFail = (err) => {
   return {
-    type: actionTypes.AUTH_FAIL,
+    type: actionTypes.AUTH_USER_FAIL,
     error: err
   }
 }
 
-export const authLogout = () => {
+export const authUserLogout = () => {
   return {
-    type: actionTypes.AUTH_INITIATE_LOGOUT
+    type: actionTypes.AUTH_USER_LOGOUT
   }
 }
 
-export const logoutSucceed = () => {
+export const authUserLogoutSuccess = () => {
   return {
-    type: actionTypes.AUTH_LOGOUT
+    type: actionTypes.AUTH_USER_LOGOUT_SUCCESS
   }
 }
 
-export const authCheckTimeout = (expirationTime) => {
+export const authUserCheckTimeout = (expirationTime) => {
   return {
-    type: actionTypes.AUTH_CHECK_TIMEOUT,
+    type: actionTypes.AUTH_USER_CHECK_TIMEOUT,
     expirationTime: expirationTime
   }
 }
 
-export const setAuthRedirectPath = path => {
+export const authSetRedirectPath = path => {
   return {
-    type: actionTypes.SET_AUTH_REDIRECT_PATH,
+    type: actionTypes.AUTH_SET_REDIRECT_PATH,
     path: path
   }
 }
 
-export const authCheckState = () => {
+export const authUserCheckState = () => {
   return {
-    type: actionTypes.AUTH_CHECK_STATE
+    type: actionTypes.AUTH_USER_CHECK_STATE
+  }
+}
+
+export const authUserChangePassword = (userId, token, oldPassword, newPassword) => {
+  return {
+    type: actionTypes.AUTH_USER_CHANGE_PASSWORD,
+    userId: userId,
+    token: token,
+    oldPassword: oldPassword,
+    newPassword: newPassword
+  }
+}
+
+export const authUserChangePasswordStart = () => {
+  return {
+    type: actionTypes.AUTH_USER_CHANGE_PASSWORD_START
+  }
+}
+
+export const authUserChangePasswordSuccess = () => {
+  return {
+    type: actionTypes.AUTH_USER_CHANGE_PASSWORD_SUCCESS
+  }
+}
+
+export const authUserChangePasswordFail = error => {
+  return {
+    type: actionTypes.AUTH_USER_CHANGE_PASSWORD_FAIL,
+    error: error
   }
 }

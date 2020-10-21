@@ -11,7 +11,7 @@ import * as actions from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
 const Auth = props => {
-  const { authRedirectPath, onSetAuthRedirectPath } = props
+  const { authRedirectPath, onAuthSetRedirectPath } = props
 
   const [isSignUp, setIsSignUp] = useState(true)
   const [controls, setControls] = useState({
@@ -92,9 +92,9 @@ const Auth = props => {
 
   useEffect(() => {
     if (authRedirectPath !== '/') {
-      onSetAuthRedirectPath()
+      onAuthSetRedirectPath()
     }
-  }, [authRedirectPath, onSetAuthRedirectPath])
+  }, [authRedirectPath, onAuthSetRedirectPath])
 
   const inputChangedHandler = (event, controlName) => {
     const updatedControls = updateObject(controls, {
@@ -205,8 +205,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password, isSignUp, username, fullName, phone) => dispatch(actions.auth(email, password, isSignUp, username, fullName, phone)),
-    onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
+    onAuthUser: (email, password, isSignUp, username, fullName, phone) => dispatch(actions.authUser(email, password, isSignUp, username, fullName, phone)),
+    onAuthSetRedirectPath: () => dispatch(actions.authSetRedirectPath('/'))
   };
 };
 
