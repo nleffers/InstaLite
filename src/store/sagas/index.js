@@ -1,9 +1,9 @@
 import { takeEvery, all } from 'redux-saga/effects';
 
 import * as actionTypes from '../actions/actionTypes';
-import { logoutSaga, authCheckTimeoutSaga, authUserSaga, authCheckStateSaga, authUserChangePasswordSaga } from './auth'
+import { logoutSaga, authCheckTimeoutSaga, authUserSaga, authCheckStateSaga, authUserCreateSaga, authUserFetchSaga, authUserUpdateSaga, authUserChangePasswordSaga } from './auth'
 import { pictureUploadSaga, pictureCreateSaga } from './picture'
-import { userCreateSaga, userFetchSaga, userUpdateSaga } from './user'
+import { userFetchSaga } from './user'
 
 export function* watchAuth() {
   yield all([
@@ -11,6 +11,9 @@ export function* watchAuth() {
     takeEvery(actionTypes.AUTH_USER_CHECK_TIMEOUT, authCheckTimeoutSaga),
     takeEvery(actionTypes.AUTH_USER, authUserSaga),
     takeEvery(actionTypes.AUTH_USER_CHECK_STATE, authCheckStateSaga),
+    takeEvery(actionTypes.AUTH_USER_CREATE, authUserCreateSaga),
+    takeEvery(actionTypes.AUTH_USER_FETCH, authUserFetchSaga),
+    takeEvery(actionTypes.AUTH_USER_UPDATE, authUserUpdateSaga),
     takeEvery(actionTypes.AUTH_USER_CHANGE_PASSWORD, authUserChangePasswordSaga)
   ])
 }
@@ -24,8 +27,6 @@ export function* watchPicture() {
 
 export function* watchUser() {
   yield all([
-    takeEvery(actionTypes.USER_CREATE, userCreateSaga),
     takeEvery(actionTypes.USER_FETCH, userFetchSaga),
-    takeEvery(actionTypes.USER_UPDATE, userUpdateSaga)
   ])
 }

@@ -8,6 +8,18 @@ export {
   authUserCheckState,
   authUserLogoutSuccess,
   authUserCheckTimeout,
+  authUserCreate,
+  authUserCreateStart,
+  authUserCreateSuccess,
+  authUserCreateFail,
+  authUserFetch,
+  authUserFetchStart,
+  authUserFetchSuccess,
+  authUserFetchFail,
+  authUserUpdate,
+  authUserUpdateStart,
+  authUserUpdateSuccess,
+  authUserUpdateFail,
   authUserChangePassword,
   authUserChangePasswordStart,
   authUserChangePasswordSuccess,
@@ -24,16 +36,8 @@ export {
   pictureUploadFail
 } from './picture'
 export {
-  userCreate,
-  userCreateStart,
-  userCreateSuccess,
-  userCreateFail,
   userFetch,
   userFetchStart,
   userFetchSuccess,
-  userFetchFail,
-  userUpdate,
-  userUpdateStart,
-  userUpdateSuccess,
-  userUpdateFail
+  userFetchFail
 } from './user';

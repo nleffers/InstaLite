@@ -134,8 +134,8 @@ const Auth = props => {
     formElementsArray.push({
       id: key,
       config: controls[key]
-    });
-  };
+    })
+  }
 
   let form = formElementsArray.map(el => (
     <Input
@@ -148,7 +148,7 @@ const Auth = props => {
       touched={el.config.touched}
       changed={(event) => inputChangedHandler(event, el.id)}
     />
-  ));
+  ))
 
   if (props.loading) {
     form = <Spinner />
@@ -194,7 +194,7 @@ const Auth = props => {
         <form onSubmit={submitHandler}>
           {form}
           {errorMessage}
-          <Button btnType="Primary">{isSignUp ? 'Create account' : 'Sign In'}</Button>
+          <Button btnType="Primary">{isSignUp ? 'Create account' : 'Log In'}</Button>
         </form>
         {forgotPassword}
       </div>

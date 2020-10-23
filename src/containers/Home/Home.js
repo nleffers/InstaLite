@@ -34,8 +34,8 @@ const Home = props => {
 
 const mapStateToProps = state => {
   return {
-    loading: state.user.loading,
-    error: state.user.error,
+    loading: state.auth.loading,
+    error: state.auth.error,
     token: state.auth.token,
     isAuthenticated: state.auth.token !== null
   }
@@ -43,7 +43,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // onUserFetch: (username, token) => dispatch(actions.userFetch(username, token)),
+    // onAuthUserFetch: (token) => dispatch(actions.authUserFetch(token)),
   };
 };
 

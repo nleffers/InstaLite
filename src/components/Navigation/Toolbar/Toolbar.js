@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Aux from '../../../hoc/Aux'
 import DesktopToolbar from './DesktopToolbar/DesktopToolbar'
 import MobileToolbar from './MobileToolbar/MobileToolbar'
 import MobileFooter from './MobileFooter/MobileFooter'
