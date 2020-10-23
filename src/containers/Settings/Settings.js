@@ -39,7 +39,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUserFetch: (userId, token) => dispatch(actions.userFetch(userId, token))
+    onUserFetch: (userId, token) => dispatch(actions.authUserFetch(userId, token))
   }
 }
 
