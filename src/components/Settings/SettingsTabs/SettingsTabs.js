@@ -11,7 +11,6 @@ const settingsTabs = props => {
     setActiveTab(event.target.value)
   }
 
-
   return (
     <div className={classes.SettingsTabs}>
       <ul>

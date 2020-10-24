@@ -1,8 +1,8 @@
 import * as actionTypes from './actionTypes';
 
-export const authUser = (email, password, isSignUp, username, fullName, phone) => {
+export const authUserLogin = (email, password, isSignUp, username, fullName, phone) => {
   return {
-    type: actionTypes.AUTH_USER,
+    type: actionTypes.AUTH_USER_LOGIN,
     username: username,
     fullName: fullName,
     email: email,
@@ -12,23 +12,23 @@ export const authUser = (email, password, isSignUp, username, fullName, phone) =
   }
 }
 
-export const authUserStart = () => {
+export const authUserLoginStart = () => {
   return {
-    type: actionTypes.AUTH_USER_START
+    type: actionTypes.AUTH_USER_LOGIN_START
   }
 }
 
-export const authUserSuccess = (idToken, userId) => {
+export const authUserLoginSuccess = (idToken, userId) => {
   return {
-    type: actionTypes.AUTH_USER_SUCCESS,
+    type: actionTypes.AUTH_USER_LOGIN_SUCCESS,
     idToken: idToken,
     userId: userId
   }
 }
 
-export const authUserFail = (err) => {
+export const authUserLoginFail = (err) => {
   return {
-    type: actionTypes.AUTH_USER_FAIL,
+    type: actionTypes.AUTH_USER_LOGIN_FAIL,
     error: err
   }
 }
@@ -153,12 +153,13 @@ export const authUserFetchFail = error => {
   }
 }
 
-export const authUserUpdate = (userId, username, fullName, website, bio, email, phone, gender, token) => {
+export const authUserUpdate = (userId, userObjectId, fullName, username, website, bio, email, phone, gender, token) => {
   return {
     type: actionTypes.AUTH_USER_UPDATE,
     userId: userId,
-    username: username,
+    userObjectId: userObjectId,
     fullName: fullName,
+    username: username,
     website: website,
     bio: bio,
     email: email,

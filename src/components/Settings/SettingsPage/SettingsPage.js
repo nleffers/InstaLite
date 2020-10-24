@@ -4,16 +4,22 @@ import EditProfilePage from './SettingsPageOptions/EditProfilePage/EditProfilePa
 import classes from './SettingsPage.module.css'
 
 const settingsPage = props => {
-  const { activePage, error, loading, onAuthUserUpdate } = props
+  const { activePage, fullName, username, website, bio, email, phone, gender, editProfileInputChangedHandler, editProfileSubmitHandler } = props
 
   let component = null
   switch (activePage) {
     case 'EditProfile':
       component = (
         <EditProfilePage
-          loading={loading}
-          error={error}
-          onAuthUserUpdate={onAuthUserUpdate}
+          fullName={fullName}
+          username={username}
+          website={website}
+          bio={bio}
+          email={email}
+          phone={phone}
+          gender={gender}
+          editProfileInputChangedHandler={editProfileInputChangedHandler}
+          editProfileSubmitHandler={editProfileSubmitHandler}
         />
       )
       break

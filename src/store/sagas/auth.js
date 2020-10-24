@@ -16,8 +16,8 @@ export function* authCheckTimeoutSaga(action) {
   yield put(actions.authUserLogout())
 }
 
-export function* authUserSaga(action) {
-  yield put(actions.authUserStart())
+export function* authUserLoginSaga(action) {
+  yield put(actions.authUserLoginStart())
   const authData = {
     email: action.email,
     password: action.password,
@@ -37,10 +37,10 @@ export function* authUserSaga(action) {
     if (action.isSignUp) {
       yield put(actions.authUserCreate(resp.data.localId, action.username, action.fullName, action.email, action.phone, resp.data.idToken))
     }
-    yield put(actions.authUserSuccess(resp.data.idToken, resp.data.localId))
+    yield put(actions.authUserLoginSuccess(resp.data.idToken, resp.data.localId))
     yield put(actions.authUserCheckTimeout(resp.data.expiresIn))
   } catch (err) {
-    yield put(actions.authUserFail(err.response.data.error))
+    yield put(actions.authUserLoginFail(err.response.data.error))
   }
 }
 
@@ -52,7 +52,7 @@ export function* authCheckStateSaga() {
     const expirationDate = yield new Date(localStorage.getItem('expirationDate'))
     if (expirationDate > new Date()) {
       const userId = yield localStorage.getItem('userId')
-      yield put(actions.authUserSuccess(token, userId))
+      yield put(actions.authUserLoginSuccess(token, userId))
       yield put(actions.authUserCheckTimeout((expirationDate.getTime() - new Date().getTime()) / 1000))
     } else {
       yield put(actions.authUserLogout())
@@ -68,7 +68,10 @@ export function* authUserCreateSaga(action) {
       username: action.username,
       email: action.email,
       fullName: action.fullName,
-      phone: action.phone
+      phone: action.phone,
+      website: '',
+      bio: '',
+      gender: ''
     }
     yield axios.post(`/users.json?auth=${action.token}`, userData)
     yield put(actions.authUserCreateSuccess())
@@ -82,7 +85,7 @@ export function* authUserFetchSaga(action) {
   try {
     const resp = yield axios.get(`/users.json?auth=${action.token}&userId=${action.userId}`)
     yield put(actions.authUserFetchSuccess(resp))
-  } catch(err) {
+  } catch (err) {
     yield put(actions.authUserFetchFail(err.response.data.error))
   }
 }
@@ -91,16 +94,19 @@ export function* authUserUpdateSaga(action) {
   yield put(actions.authUserUpdateStart())
   try {
     const userData = {
-      username: action.username,
-      fullName: action.fullName,
-      website: action.website,
-      bio: action.bio,
-      email: action.email,
-      phone: action.phone,
-      gender: action.gender
+      [action.userObjectId]: {
+        userId: action.userId,
+        username: action.username,
+        fullName: action.fullName,
+        website: action.website,
+        bio: action.bio,
+        email: action.email,
+        phone: action.phone,
+        gender: action.gender
+      }
     }
-    yield axios.put(`/users/${action.userId}/.json?auth=${action.token}`, userData)
-    yield put(actions.authUserUpdateSuccess(userData))
+    const resp = yield axios.put(`/users.json?auth=${action.token}&userId=${action.userId}`, userData)
+    yield put(actions.authUserUpdateSuccess(resp))
   } catch (err) {
     yield put(actions.authUserUpdateFail(err.response.data.error))
   }

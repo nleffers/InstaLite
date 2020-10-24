@@ -115,7 +115,7 @@ const Auth = props => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onAuthUser(
+    props.onAuthUserLogin(
       controls.email.value,
       controls.password.value,
       isSignUp,
@@ -224,7 +224,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuthUser: (email, password, isSignUp, username, fullName, phone) => dispatch(actions.authUser(email, password, isSignUp, username, fullName, phone)),
+    onAuthUserLogin: (email, password, isSignUp, username, fullName, phone) => dispatch(actions.authUserLogin(email, password, isSignUp, username, fullName, phone)),
     onAuthSetRedirectPath: () => dispatch(actions.authSetRedirectPath('/'))
   };
 };

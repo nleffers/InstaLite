@@ -1,8 +1,8 @@
 export {
-  authUser,
-  authUserStart,
-  authUserSuccess,
-  authUserFail,
+  authUserLogin,
+  authUserLoginStart,
+  authUserLoginSuccess,
+  authUserLoginFail,
   authUserLogout,
   authSetRedirectPath,
   authUserCheckState,
