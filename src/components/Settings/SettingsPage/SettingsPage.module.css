@@ -1,8 +1,9 @@
 @media (min-width: 500px) {
   .SettingsPage {
     border: 1px solid #ccc;
-    width: 70%;
+    width: calc(80% - 1px);
     height: 100%;
+    margin: 0;
     display: inline-block;
     vertical-align: top;
   }

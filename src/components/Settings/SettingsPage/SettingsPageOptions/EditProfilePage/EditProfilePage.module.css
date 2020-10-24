@@ -1,0 +1,10 @@
+.EditProfilePage {
+  margin: 20px;
+}
+
+.EditProfilePage p {
+  color: rgb(141, 141, 141);
+  float: right;
+  font-size: 12px;
+  width: 79%;
+}

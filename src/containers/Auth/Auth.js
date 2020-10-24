@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import Aux from '../../hoc/Aux'
-import Input from '../../components/UI/Input/Input';
+import BreakLine from '../../components/UI/BreakLine/BreakLine'
 import Button from '../../components/UI/Button/Button';
+import Input from '../../components/UI/Input/Input';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './Auth.module.css';
 import * as actions from '../../store/actions/index';
@@ -98,7 +99,7 @@ const Auth = props => {
 
   let authClasses = [classes.Auth]
   if (isSignUp) {
-    authClasses=[classes.Auth, classes.SignUp].join(' ')
+    authClasses = [classes.Auth, classes.SignUp].join(' ')
   }
 
   const inputChangedHandler = (event, controlName) => {
@@ -154,49 +155,56 @@ const Auth = props => {
     form = <Spinner />
   }
 
-  let errorMessage = null;
-  if (props.error) {
-    errorMessage = (
-      <p>{props.error.message}</p>
-    )
-  }
-
   let authRedirect = null
   if (props.isAuthenticated) {
     authRedirect = <Redirect to={authRedirectPath} />
   }
 
-  let forgotPassword = null
-  if (!isSignUp) {
-    forgotPassword = <Button btnType="Tertiary">Forgot password?</Button>
-  }
-
-  let switchModeButton = (
-    <Button
-      btnType="Secondary"
-      clicked={switchAuthModeHandler}
-    >Don't have an account? Sign Up</Button>
+  let headerSection = (
+    <Aux>
+      {authRedirect}
+      <h1>InstaLite</h1>
+      <div className={classes.SubText}>
+        Sign up to see photos from your friends.
+      </div>
+      <BreakLine word="or" />
+    </Aux>
   )
-  if (isSignUp) {
-    switchModeButton = (
-      <Button
-        btnType="Secondary"
-        clicked={switchAuthModeHandler}
-      >Have an account? Log in</Button>
+  if (!isSignUp) {
+    headerSection = (
+      <Aux>
+        {authRedirect}
+        <h1>InstaLite</h1>
+      </Aux>
     )
   }
+
+  let footerSection = null
+  if (!isSignUp) {
+    footerSection = (
+      <Aux>
+        <BreakLine word="or" />
+        <Button btnType="ForgotPassword">Forgot password?</Button>
+      </Aux>
+    )
+  }
+
+  const switchModeButton = (
+    <Button
+      btnType="LogInSignUp"
+      clicked={switchAuthModeHandler}
+    >{isSignUp ? 'Have an account? Log in' : "Don't have an account? Sign Up"}</Button>
+  )
 
   return (
     <Aux>
       <div className={authClasses}>
-        <h2>InstaLite</h2>
-        {authRedirect}
+        {headerSection}
         <form onSubmit={submitHandler}>
           {form}
-          {errorMessage}
           <Button btnType="Primary">{isSignUp ? 'Create account' : 'Log In'}</Button>
         </form>
-        {forgotPassword}
+        {footerSection}
       </div>
       <div className={classes.SwitchAuth}>
         {switchModeButton}

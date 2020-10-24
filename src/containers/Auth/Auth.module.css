@@ -13,6 +13,14 @@
   margin: 0 auto;
 }
 
+.SubText {
+  color: rgb(141, 141, 141);
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+}
+
 @media (min-width: 600px) {
   .Auth, .SwitchAuth {
     width: 350px;

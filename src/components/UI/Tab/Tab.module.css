@@ -1,0 +1,10 @@
+.Tab {
+  color: rgb(39, 39, 39);
+  padding: 16px 16px 16px 30px;
+}
+
+.ActiveTab {
+  border-left: 2px solid rgb(39, 39, 39);
+  font-weight: 600;
+  text-decoration: none;
+}

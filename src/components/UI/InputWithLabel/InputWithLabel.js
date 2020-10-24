@@ -5,9 +5,12 @@ import classes from './InputWithLabel.module.css'
 
 const inputWithLabel = props => {
   return (
-    <div>
-      <label className={classes.Label}>{props.label}</label>
-      <Input {...props.children} />
+    <div className={classes.InputWithLabel}>
+      <label className={classes.Label}>{props.elementConfig.label}</label>
+      <Input
+        className={classes.Input}
+        {...props}
+      />
     </div>
   )
 }

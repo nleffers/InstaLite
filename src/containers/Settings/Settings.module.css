@@ -8,14 +8,15 @@
 
 @media (min-width: 500px) {
   .Settings {
+    background-color: #fff;
     margin: auto;
-    padding-top: 85px;
-    width: 60%;
+    padding-top: 25px;
+    width: 90%;
     height: 80vh;
   }
 
   .DesktopOnly {
-    display: initial;
+    display: inline;
   }
 
   .MobileOnly {

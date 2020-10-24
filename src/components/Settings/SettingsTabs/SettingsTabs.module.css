@@ -3,12 +3,18 @@
   width: 100%;
 }
 
+.SettingsTabs ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 @media (min-width: 500px) {
   .SettingsTabs {
     border: 1px solid #ccc;
     border-right: 0;
-    width: 20%;
+    width: calc(20% - 2px);
     height: 100%;
+    margin: 0;
     display: inline-block;
   }
 }

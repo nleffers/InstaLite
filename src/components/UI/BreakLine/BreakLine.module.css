@@ -1,0 +1,29 @@
+.BreakLine {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0 18px;
+}
+
+.Line {
+  background-color: rgb(220, 220, 220);
+  flex-direction: column;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 1px;
+  position: relative;
+  top: 0.45em;
+}
+
+.Word {
+  color: rgb(141, 141, 141);
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 18px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+}

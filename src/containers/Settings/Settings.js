@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import axios from '../../axios/axios'
@@ -9,17 +9,26 @@ import * as actions from '../../store/actions/index';
 import classes from './Settings.module.css'
 
 const Settings = props => {
-  const { userId, token, onUserFetch } = props
+  const { userId, token, onAuthUserFetch, onAuthUserUpdate } = props
+  const [activePage, setActivePage] = useState('EditProfile')
 
   useEffect(() => {
-    onUserFetch(userId, token)
-  }, [onUserFetch, userId, token])
+    onAuthUserFetch(userId, token)
+  }, [onAuthUserFetch, userId, token])
 
   return (
     <div className={classes.Settings}>
       <div className={classes.DesktopOnly}>
-        <SettingsTabs />
-        <SettingsPage />
+        <SettingsTabs
+          activeTab={activePage}
+          setActivePage={setActivePage}
+        />
+        <SettingsPage
+          loading={props.loading}
+          error={props.error}
+          onAuthUserUpdate={onAuthUserUpdate}
+          activePage={activePage}
+        />
       </div>
       <div className={classes.MobileOnly}>
         <SettingsTabs />
@@ -39,7 +48,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUserFetch: (userId, token) => dispatch(actions.authUserFetch(userId, token))
+    onAuthUserFetch: (userId, token) => dispatch(actions.authUserFetch(userId, token)),
+    onAuthUserUpdate: (userId, fullName, username, website, bio, email, phone, gender, token) => (
+      dispatch(actions.authUserUpdate(userId, fullName, username, website, bio, email, phone, gender, token))
+    )
   }
 }
 

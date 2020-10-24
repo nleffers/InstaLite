@@ -26,6 +26,9 @@ export const checkValidity = (value, rules) => {
     const pattern = /^[2-9]\d{2}-\d{3}-\d{4}$/
     isValid = pattern.test(value) && isValid;
   }
+  if (rules.characterLimit && rules.characterLimit > 0) {
+    isValid = trimmedValue.length <= rules.characterLimit && isValid
+  }
 
   return isValid;
 }

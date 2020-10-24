@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import connect from 'react-redux'
 
 import Aux from '../../../../../hoc/Aux'
-import Button from '../../../../Ui/Button/Button'
+import Button from '../../../../UI/Button/Button'
+import Spinner from '../../../../UI/Spinner/Spinner'
 import InputWithLabel from '../../../../UI/InputWithLabel/InputWithLabel'
-import * as actions from '../../../../../store/actions/index'
-import classes from './EditProfile.module.css'
-import { updateObject, checkValidity } from '../../shared/utility';
+import classes from './EditProfilePage.module.css'
+import { updateObject, checkValidity } from '../../../../../shared/utility';
 
-const editProfile = props => {
+const EditProfilePage = props => {
   const [profileElements, setProfileElements] = useState({
     fullName: {
       elementType: 'input',
@@ -27,7 +26,7 @@ const editProfile = props => {
       elementConfig: {
         type: 'username',
         placeholder: 'Username',
-        label: 'Label'
+        label: 'Username'
       },
       value: '',
       validation: { required: true },
@@ -39,7 +38,7 @@ const editProfile = props => {
       elementConfig: {
         type: 'website',
         placeholder: 'Website',
-        label: 'Label'
+        label: 'Website'
       },
       value: '',
       validation: { required: false },
@@ -50,11 +49,13 @@ const editProfile = props => {
       elementType: 'textarea',
       elementConfig: {
         type: 'bio',
-        placeholder: '',
         label: 'Bio'
       },
       value: '',
-      validation: { required: false },
+      validation: {
+        required: false,
+        characterLimit: 150
+      },
       valid: true,
       touched: false
     },
@@ -93,7 +94,7 @@ const editProfile = props => {
       elementConfig: {
         type: 'gender',
         placeholder: 'Gender',
-        placeholder: 'Gender'
+        label: 'Gender'
       },
       value: '',
       validation: { required: false },
@@ -222,32 +223,17 @@ const editProfile = props => {
   }
 
   return (
-    <div className={classes.EditProfile}>
-      <h2>{profileElements.username}</h2>
+    <div className={classes.EditProfilePage}>
+      <h2>{profileElements.username.value}</h2>
       <form onSubmit={submitHandler}>
         {form}
         {errorMessage}
-        <Button btnType="Primary">Submit</Button>
+        <Button
+          btnType="UpdateUser"
+        >Submit</Button>
       </form>
     </div>
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    token: state.auth.token,
-    userId: state.auth.userId,
-    loading: state.auth.loading,
-    error: state.auth.error
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onAuthUserUpdate: (userId, fullName, username, website, bio, email, phone, gender, token) => (
-      dispatch(actions.AuthUserUpdate(userId, fullName, username, website, bio, email, phone, gender, token))
-    )
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(editProfile)
+export default EditProfilePage

@@ -1,22 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import Tab from '../../UI/Tab/Tab'
 import classes from './SettingsTabs.module.css'
 
-const SettingsTabs = () => {
-  const [activeTab, setActiveTab] = useState('editProfile')
+const settingsTabs = props => {
+  const { activeTab, setActiveTab } = props
 
   const tabClickHandler = event => {
     event.preventDefault()
     setActiveTab(event.target.value)
   }
 
+
   return (
     <div className={classes.SettingsTabs}>
       <ul>
         <Tab
-          tab="editProfile"
+          tab="EditProfile"
           clicked={tabClickHandler}
+          activeTab={activeTab === 'EditProfile'}
         />
         {/* <Tab
         tab="changePassword"
@@ -27,4 +29,4 @@ const SettingsTabs = () => {
   )
 }
 
-export default SettingsTabs
+export default settingsTabs
