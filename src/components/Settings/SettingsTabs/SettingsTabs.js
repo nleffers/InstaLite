@@ -4,20 +4,15 @@ import Tab from '../../UI/Tab/Tab'
 import classes from './SettingsTabs.module.css'
 
 const settingsTabs = props => {
-  const { activeTab, setActiveTab } = props
-
-  const tabClickHandler = event => {
-    event.preventDefault()
-    setActiveTab(event.target.value)
-  }
+  const { activeTab, tabClickHandler } = props
 
   return (
     <div className={classes.SettingsTabs}>
       <ul>
         <Tab
-          tab="EditProfile"
+          tab="Edit Profile"
           clicked={tabClickHandler}
-          activeTab={activeTab === 'EditProfile'}
+          activeTab={activeTab === 'Edit Profile'}
         />
         {/* <Tab
         tab="changePassword"

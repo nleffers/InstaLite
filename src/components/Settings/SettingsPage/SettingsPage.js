@@ -1,14 +1,15 @@
 import React from 'react'
 
 import EditProfilePage from './SettingsPageOptions/EditProfilePage/EditProfilePage'
+import Spinner from '../../UI/Spinner/Spinner'
 import classes from './SettingsPage.module.css'
 
 const settingsPage = props => {
-  const { activePage, fullName, username, website, bio, email, phone, gender, editProfileInputChangedHandler, editProfileSubmitHandler } = props
+  const { activePage, fullName, username, website, bio, email, phone, gender, editProfileInputChangedHandler, editProfileSubmitHandler, loading } = props
 
   let component = null
   switch (activePage) {
-    case 'EditProfile':
+    case 'Edit Profile':
       component = (
         <EditProfilePage
           fullName={fullName}
@@ -24,6 +25,10 @@ const settingsPage = props => {
       )
       break
     default: break
+  }
+
+  if (loading) {
+    component = <Spinner />
   }
 
   return (

@@ -10,7 +10,7 @@ import classes from './Settings.module.css'
 import { updateObject, checkValidity } from '../../shared/utility';
 
 const Settings = () => {
-  const [activePage, setActivePage] = useState('EditProfile')
+  const [activePage, setActivePage] = useState('Edit Profile')
   const [profileFullName, setProfileFullName] = useState({
     elementType: 'input',
     elementConfig: {
@@ -114,6 +114,7 @@ const Settings = () => {
   const email = useSelector(state => state.auth.email)
   const phone = useSelector(state => state.auth.phone)
   const gender = useSelector(state => state.auth.gender)
+  const loading = useSelector(state => state.auth.loading)
 
   const dispatch = useDispatch()
   const onAuthUserFetch = useCallback((userId, token) => dispatch(actions.authUserFetch(userId, token)), [dispatch])
@@ -173,6 +174,11 @@ const Settings = () => {
       value: website
     }))
   }, [setProfileWebsite, website])
+
+  const tabClickHandler = event => {
+    event.preventDefault()
+    setActivePage(event.target.innerText)
+  }
 
   const editProfileInputChangedHandler = (event, elementName) => {
     let object
@@ -241,7 +247,7 @@ const Settings = () => {
       <div className={classes.DesktopOnly}>
         <SettingsTabs
           activeTab={activePage}
-          setActivePage={setActivePage}
+          tabClickHandler={tabClickHandler}
         />
         <SettingsPage
           activePage={activePage}
@@ -254,6 +260,7 @@ const Settings = () => {
           gender={profileGender}
           editProfileInputChangedHandler={editProfileInputChangedHandler}
           editProfileSubmitHandler={editProfileSubmitHandler}
+          loading={loading}
         />
       </div>
       <div className={classes.MobileOnly}>
