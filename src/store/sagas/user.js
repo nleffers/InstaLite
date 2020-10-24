@@ -12,3 +12,12 @@ export function* userFetchSaga(action) {
     yield put(actions.userFetchFail(err.response.data.error))
   }
 }
+export function* userPicturesFetchSaga(action) {
+  yield put(actions.userPicturesFetchStart())
+  try {
+    const resp = yield axios.get(`/pictures.json?auth=${action.token}&userId=${action.userId}`)
+    yield put(actions.userPicturesFetchSuccess(resp))
+  } catch(err) {
+    yield put(actions.userPicturesFetchFail(err.response.data.error))
+  }
+}

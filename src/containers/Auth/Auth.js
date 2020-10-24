@@ -138,19 +138,25 @@ const Auth = props => {
     })
   }
 
-  let form = formElementsArray.map(el => (
-    <Input
-      key={el.id}
-      elementType={el.config.elementType}
-      elementConfig={el.config.elementConfig}
-      value={el.config.value}
-      invalid={!el.config.valid}
-      shouldValidate={el.config.validation}
-      touched={el.config.touched}
-      changed={(event) => inputChangedHandler(event, el.id)}
-    />
-  ))
-
+  let form = (
+    <form onSubmit={submitHandler}>
+      {
+        formElementsArray.map(el => (
+          <Input
+            key={el.id}
+            elementType={el.config.elementType}
+            elementConfig={el.config.elementConfig}
+            value={el.config.value}
+            invalid={!el.config.valid}
+            shouldValidate={el.config.validation}
+            touched={el.config.touched}
+            changed={(event) => inputChangedHandler(event, el.id)}
+          />
+        ))
+      }
+      <Button btnType="Primary">{isSignUp ? 'Create Account' : 'Log In'}</Button>
+    </form>
+  )
   if (props.loading) {
     form = <Spinner />
   }
@@ -200,10 +206,7 @@ const Auth = props => {
     <Aux>
       <div className={authClasses}>
         {headerSection}
-        <form onSubmit={submitHandler}>
-          {form}
-          <Button btnType="Primary">{isSignUp ? 'Create account' : 'Log In'}</Button>
-        </form>
+        {form}
         {footerSection}
       </div>
       <div className={classes.SwitchAuth}>

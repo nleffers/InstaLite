@@ -39,5 +39,9 @@ export {
   userFetch,
   userFetchStart,
   userFetchSuccess,
-  userFetchFail
+  userFetchFail,
+  userPicturesFetch,
+  userPicturesFetchStart,
+  userPicturesFetchSuccess,
+  userPicturesFetchFail
 } from './user';
