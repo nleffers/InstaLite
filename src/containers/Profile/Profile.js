@@ -56,6 +56,7 @@ const Profile = () => {
         followers={followers}
         postCount={pictures.length}
         profilePictureUrl={profilePicture && profilePicture.picture && profilePicture.picture.url}
+        isAuthUserPage={isAuthUserPage}
       />
       <ProfileWall
         className={classes.ProfileWall}

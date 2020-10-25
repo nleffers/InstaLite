@@ -13,15 +13,6 @@ const FileUploader = props => {
   const [imageAsFile, setImageAsFile] = useState('')
   const [imageUploadedFromThisComponent, setImageUploadedFromThisComponent] = useState(false)
 
-  // const allInputs = { imgUrl: '' }
-  // const [imageAsUrl, setImageAsUrl] = useState(allInputs)
-  // const getImageHandler = event => {
-  //   storage.ref('images').child(imageAsFile.name).getDownloadURL()
-  //     .then(firebaseUrl => {
-  //       setImageAsUrl(prevObject => ({ ...prevObject, imgUrl: firebaseUrl }))
-  //     })
-  // }
-
   const userId = useSelector(state => state.auth.userId)
   const token = useSelector(state => state.auth.token)
   const snapShot = useSelector(state => state.picture.snapShot)

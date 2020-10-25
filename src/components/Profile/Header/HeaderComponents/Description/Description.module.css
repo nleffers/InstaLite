@@ -4,16 +4,25 @@
   display: inline-block;
 }
 
+.TopRow {
+  display: flex;
+}
+
 .Username {
-  display: block;
+  display: inline-flex;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: rgb(39, 39, 39);
   font-weight: 300;
   font-size: 28px;
-  line-height: 32px;
   margin: -5px 0 -6px;
+  line-height: 32px;
+}
+
+.ProfileActions {
+  display: inline-flex;
+  margin-left: 20px;
 }
 
 .CountRow {

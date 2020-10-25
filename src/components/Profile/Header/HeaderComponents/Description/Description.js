@@ -6,10 +6,16 @@ import classes from './Description.module.css'
 const description = props => {
   return (
     <section className={classes.Description}>
-      <h2 className={classes.Username}>
-        {props.username}
-      </h2>
-      <ProfileActions />
+      <div className={classes.TopRow}>
+        <h2 className={classes.Username}>
+          {props.username}
+        </h2>
+        <div className={classes.ProfileActions}>
+          <ProfileActions
+            isAuthUserPage={props.isAuthUserPage}
+          />
+        </div>
+      </div>
       <ul className={classes.CountRow}>
         <li><span className={classes.Count}>{props.postCount}</span> posts</li>
         <li><span className={classes.Count}>{props.followers.length}</span> followers</li>

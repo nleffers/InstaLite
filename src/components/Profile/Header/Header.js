@@ -19,6 +19,7 @@ const header = props => {
           following={props.following}
           followers={props.followers}
           postCount={props.postCount}
+          isAuthUserPage={props.isAuthUserPage}
         />
       </Aux>
     )
