@@ -1,6 +1,5 @@
 .ProfilePicture {
-  width: 25%;
-  margin-right: 30px;
+  margin: 0 30px 30px 30px;
   padding: 0;
   display: flex;
   flex-basis: 0;
@@ -8,4 +7,10 @@
   flex-shrink: 0;
   flex-direction: column;
   position: relative;
+}
+
+.Image {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
 }

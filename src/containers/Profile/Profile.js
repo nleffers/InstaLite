@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from '../../axios/axios'
 import withErrorHandler from '../../hoc/withErrorHandler'
 import Header from '../../components/Profile/Header/Header'
-import ProfileWall from '../../components/Wall/ProfileWall/ProfileWall'
+import ProfileWall from '../../components/Profile/ProfileWall/ProfileWall'
 import FileUploader from '../../components/UI/FileUploader/FileUploader'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import * as actions from '../../store/actions/index'
@@ -21,7 +21,7 @@ const Profile = () => {
   const bio = useSelector(state => state.user.bio)
   const website = useSelector(state => state.user.website)
   const pictures = useSelector(state => state.user.pictures)
-  const profilePicture = useSelector(state => state.user.pictures.find(pic => pic.picture.profilePicture === true))
+  const profilePicture = useSelector(state => state.user.profilePicture)
   const taggedPictures = useSelector(state => state.user.taggedPictures)
   const following = useSelector(state => state.user.following)
   const followers = useSelector(state => state.user.followers)
@@ -55,7 +55,7 @@ const Profile = () => {
         following={following}
         followers={followers}
         postCount={pictures.length}
-        profilePicture={profilePicture}
+        profilePictureUrl={profilePicture && profilePicture.picture && profilePicture.picture.url}
       />
       <ProfileWall
         className={classes.ProfileWall}

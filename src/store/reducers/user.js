@@ -15,6 +15,7 @@ const initialState = {
   following: [],
   directMessages: [],
   pictures: [],
+  profilePicture: null,
   taggedPictures: [],
   loading: false,
   error: null
@@ -49,7 +50,8 @@ const userPicturesFetchSuccess = (state, pictures) => {
   return updateObject(
     state,
     {
-      pictures: picturesArray
+      pictures: picturesArray,
+      profilePicture: picturesArray.find(pic => pic.picture.profilePicture)
     }
   )
 }

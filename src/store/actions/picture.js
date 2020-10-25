@@ -84,3 +84,31 @@ export const pictureCreateProfilePictureFail = error => {
     error: error
   }
 }
+
+export const pictureFetchUrl = (picture, token) => {
+  return {
+    type: actionTypes.PICTURE_FETCH_URL,
+    picture: picture.picture,
+    token: token
+  }
+}
+
+export const pictureFetchUrlStart = () => {
+  return {
+    type: actionTypes.PICTURE_FETCH_URL_START
+  }
+}
+
+export const pictureFetchUrlSuccess = pictureUrl => {
+  return {
+    type: actionTypes.PICTURE_FETCH_URL_SUCCESS,
+    pictureUrl: pictureUrl
+  }
+}
+
+export const pictureFetchUrlFail = error => {
+  return {
+    type: actionTypes.PICTURE_FETCH_URL_FAIL,
+    error: error
+  }
+}

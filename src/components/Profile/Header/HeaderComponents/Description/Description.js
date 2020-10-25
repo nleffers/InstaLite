@@ -5,7 +5,7 @@ import classes from './Description.module.css'
 
 const description = props => {
   return (
-    <div className={classes.Description}>
+    <section className={classes.Description}>
       <h2 className={classes.Username}>
         {props.username}
       </h2>
@@ -23,7 +23,7 @@ const description = props => {
           href={props.website}
         >{props.website}</a>{/* will need to truncate this */}
       </div>
-    </div>
+    </section>
   )
 }
 

@@ -34,4 +34,3 @@ export default httpClient => {
 
   return [error, errorConfirmedHandler]
 }
-

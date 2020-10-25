@@ -30,14 +30,18 @@ export {
   pictureCreateStart,
   pictureCreateSuccess,
   pictureCreateFail,
-  pictureUpload,
-  pictureUploadStart,
-  pictureUploadSuccess,
-  pictureUploadFail,
   pictureCreateProfilePicture,
   pictureCreateProfilePictureStart,
   pictureCreateProfilePictureSuccess,
-  pictureCreateProfilePictureFail
+  pictureCreateProfilePictureFail,
+  pictureFetchUrl,
+  pictureFetchUrlStart,
+  pictureFetchUrlSuccess,
+  pictureFetchUrlFail,
+  pictureUpload,
+  pictureUploadStart,
+  pictureUploadSuccess,
+  pictureUploadFail
 } from './picture'
 export {
   userFetch,
