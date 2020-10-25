@@ -7,7 +7,7 @@ import classes from './MobileToolbarNavigationItems.module.css';
 
 const mobileToolbarNavigationItems = () => (
   <ul className={classes.MobileToolbarNavigationItems}>
-    <FileUploader icon="Camera" />
+    <FileUploader icon="Camera" source="mobile" />
     <MobileToolbarNavigationItem link="/" exact icon='Home' />
     <MobileToolbarNavigationItem link="/inbox" icon="Inbox" />
     <MobileToolbarNavigationItem link="/settings" icon="Settings" />

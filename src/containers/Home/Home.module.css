@@ -5,3 +5,13 @@
 .Right {
 
 } */
+
+.DesktopUpload {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .DesktopUpload {
+    display: initial;
+  }
+}

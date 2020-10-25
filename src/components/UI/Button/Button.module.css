@@ -77,3 +77,35 @@
   margin-left: 21%;
   padding: 5px 9px;
 }
+
+.DesktopUpload {
+  background-color: #2495f6;
+  border: 1px solid #000;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: relative;
+  margin: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.DesktopUpload:before, .DesktopUpload:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+}
+
+.DesktopUpload:before {
+  width: 2px;
+  margin: 10px auto;
+}
+
+.DesktopUpload:after {
+  margin: auto 10px;
+  height: 2px;
+}

@@ -11,20 +11,20 @@ const wallTabs = props => {
     <Aux>
       <WallTab
         clicked={tabClickHandler}
-        tab='posts'
-        activeTab={activeTab === 'posts'}
+        tab='POSTS'
+        activeTab={activeTab === 'POSTS'}
       />
-      {isAuthUserPage ? (
+      {/* {isAuthUserPage ? (
         <WallTab
           clicked={tabClickHandler}
-          tab='saved'
-          activeTab={activeTab === 'saved'}
+          tab='SAVED'
+          activeTab={activeTab === 'SAVED'}
         />
-      ) : null}
+      ) : null} */}
       <WallTab
         clicked={tabClickHandler}
-        tab='tagged'
-        activeTab={activeTab === 'tagged'}
+        tab='TAGGED'
+        activeTab={activeTab === 'TAGGED'}
       />
     </Aux>
   )

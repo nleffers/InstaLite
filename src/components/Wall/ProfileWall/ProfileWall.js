@@ -1,6 +1,7 @@
 import React from 'react'
 
 import WallTabs from '../../UI/WallTabs/WallTabs'
+import WallGrid from '../../UI/WallGrid/WallGrid'
 import classes from './ProfileWall.module.css'
 
 const profileWall = props => {

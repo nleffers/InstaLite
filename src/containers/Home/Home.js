@@ -6,6 +6,7 @@ import Aux from '../../hoc/Aux';
 // import HomeWall from '../../components/Wall/HomeWall/HomeWall'
 // import SuggestedUsers from '../../components/SuggestedUsers/SuggestedUsers'
 import withErrorHandler from '../../hoc/withErrorHandler';
+import FileUploader from '../../components/UI/FileUploader/FileUploader'
 // import * as actions from '../../store/actions/index';
 import axios from '../../axios/axios';
 import classes from './Home.module.css';
@@ -21,14 +22,17 @@ const Home = props => {
         <div className={classes.Right}>
           {/* <SuggestedUsers /> */}
         </div>
+        <div className={classes.DesktopUpload}>
+          <FileUploader icon="DesktopUpload" source="desktop" />
+        </div>
       </Aux>
     )
   }
 
   return (
-    <Aux>
+    <div className={classes.Home}>
       {homePage}
-    </Aux>
+    </div>
   )
 }
 

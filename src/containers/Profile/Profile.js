@@ -10,7 +10,7 @@ import * as actions from '../../store/actions/index'
 import classes from './Profile.module.css'
 
 const Profile = () => {
-  const [activeTab, setActiveTab] = useState('posts')
+  const [activeTab, setActiveTab] = useState('POSTS')
 
   const token = useSelector(state => state.auth.token)
   const isAuthUserPage = useSelector(state => state.auth.userId !== state.user.userId)

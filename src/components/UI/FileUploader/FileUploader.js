@@ -2,13 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import axios from '../../../axios/axios'
+import Aux from '../../../hoc/Aux'
 import withErrorHandler from '../../../hoc/withErrorHandler'
 import Button from '../Button/Button'
 import * as actions from '../../../store/actions/index'
 import classes from './FileUploader.module.css'
 
 const FileUploader = props => {
-  const { icon } = props
+  const { icon, source } = props
   const [imageAsFile, setImageAsFile] = useState('')
   const [imageUploadedFromThisComponent, setImageUploadedFromThisComponent] = useState(false)
 
@@ -55,18 +56,25 @@ const FileUploader = props => {
     hiddenFileInput.current.click()
   }
 
+  const form = (
+    <form>
+      <Button btnType={icon} clicked={handleClick}></Button>
+      <input
+        className={classes.FileUploader}
+        type="file"
+        ref={hiddenFileInput}
+        onChange={imageAsFileHandler}
+      />
+    </form>
+  )
+
+  let element = <li className={classes.LiFileUploader}>{form}</li>
+  if (source === 'desktop') {
+    element = <div className={classes.DivFileUploader}>{form}</div>
+  }
+
   return (
-    <li className={classes.FileUploader}>
-      <form>
-        <Button btnType={icon} clicked={handleClick}></Button>
-        <input
-          className={classes.FileUploader}
-          type="file"
-          ref={hiddenFileInput}
-          onChange={imageAsFileHandler}
-        />
-      </form>
-    </li>
+    <Aux>{element}</Aux>
   )
 }
 

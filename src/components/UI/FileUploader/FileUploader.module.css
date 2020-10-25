@@ -1,10 +1,16 @@
-.FileUploader {
+.LiFileUploader {
   display: block;
   margin: 10px;
   text-align: center;
   width: 33%;
 }
 
-.FileUploader input {
+.DivFileUploader {
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+}
+
+.LiFileUploader input, .DivFileUploader input {
   display: none;
 }

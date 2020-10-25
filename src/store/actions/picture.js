@@ -56,3 +56,31 @@ export const pictureCreateFail = error => {
     error: error
   }
 }
+
+export const pictureSetProfilePicture = (snapShot, userId, token) => {
+  return {
+    type: actionTypes.PICTURE_SET_PROFILE_PICTURE,
+    snapShot: snapShot,
+    userId: userId,
+    token: token
+  }
+}
+
+export const pictureSetProfilePictureStart = () => {
+  return {
+    type: actionTypes.PICTURE_SET_PROFILE_PICTURE_START
+  }
+}
+
+export const pictureSetProfilePictureSuccess = () => {
+  return {
+    type: actionTypes.PICTURE_SET_PROFILE_PICTURE_SUCCESS
+  }
+}
+
+export const pictureSetProfilePictureFail = error => {
+  return {
+    type: actionTypes.PICTURE_SET_PROFILE_PICTURE_FAIL,
+    error: error
+  }
+}
