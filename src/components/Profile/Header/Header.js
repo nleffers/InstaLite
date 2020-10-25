@@ -8,6 +8,7 @@ const header = props => {
   return (
     <div className={classes.Header}>
       <ProfilePicture
+        picture={props.profilePicture}
       />
       <Description
         username={props.username}
@@ -16,7 +17,7 @@ const header = props => {
         website={props.website}
         following={props.following}
         followers={props.followers}
-        postCount={(props.pictures && props.pictures.length) || 0}
+        postCount={props.postCount}
       />
     </div>
   )

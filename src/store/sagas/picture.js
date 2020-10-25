@@ -31,12 +31,12 @@ export function* pictureCreateSaga(action) {
   }
 }
 
-export function* pictureSetProfilePictureSaga(action) {
-  yield put(actions.pictureSetProfilePictureStart())
+export function* pictureCreateProfilePictureSaga(action) {
+  yield put(actions.pictureCreateProfilePictureStart())
   try {
     // yield axios.post('/')
-    yield put(actions.pictureSetProfilePictureSuccess())
+    yield put(actions.pictureCreateProfilePictureSuccess())
   } catch (err) {
-    yield put(actions.pictureSetProfilePictureFail(err.response && err.response.data && err.response.data.error))
+    yield put(actions.pictureCreateProfilePictureFail(err.response && err.response.data && err.response.data.error))
   }
 }

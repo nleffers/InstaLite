@@ -38,12 +38,18 @@ const userFetchSuccess = (state, data) => {
   )
 }
 
-const userPicturesFetchSuccess = (state, data) => {
+const userPicturesFetchSuccess = (state, pictures) => {
+  const picturesArray = [];
+  for (let key in pictures) {
+    picturesArray.push({
+      id: key,
+      picture: pictures[key]
+    })
+  }
   return updateObject(
     state,
     {
-      pictures: [],
-      taggedPictures: []
+      pictures: picturesArray
     }
   )
 }

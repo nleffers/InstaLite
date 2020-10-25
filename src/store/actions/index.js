@@ -34,10 +34,10 @@ export {
   pictureUploadStart,
   pictureUploadSuccess,
   pictureUploadFail,
-  pictureSetProfilePicture,
-  pictureSetProfilePictureStart,
-  pictureSetProfilePictureSuccess,
-  pictureSetProfilePictureFail
+  pictureCreateProfilePicture,
+  pictureCreateProfilePictureStart,
+  pictureCreateProfilePictureSuccess,
+  pictureCreateProfilePictureFail
 } from './picture'
 export {
   userFetch,

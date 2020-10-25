@@ -1,9 +1,8 @@
 import { takeEvery, all } from 'redux-saga/effects';
-import { pictureSetProfilePictureSuccess } from '../actions';
 
 import * as actionTypes from '../actions/actionTypes';
 import { logoutSaga, authCheckTimeoutSaga, authUserLoginSaga, authCheckStateSaga, authUserCreateSaga, authUserFetchSaga, authUserUpdateSaga, authUserChangePasswordSaga } from './auth'
-import { pictureUploadSaga, pictureCreateSaga, pictureSetProfilePictureSaga } from './picture'
+import { pictureUploadSaga, pictureCreateSaga, pictureCreateProfilePictureSaga } from './picture'
 import { userFetchSaga, userPicturesFetchSaga } from './user'
 
 export function* watchAuth() {
@@ -23,7 +22,7 @@ export function* watchPicture() {
   yield all([
     takeEvery(actionTypes.PICTURE_UPLOAD, pictureUploadSaga),
     takeEvery(actionTypes.PICTURE_CREATE, pictureCreateSaga),
-    takeEvery(actionTypes.PICTURE_SET_PROFILE_PICTURE, pictureSetProfilePictureSaga)
+    takeEvery(actionTypes.PICTURE_CREATE_PROFILE_PICTURE, pictureCreateProfilePictureSaga)
   ])
 }
 

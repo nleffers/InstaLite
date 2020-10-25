@@ -5,6 +5,7 @@ import axios from '../../axios/axios'
 import withErrorHandler from '../../hoc/withErrorHandler'
 import Header from '../../components/Profile/Header/Header'
 import ProfileWall from '../../components/Wall/ProfileWall/ProfileWall'
+import FileUploader from '../../components/UI/FileUploader/FileUploader'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import * as actions from '../../store/actions/index'
 import classes from './Profile.module.css'
@@ -20,6 +21,7 @@ const Profile = () => {
   const bio = useSelector(state => state.user.bio)
   const website = useSelector(state => state.user.website)
   const pictures = useSelector(state => state.user.pictures)
+  const profilePicture = useSelector(state => state.user.pictures.find(pic => pic.picture.profilePicture === true))
   const taggedPictures = useSelector(state => state.user.taggedPictures)
   const following = useSelector(state => state.user.following)
   const followers = useSelector(state => state.user.followers)
@@ -53,6 +55,7 @@ const Profile = () => {
         following={following}
         followers={followers}
         postCount={pictures.length}
+        profilePicture={profilePicture}
       />
       <ProfileWall
         className={classes.ProfileWall}
@@ -62,6 +65,9 @@ const Profile = () => {
         taggedPictures={taggedPictures}
         tabClickHandler={tabClickHandler}
       />
+      <div className={classes.DesktopUpload}>
+        <FileUploader icon="DesktopUpload" source="desktop" />
+      </div>
     </div>
   )
   if (loading) {

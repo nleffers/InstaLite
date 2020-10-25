@@ -57,30 +57,30 @@ export const pictureCreateFail = error => {
   }
 }
 
-export const pictureSetProfilePicture = (snapShot, userId, token) => {
+export const pictureCreateProfilePicture = (snapShot, userId, token) => {
   return {
-    type: actionTypes.PICTURE_SET_PROFILE_PICTURE,
+    type: actionTypes.PICTURE_CREATE_PROFILE_PICTURE,
     snapShot: snapShot,
     userId: userId,
     token: token
   }
 }
 
-export const pictureSetProfilePictureStart = () => {
+export const pictureCreateProfilePictureStart = () => {
   return {
-    type: actionTypes.PICTURE_SET_PROFILE_PICTURE_START
+    type: actionTypes.PICTURE_CREATE_PROFILE_PICTURE_START
   }
 }
 
-export const pictureSetProfilePictureSuccess = () => {
+export const pictureCreateProfilePictureSuccess = () => {
   return {
-    type: actionTypes.PICTURE_SET_PROFILE_PICTURE_SUCCESS
+    type: actionTypes.PICTURE_CREATE_PROFILE_PICTURE_SUCCESS
   }
 }
 
-export const pictureSetProfilePictureFail = error => {
+export const pictureCreateProfilePictureFail = error => {
   return {
-    type: actionTypes.PICTURE_SET_PROFILE_PICTURE_FAIL,
+    type: actionTypes.PICTURE_CREATE_PROFILE_PICTURE_FAIL,
     error: error
   }
 }

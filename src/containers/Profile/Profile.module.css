@@ -6,3 +6,13 @@
   max-width: 935px;
   box-sizing: content-box;
 }
+
+.DesktopUpload {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .DesktopUpload {
+    display: initial;
+  }
+}

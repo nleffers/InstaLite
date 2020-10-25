@@ -12,6 +12,9 @@ const profileWall = props => {
         isAuthUserPage={props.isAuthUserPage}
         tabClickHandler={props.tabClickHandler}
       />
+      <WallGrid
+        pictures={props.pictures}
+      />
     </div>
   )
 }
