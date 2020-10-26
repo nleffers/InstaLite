@@ -43,13 +43,3 @@ export {
   pictureUploadSuccess,
   pictureUploadFail
 } from './picture'
-export {
-  userFetch,
-  userFetchStart,
-  userFetchSuccess,
-  userFetchFail,
-  userPicturesFetch,
-  userPicturesFetchStart,
-  userPicturesFetchSuccess,
-  userPicturesFetchFail
-} from './user';

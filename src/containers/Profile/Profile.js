@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import axios from '../../axios/axios'
 import withErrorHandler from '../../hoc/withErrorHandler'
@@ -8,38 +8,70 @@ import ProfileWall from '../../components/Profile/ProfileWall/ProfileWall'
 import FileUploader from '../../components/UI/FileUploader/FileUploader'
 // import Modal from '../../components/UI/Modal/Modal'
 import Spinner from '../../components/UI/Spinner/Spinner'
-import * as actions from '../../store/actions/index'
 import classes from './Profile.module.css'
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('POSTS')
   // const [openModal, setOpenModal] = useState(false)
 
+  const [user, setUser] = useState({
+    userId: null,
+    username: null,
+    fullName: null,
+    website: null,
+    bio: null,
+    pictures: [],
+    profilePicture: {},
+    taggedPictures: [],
+    following: [],
+    followers: [],
+    loading: false,
+    error: null
+  })
+
   const token = useSelector(state => state.auth.token)
-  const isAuthUserPage = useSelector(state => state.auth.userId !== state.user.userId)
-  const userId = useSelector(state => state.user.userId)
-  const username = useSelector(state => state.user.username)
-  const fullName = useSelector(state => state.user.fullName)
-  const bio = useSelector(state => state.user.bio)
-  const website = useSelector(state => state.user.website)
-  const pictures = useSelector(state => state.user.pictures)
-  const profilePicture = useSelector(state => state.user.profilePicture)
-  const taggedPictures = useSelector(state => state.user.taggedPictures)
-  const following = useSelector(state => state.user.following)
-  const followers = useSelector(state => state.user.followers)
-  const loading = useSelector(state => state.user.loading)
+  const isAuthUserPage = useSelector(state => state.auth.userId !== user.userId)
 
-  const dispatch = useDispatch()
-  const onUserFetch = useCallback((userId, token) => dispatch(actions.userFetch(userId, token)), [dispatch])
-  const onUserPicturesFetch = useCallback((userId, token) => dispatch(actions.userPicturesFetch(userId, token)), [dispatch])
+  const userPicturesFetch = useCallback((userId, token) => {
+    setUser(prevUser => ({ ...prevUser, loading: true, error: null }))
+    axios.get(`/pictures.json?auth=${token}&userId=${userId}`)
+      .then(resp => {
+        const pictures = resp.data
+        const picturesArray = []
+        for (let key in pictures) {
+          picturesArray.push({
+            ...pictures[key],
+            id: key
+          })
+        }
+        setUser(prevUser => ({
+          ...prevUser,
+          pictures: picturesArray,
+          profilePicture: picturesArray.find(pic => pic.profilePicture)
+        }))
+      })
+  }, [])
+
+  const userFetch = useCallback((userId, token) => {
+    setUser(prevUser => ({ ...prevUser, loading: true, error: null }))
+    axios.get(`/users.json?auth=${token}&userId=${userId}`)
+      .then(resp => {
+        const userObjectId = Object.keys(resp.data)[0]
+        const userObject = resp.data[userObjectId]
+        setUser(prevUser => ({ ...prevUser, ...userObject, loading: false }))
+      })
+      .catch(err => {
+        setUser(prevUser => ({ ...prevUser, loading: false, error: err.response.data.error }))
+      })
+  }, [])
 
   useEffect(() => {
-    onUserFetch(userId, token)
-  }, [onUserFetch, userId, token])
+    userFetch(user.userId, token)
+  }, [userFetch, user.userId, token])
 
   useEffect(() => {
-    onUserPicturesFetch(userId, token)
-  }, [onUserPicturesFetch, userId, token])
+    userPicturesFetch(user.userId, token)
+  }, [userPicturesFetch, user.userId, token])
 
   // Add once I have more of these built
   // const openModalHandler = event => {
@@ -85,24 +117,24 @@ const Profile = () => {
       {/* {modal} */}
       <Header
         className={classes.Header}
-        username={username}
-        fullName={fullName}
-        bio={bio}
-        website={website}
-        following={following}
-        followers={followers}
-        postCount={pictures.length}
-        profilePictureUrl={profilePicture && profilePicture.picture && profilePicture.picture.url}
+        username={user.username}
+        fullName={user.fullName}
+        bio={user.bio}
+        website={user.website}
+        following={user.following}
+        followers={user.followers}
+        postCount={user.pictures.length}
+        profilePictureUrl={user.profilePicture && user.profilePicture.url}
         isAuthUserPage={isAuthUserPage}
-        // openModal={openModal}
-        // openModalHandler={openModalHandler}
+      // openModal={openModal}
+      // openModalHandler={openModalHandler}
       />
       <ProfileWall
         className={classes.ProfileWall}
         activeTab={activeTab}
         isAuthUserPage={isAuthUserPage}
-        pictures={pictures}
-        taggedPictures={taggedPictures}
+        pictures={user.pictures}
+        taggedPictures={user.taggedPictures}
         tabClickHandler={tabClickHandler}
       />
       <div className={classes.DesktopUpload}>
@@ -110,7 +142,7 @@ const Profile = () => {
       </div>
     </div>
   )
-  if (loading) {
+  if (user.loading) {
     profile = <Spinner />
   }
 

@@ -19,7 +19,7 @@ const wallGrid = props => {
               className={classes.Thumbnail}
               key={pic.id}
             >
-              <img src={pic.picture.url} alt="Thumbnail" />
+              <img src={pic.url} alt="Thumbnail" />
             </div>
           ))}
         </div>
@@ -33,7 +33,7 @@ const wallGrid = props => {
       <div className={classes.WallGridRow}>
         {pictureRow.map(pic => (
           <div className={classes.Thumbnail}>
-            <img src={pic.picture.url} alt="Thumbnail" />
+            <img src={pic.url} alt="Thumbnail" />
           </div>
         ))}
       </div>

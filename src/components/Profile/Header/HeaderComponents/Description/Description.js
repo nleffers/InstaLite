@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ProfileActions from './ProfileActions/ProfileActions'
+// import ProfileActions from './ProfileActions/ProfileActions'
 import classes from './Description.module.css'
 
 const description = props => {
@@ -11,10 +11,10 @@ const description = props => {
           {props.username}
         </h2>
         <div className={classes.ProfileActions}>
-          <ProfileActions
+          {/* <ProfileActions
             isAuthUserPage={props.isAuthUserPage}
             clicked={props.openModalHandler}
-          />
+          /> */}
         </div>
       </div>
       <ul className={classes.CountRow}>
