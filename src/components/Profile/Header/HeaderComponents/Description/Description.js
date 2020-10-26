@@ -13,6 +13,7 @@ const description = props => {
         <div className={classes.ProfileActions}>
           <ProfileActions
             isAuthUserPage={props.isAuthUserPage}
+            clicked={props.openModalHandler}
           />
         </div>
       </div>

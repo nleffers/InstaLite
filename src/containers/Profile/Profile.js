@@ -6,12 +6,14 @@ import withErrorHandler from '../../hoc/withErrorHandler'
 import Header from '../../components/Profile/Header/Header'
 import ProfileWall from '../../components/Profile/ProfileWall/ProfileWall'
 import FileUploader from '../../components/UI/FileUploader/FileUploader'
+// import Modal from '../../components/UI/Modal/Modal'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import * as actions from '../../store/actions/index'
 import classes from './Profile.module.css'
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('POSTS')
+  // const [openModal, setOpenModal] = useState(false)
 
   const token = useSelector(state => state.auth.token)
   const isAuthUserPage = useSelector(state => state.auth.userId !== state.user.userId)
@@ -39,13 +41,48 @@ const Profile = () => {
     onUserPicturesFetch(userId, token)
   }, [onUserPicturesFetch, userId, token])
 
+  // Add once I have more of these built
+  // const openModalHandler = event => {
+  //   event.preventDefault()
+  //   setOpenModal(true)
+  // }
+
+  // Add once I have more of these built
+  // const closeModalHandler = event => {
+  //   event.preventDefault()
+  //   setOpenModal(false)
+  // }
+
   const tabClickHandler = event => {
     event.preventDefault()
     setActiveTab(event.target.innerText)
   }
 
+  // Add once I have more of these built
+  // let modal = null
+  // if (openModal) {
+  //   modal = <Modal
+  //     show={openModal}
+  //     modalClosed={closeModalHandler}
+  //   >
+  //     <ul className={classes.AuthProfileModal}>
+  //       <li>
+  //         <NavLink
+  //           to={{
+  //             pathname: "/settings",
+  //             activePage: 'Change Password'
+  //           }}
+  //         >
+  //           <Button btnType={props.icon}>Change Password</Button>
+  //         </NavLink>
+  //       </li>
+  //     </ul>
+  //   </Modal>
+  // }
+
   let profile = (
     <div className={classes.Profile}>
+      {/* {modal} */}
       <Header
         className={classes.Header}
         username={username}
@@ -57,6 +94,8 @@ const Profile = () => {
         postCount={pictures.length}
         profilePictureUrl={profilePicture && profilePicture.picture && profilePicture.picture.url}
         isAuthUserPage={isAuthUserPage}
+        // openModal={openModal}
+        // openModalHandler={openModalHandler}
       />
       <ProfileWall
         className={classes.ProfileWall}

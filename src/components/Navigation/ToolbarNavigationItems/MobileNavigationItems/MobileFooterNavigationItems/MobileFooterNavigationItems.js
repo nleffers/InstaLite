@@ -10,7 +10,7 @@ const mobileFooterNavigationItems = () => (
     <MobileFooterNavigationItem link="/explore" icon='Search' />
     <FileUploader icon="Plus" source="mobile" />
     <MobileFooterNavigationItem link="/activity" icon='Heart' />
-    <MobileFooterNavigationItem link="/profile" icon='Profile' />
+    <MobileFooterNavigationItem link="/profile" icon='User' />
   </ul>
 );
 

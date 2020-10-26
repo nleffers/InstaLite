@@ -22,13 +22,13 @@ const button = props => {
     case 'Home':
       element = <FontAwesomeIcon icon={faHome} />
       break
-    case 'Profile':
+    case 'User':
       element = <FontAwesomeIcon icon={faUser} />
       break
-    case 'Inbox':
+    case 'Envelope':
       element = <FontAwesomeIcon icon={faEnvelope} />
       break
-    case 'Settings':
+    case 'Cog':
       element = <FontAwesomeIcon icon={faCog} />
       break
     case 'SignIn':

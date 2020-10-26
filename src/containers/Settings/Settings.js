@@ -9,8 +9,8 @@ import * as actions from '../../store/actions/index';
 import classes from './Settings.module.css'
 import { updateObject, checkValidity } from '../../shared/utility';
 
-const Settings = () => {
-  const [activePage, setActivePage] = useState('Edit Profile')
+const Settings = props => {
+  const [activePage, setActivePage] = useState(props.location.activePage || 'Edit Profile')
   const [profileFullName, setProfileFullName] = useState({
     elementType: 'input',
     elementConfig: {

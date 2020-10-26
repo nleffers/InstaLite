@@ -1,0 +1,43 @@
+:root{
+  --size: 29%;
+}
+
+.WallGrid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: -1rem -1rem;
+  padding-bottom: 3rem;
+  max-width: 93.5%;
+}
+
+.WallGridRow {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.Thumbnail {
+  position: relative;
+  flex: 1 0 22rem;
+  margin: 1rem;
+  color: #fff;
+  cursor: pointer;
+  max-width: var(--size);
+  width: var(--size);
+  height: var(--size);
+}
+
+.Thumbnail:after {
+  display: block;
+  padding-bottom: 100%;
+}
+
+.Thumbnail img {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
