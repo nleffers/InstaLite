@@ -1,6 +1,6 @@
 import React from 'react'
 
-import classes from './Picture.module.css'
+import classes from './PictureImage.module.css'
 
 const picture = props => {
   return (

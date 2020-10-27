@@ -22,6 +22,10 @@ const Profile = React.lazy(() => {
   return import('./containers/Profile/Profile')
 })
 
+const Picture = React.lazy(() => {
+  return import('./containers/Picture/Picture')
+})
+
 // const Inbox = React.lazy(() => {
 //   return import('./containers/Inbox/Inbox')
 // })
@@ -54,6 +58,7 @@ const App = () => {
         {/* <Route path="/inbox" component={props => <Inbox {...props} />} /> */}
         {/* <Route path="/explore" component={props => <Explore {...props} />} /> */}
         {/* <Route path="/activity" component={props => <Likes {...props} />} /> */}
+        <Route path="/picture" component={props => <Picture {...props} />} />
         <Route path="/profile" component={props => <Profile {...props} />} />
         <Route path="/settings" component={props => <Settings {...props} />} />
         <Route path="/auth" component={props => <Auth {...props} />} />

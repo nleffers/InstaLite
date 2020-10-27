@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 
 import classes from './WallGrid.module.css'
 
@@ -19,8 +20,14 @@ const wallGrid = props => {
               className={classes.Thumbnail}
               key={pic.id}
             >
-              <img src={pic.url} alt="Thumbnail" />
-            </div>
+              <NavLink
+                to={{
+                  pathname: "/picture",
+                  pictureId: pic.id
+                }}
+              >
+                <img src={pic.url} alt="Thumbnail" />
+              </NavLink>            </div>
           ))}
         </div>
       )
@@ -39,7 +46,14 @@ const wallGrid = props => {
             className={classes.Thumbnail}
             key={pic.id}
           >
-            <img src={pic.url} alt="Thumbnail" />
+            <NavLink
+              to={{
+                pathname: "/picture",
+                pictureId: pic.id
+              }}
+            >
+              <img src={pic.url} alt="Thumbnail" />
+            </NavLink>
           </div>
         ))}
       </div>
