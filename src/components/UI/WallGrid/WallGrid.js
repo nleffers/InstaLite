@@ -30,9 +30,15 @@ const wallGrid = props => {
 
   if (pictureRow.length > 0) {
     gridRowsArray.push(
-      <div className={classes.WallGridRow}>
+      <div
+        className={classes.WallGridRow}
+        key={`${pictureRow[0].id}-row`}
+      >
         {pictureRow.map(pic => (
-          <div className={classes.Thumbnail}>
+          <div
+            className={classes.Thumbnail}
+            key={pic.id}
+          >
             <img src={pic.url} alt="Thumbnail" />
           </div>
         ))}

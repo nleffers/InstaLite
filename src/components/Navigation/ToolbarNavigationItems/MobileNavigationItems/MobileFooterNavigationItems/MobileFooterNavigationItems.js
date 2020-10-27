@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FileUploader from '../../../../UI/FileUploader/FileUploader';
+import FileUploader from '../../../../../hoc/FileUploader/FileUploader';
 import MobileFooterNavigationItem from './MobileFooterNavigationItem/MobileFooterNavigationItem';
 import classes from './MobileFooterNavigationItems.module.css';
 

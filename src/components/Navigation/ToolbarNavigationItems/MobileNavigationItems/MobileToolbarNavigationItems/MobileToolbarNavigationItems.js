@@ -1,7 +1,7 @@
 import React from 'react';
 
 import MobileToolbarNavigationItem from './MobileToolbarNavigationItem/MobileToolbarNavigationItem'
-import FileUploader from '../../../../UI/FileUploader/FileUploader'
+import FileUploader from '../../../../../hoc/FileUploader/FileUploader'
 // import Logo from '../../../Logo/Logo';
 import classes from './MobileToolbarNavigationItems.module.css';
 

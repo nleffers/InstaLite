@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 import Aux from '../../hoc/Aux'
 import BreakLine from '../../components/UI/BreakLine/BreakLine'
-import Button from '../../components/UI/Button/Button';
-import Input from '../../components/UI/Input/Input';
-import Spinner from '../../components/UI/Spinner/Spinner';
-import classes from './Auth.module.css';
-import * as actions from '../../store/actions/index';
-import { updateObject, checkValidity } from '../../shared/utility';
+import Button from '../../components/UI/Button/Button'
+import Input from '../../components/UI/Input/Input'
+import Spinner from '../../components/UI/Spinner/Spinner'
+import classes from './Auth.module.css'
+import * as actions from '../../store/actions/index'
+import { updateObject, checkValidity } from '../../shared/utility'
 
 const Auth = props => {
-  const { authRedirectPath, onAuthSetRedirectPath } = props
-
   const [isSignUp, setIsSignUp] = useState(true)
   const [controls, setControls] = useState({
     email: {
@@ -91,6 +89,16 @@ const Auth = props => {
     }
   })
 
+  const loading = useSelector(state => state.loading)
+  // const error = useSelector(state => state.error)
+  const authRedirectPath = useSelector(state => state.authRedirectPath)
+  const isAuthenticated = useSelector(state => state.token !== null)
+
+  const dispatch = useDispatch()
+  const onAuthUserSignIn = (email, password) => dispatch(actions.authUserSignIn(email, password))
+  const onAuthUserSignUp = (email, password, username, fullName, phone) => dispatch(actions.authUserSignUp(email, password, username, fullName, phone))
+  const onAuthSetRedirectPath = useCallback(() => dispatch(actions.authSetRedirectPath('/')), [dispatch])
+
   useEffect(() => {
     if (authRedirectPath !== '/') {
       onAuthSetRedirectPath()
@@ -115,7 +123,7 @@ const Auth = props => {
 
   let submitHandler = (event) => {
     event.preventDefault()
-    props.onAuthUserSignIn(
+    onAuthUserSignIn(
       controls.email.value,
       controls.password.value
     );
@@ -123,7 +131,7 @@ const Auth = props => {
   if (isSignUp) {
     submitHandler = (event) => {
       event.preventDefault()
-      props.onAuthUserSignUp(
+      onAuthUserSignUp(
         controls.username.value,
         controls.fullName.value,
         controls.email.value,
@@ -165,12 +173,12 @@ const Auth = props => {
       <Button btnType="Primary">{isSignUp ? 'Create Account' : 'Log In'}</Button>
     </form>
   )
-  if (props.loading) {
+  if (loading) {
     form = <Spinner />
   }
 
   let authRedirect = null
-  if (props.isAuthenticated) {
+  if (isAuthenticated) {
     authRedirect = <Redirect to={authRedirectPath} />
   }
 
@@ -221,24 +229,7 @@ const Auth = props => {
         {switchModeButton}
       </div>
     </Aux>
-  );
+  )
 }
 
-const mapStateToProps = state => {
-  return {
-    loading: state.auth.loading,
-    error: state.auth.error,
-    authRedirectPath: state.auth.authRedirectPath,
-    isAuthenticated: state.auth.token !== null
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onAuthUserSignIn: (email, password) => dispatch(actions.authUserSignIn(email, password)),
-    onAuthUserSignUp: (email, password, username, fullName, phone) => dispatch(actions.authUserSignUp(email, password, username, fullName, phone)),
-    onAuthSetRedirectPath: () => dispatch(actions.authSetRedirectPath('/'))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default Auth

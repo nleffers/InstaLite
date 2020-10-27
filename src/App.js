@@ -1,14 +1,14 @@
-import React, { useEffect, Suspense } from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useEffect, useCallback, Suspense } from 'react'
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
-import Layout from './hoc/Layout/Layout';
-import Logout from './containers/Auth/Logout/Logout';
-import * as actions from './store/actions/index';
+import Layout from './hoc/Layout/Layout'
+import Logout from './containers/Auth/Logout/Logout'
+import * as actions from './store/actions/index'
 
 const Auth = React.lazy(() => {
   return import('./containers/Auth/Auth')
-});
+})
 
 const Home = React.lazy(() => {
   return import('./containers/Home/Home')
@@ -30,8 +30,12 @@ const Profile = React.lazy(() => {
 //   return import('./containers/Activity/Activity')
 // })
 
-const App = props => {
-  const { isAuthenticated, userId, onTryAutoSignIn } = props
+const App = () => {
+  const userId = useSelector(state => state.userId)
+  const isAuthenticated = useSelector(state => state.token !== null)
+
+  const dispatch = useDispatch()
+  const onTryAutoSignIn = useCallback(() => dispatch(actions.authUserCheckState()), [dispatch])
 
   useEffect(() => {
     onTryAutoSignIn()
@@ -43,7 +47,7 @@ const App = props => {
       <Route path="/" exact component={props => <Home {...props} />} />
       <Redirect to="/" />
     </Switch>
-  );
+  )
   if (isAuthenticated) {
     routes = (
       <Switch>
@@ -69,20 +73,7 @@ const App = props => {
         </Suspense>
       </Layout>
     </div>
-  );
+  )
 }
 
-const mapStateToProps = state => {
-  return {
-    userId: state.auth.userId,
-    isAuthenticated: state.auth.token !== null
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onTryAutoSignIn: () => dispatch(actions.authUserCheckState())
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(App);

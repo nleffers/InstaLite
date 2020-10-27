@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Aux from '../../../hoc/Aux'
 import Description from './HeaderComponents/Description/Description'
 import ProfilePicture from './HeaderComponents/ProfilePicture/ProfilePicture'
 import classes from './Header.module.css'

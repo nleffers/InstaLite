@@ -25,22 +25,4 @@ export {
   authUserChangePasswordStart,
   authUserChangePasswordSuccess,
   authUserChangePasswordFail
-} from './auth';
-export {
-  pictureCreate,
-  pictureCreateStart,
-  pictureCreateSuccess,
-  pictureCreateFail,
-  pictureCreateProfilePicture,
-  pictureCreateProfilePictureStart,
-  pictureCreateProfilePictureSuccess,
-  pictureCreateProfilePictureFail,
-  pictureFetchUrl,
-  pictureFetchUrlStart,
-  pictureFetchUrlSuccess,
-  pictureFetchUrlFail,
-  pictureUpload,
-  pictureUploadStart,
-  pictureUploadSuccess,
-  pictureUploadFail
-} from './picture'
+} from './auth'

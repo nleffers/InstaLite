@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { database } from '../../firebase/firebase'
 import Header from '../../components/Profile/Header/Header'
 import ProfileWall from '../../components/Profile/ProfileWall/ProfileWall'
-import FileUploader from '../../components/UI/FileUploader/FileUploader'
+import FileUploader from '../../hoc/FileUploader/FileUploader'
 // import Modal from '../../components/UI/Modal/Modal'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import classes from './Profile.module.css'
@@ -29,34 +29,32 @@ const Profile = props => {
     error: null
   })
 
-  const token = useSelector(state => state.auth.token)
-  const isAuthUserPage = useSelector(state => state.auth.userId !== userId)
+  const token = useSelector(state => state.token)
+  const isAuthUserPage = useSelector(state => state.userId !== userId)
 
-  // const userPicturesFetch = useCallback((userId, token) => {
-  //   setUser(prevUser => ({ ...prevUser, loading: true, error: null }))
-  //   axios.get(`/pictures.json?auth=${token}&userId=${userId}`)
-  //     .then(resp => {
-  //       const pictures = resp.data
-  //       const picturesArray = []
-  //       for (let key in pictures) {
-  //         picturesArray.push({
-  //           ...pictures[key],
-  //           id: key
-  //         })
-  //       }
-  //       setUser(prevUser => ({
-  //         ...prevUser,
-  //         pictures: picturesArray,
-  //         profilePicture: picturesArray.find(pic => pic.profilePicture)
-  //       }))
-  //     })
-  // }, [])
+  const getPicturesArray = (pictures) => {
+    const picturesArray = []
+    for (let key in pictures) {
+      picturesArray.push({
+        ...pictures[key],
+        id: key
+      })
+    }
+    return picturesArray
+  }
 
   const userFetch = useCallback(userId => {
     setUser(prevUser => ({...prevUser, loading: true, error: null}))
     database.ref(`/users/${userId}`).once('value')
       .then(snapShot => {
-        const user = snapShot.val()
+        const userSnapShot = snapShot.val()
+        const picturesArray = getPicturesArray(userSnapShot.pictures)
+
+        const user = {
+          ...userSnapShot,
+          pictures: picturesArray,
+          profilePicture: picturesArray.find(pic => pic.profilePicture)
+        }
         setUser(prevUser => ({...prevUser, ...user, loading: false}))
       })
       .catch(err => {
@@ -69,10 +67,6 @@ const Profile = props => {
       userFetch(userId, token)
     }
   }, [userFetch, userId, token])
-
-  // useEffect(() => {
-  //   userPicturesFetch(userId, token)
-  // }, [userPicturesFetch, userId, token])
 
   // Add once I have more of these built
   // const openModalHandler = event => {

@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 
 // import Caption from '../../components/Picture/Caption/Caption'
 // import Comments from '../../components/Picture/Comments/Comments'
 import Header from '../../components/Picture/Header/Header'
-import Picture from '../../components/Picture/Picture/Picture'
+// import Picture from '../../components/Picture/Picture/Picture'
 import classes from './PicturePage.module.css'
 
 const PicturePage = props => {
-  const { url } = props
-
-  const token = useSelector(state => state.auth.token)
-  const username = useSelector(state => state.picture.username)
+  // const { url } = props
 
   return (
     <div className={classes.PicturePage}>
       <Header username={username} />
-      <Picture url={url} />
+      {/* <Picture url={url} /> */}
     </div>
   )
 }

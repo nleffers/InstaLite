@@ -1,17 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 
 import Aux from '../../hoc/Aux';
 // import HomeWall from '../../components/Wall/HomeWall/HomeWall'
 // import SuggestedUsers from '../../components/SuggestedUsers/SuggestedUsers'
-import FileUploader from '../../components/UI/FileUploader/FileUploader'
+import FileUploader from '../../hoc/FileUploader/FileUploader'
 // import * as actions from '../../store/actions/index';
 import classes from './Home.module.css';
 
-const Home = props => {
+const Home = () => {
+  // const loading = useSelector(state => state.loading)
+  // const error = useSelector(state => state.error)
+  const isAuthenticated = useSelector(state => state.token !== null)
+
   let homePage = <Redirect to="/auth" />
-  if (props.isAuthenticated) {
+  if (isAuthenticated) {
     homePage = (
       <Aux>
         <div className={classes.Left}>
@@ -34,19 +38,4 @@ const Home = props => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    loading: state.auth.loading,
-    error: state.auth.error,
-    token: state.auth.token,
-    isAuthenticated: state.auth.token !== null
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    // onAuthUserFetch: (token) => dispatch(actions.authUserFetch(token)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default Home

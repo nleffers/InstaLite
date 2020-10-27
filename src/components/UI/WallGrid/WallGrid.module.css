@@ -24,6 +24,7 @@
   max-width: var(--size);
   width: var(--size);
   height: var(--size);
+  border: 1px solid black;
 }
 
 .Thumbnail:after {
