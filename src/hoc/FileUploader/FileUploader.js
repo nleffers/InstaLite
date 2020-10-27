@@ -27,7 +27,7 @@ const FileUploader = props => {
               updates[`/pictures/${newPictureKey}`] = pictureData
               updates[`/users/${userId}/pictures/${newPictureKey}`] = pictureData
               if (!!isProfilePicture) {
-                updates[`/users/${userId}/profilePicture`] = pictureData
+                updates[`/users/${userId}/profilePicture/${newPictureKey}`] = pictureData
               }
 
               database.ref().update(updates)

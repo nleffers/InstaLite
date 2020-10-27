@@ -32,7 +32,7 @@ const Profile = props => {
   const token = useSelector(state => state.token)
   const isAuthUserPage = useSelector(state => state.userId !== userId)
 
-  const getPicturesArray = (pictures) => {
+  const getPicturesArray = pictures => {
     const picturesArray = []
     for (let key in pictures) {
       picturesArray.push({
@@ -43,17 +43,26 @@ const Profile = props => {
     return picturesArray
   }
 
+  const getProfilePicture = picture => {
+    const profilePictureId = Object.keys(picture)[0]
+    return {
+      ...picture[profilePictureId],
+      id: profilePictureId
+    }
+  }
+
   const userFetch = useCallback(userId => {
     setUser(prevUser => ({...prevUser, loading: true, error: null}))
     database.ref(`/users/${userId}`).once('value')
       .then(snapShot => {
         const userSnapShot = snapShot.val()
         const picturesArray = getPicturesArray(userSnapShot.pictures)
+        const profilePicture = getProfilePicture(userSnapShot.profilePicture)
 
         const user = {
           ...userSnapShot,
           pictures: picturesArray,
-          profilePicture: picturesArray.find(pic => pic.profilePicture)
+          profilePicture: profilePicture
         }
         setUser(prevUser => ({...prevUser, ...user, loading: false}))
       })
