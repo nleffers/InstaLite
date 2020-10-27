@@ -14,11 +14,10 @@ export const authUserSignInStart = () => {
   }
 }
 
-export const authUserSignInSuccess = (idToken, userId) => {
+export const authUserSignInSuccess = user => {
   return {
     type: actionTypes.AUTH_USER_SIGN_IN_SUCCESS,
-    idToken: idToken,
-    userId: userId
+    user: user
   }
 }
 
@@ -26,6 +25,37 @@ export const authUserSignInFail = (err) => {
   return {
     type: actionTypes.AUTH_USER_SIGN_IN_FAIL,
     error: err
+  }
+}
+
+export const authUserSignUp = (username, fullName, email, phone, password) => {
+  return {
+    type: actionTypes.AUTH_USER_SIGN_UP,
+    username: username,
+    fullName: fullName,
+    email: email,
+    phone: phone,
+    password: password
+  }
+}
+
+export const authUserSignUpStart = () => {
+  return {
+    type: actionTypes.AUTH_USER_SIGN_UP_START
+  }
+}
+
+export const authUserSignUpSuccess = user => {
+  return {
+    type: actionTypes.AUTH_USER_SIGN_UP_SUCCESS,
+    user: user
+  }
+}
+
+export const authUserSignUpFail = error => {
+  return {
+    type: actionTypes.AUTH_USER_SIGN_UP_FAIL,
+    error: error
   }
 }
 
@@ -38,13 +68,6 @@ export const authUserLogout = () => {
 export const authUserLogoutSuccess = () => {
   return {
     type: actionTypes.AUTH_USER_LOGOUT_SUCCESS
-  }
-}
-
-export const authUserCheckTimeout = (expirationTime) => {
-  return {
-    type: actionTypes.AUTH_USER_CHECK_TIMEOUT,
-    expirationTime: expirationTime
   }
 }
 
@@ -86,36 +109,6 @@ export const authUserChangePasswordSuccess = () => {
 export const authUserChangePasswordFail = error => {
   return {
     type: actionTypes.AUTH_USER_CHANGE_PASSWORD_FAIL,
-    error: error
-  }
-}
-
-export const authUserSignUp = (username, fullName, email, phone, password) => {
-  return {
-    type: actionTypes.AUTH_USER_SIGN_UP,
-    username: username,
-    fullName: fullName,
-    email: email,
-    phone: phone,
-    password: password
-  }
-}
-
-export const authUserSignUpStart = () => {
-  return {
-    type: actionTypes.AUTH_USER_SIGN_UP_START
-  }
-}
-
-export const authUserSignUpSuccess = () => {
-  return {
-    type: actionTypes.AUTH_USER_SIGN_UP_SUCCESS
-  }
-}
-
-export const authUserSignUpFail = error => {
-  return {
-    type: actionTypes.AUTH_USER_SIGN_UP_FAIL,
     error: error
   }
 }

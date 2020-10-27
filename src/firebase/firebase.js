@@ -44,4 +44,6 @@ const auth = firebase.auth()
 const database = firebase.database()
 const storage = firebase.storage()
 
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+
 export { auth, database, storage, firebase as default }

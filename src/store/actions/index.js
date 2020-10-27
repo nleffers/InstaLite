@@ -7,7 +7,6 @@ export {
   authSetRedirectPath,
   authUserCheckState,
   authUserLogoutSuccess,
-  authUserCheckTimeout,
   authUserSignUp,
   authUserSignUpStart,
   authUserSignUpSuccess,

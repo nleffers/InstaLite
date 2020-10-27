@@ -11,12 +11,6 @@ export function* logoutSaga() {
   yield put(actions.authUserLogoutSuccess())
 }
 
-export function* authCheckTimeoutSaga(action) {
-  yield delay(action.expirationTime * 1000)
-  yield put(actions.authUserLogout())
-}
-
-
 export function* authUserSignUpSaga(action) {
   yield put(actions.authUserSignUpStart())
   try {
@@ -30,7 +24,13 @@ export function* authUserSignUpSaga(action) {
         })
         return authUser
       })
-    yield put(actions.authUserSignUpSuccess(resp))
+    const user = resp.user.toJSON()
+    const expirationDate = yield new Date(new Date().getTime() + user.stsTokenManager.expirationTime)
+
+    yield call([localStorage, 'setItem'], 'token', user.stsTokenManager.accessToken)
+    yield call([localStorage, 'setItem'], 'expirationDate', expirationDate)
+    yield call([localStorage, 'setItem'], 'userId', user.uid)
+    yield put(actions.authUserSignInSuccess(user))
   } catch (err) {
     console.log(err)
     yield put(actions.authUserSignUpFail(err.response.data.error))
@@ -41,9 +41,16 @@ export function* authUserSignInSaga(action) {
   yield put(actions.authUserSignInStart())
   try {
     const resp = yield auth.signInWithEmailAndPassword(action.email, action.password)
-    yield put(actions.authUserSignInSuccess(resp))
+    const user = resp.user.toJSON()
+    const expirationDate = yield new Date(new Date().getTime() + user.stsTokenManager.expirationTime)
+
+    yield call([localStorage, 'setItem'], 'token', user.stsTokenManager.accessToken)
+    yield call([localStorage, 'setItem'], 'expirationDate', expirationDate)
+    yield call([localStorage, 'setItem'], 'userId', user.uid)
+    yield put(actions.authUserSignInSuccess(user))
   } catch (err) {
-    yield put(actions.authUserSignInFail(err.response.data.error))
+    console.log(err)
+    // yield put(actions.authUserSignInFail(err.response.data.error))
   }
 }
 
@@ -80,36 +87,16 @@ export function* authCheckStateSaga() {
   if (!token) {
     yield put(actions.authUserLogout())
   } else {
+
     const expirationDate = yield new Date(localStorage.getItem('expirationDate'))
     if (expirationDate > new Date()) {
       const userId = yield localStorage.getItem('userId')
       yield put(actions.authUserSignInSuccess(token, userId))
-      yield put(actions.authUserCheckTimeout((expirationDate.getTime() - new Date().getTime()) / 1000))
     } else {
       yield put(actions.authUserLogout())
     }
   }
 }
-
-// export function* authUserCreateSaga(action) {
-//   yield put(actions.authUserCreateStart())
-//   try {
-//     const userData = {
-//       userId: action.userId,
-//       username: action.username,
-//       email: action.email,
-//       fullName: action.fullName,
-//       phone: action.phone,
-//       website: '',
-//       bio: '',
-//       gender: ''
-//     }
-//     yield axios.post(`/users.json?auth=${action.token}`, userData)
-//     yield put(actions.authUserCreateSuccess())
-//   } catch (err) {
-//     yield put(actions.authUserCreateFail(err.response.data.error))
-//   }
-// }
 
 export function* authUserFetchSaga(action) {
   yield put(actions.authUserFetchStart())

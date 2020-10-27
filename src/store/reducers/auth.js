@@ -23,12 +23,12 @@ const initialState = {
   authRedirectPath: '/'
 }
 
-const authUserSignUpOrSignInSuccess = (state, action) => {
+const authUserSignUpOrSignInSuccess = (state, user) => {
   return updateObject(
     state,
     {
-      token: action.idToken,
-      userId: action.userId,
+      token: user.stsTokenManager.accessToken,
+      userId: user.uid,
       loading: false
     }
   )
@@ -79,10 +79,10 @@ const authUserLogoutSuccess = state => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTH_USER_SIGN_IN_START: return updateObject(state, { error: null, loading: true })
-    case actionTypes.AUTH_USER_SIGN_IN_SUCCESS: return authUserSignUpOrSignInSuccess(state, action)
+    case actionTypes.AUTH_USER_SIGN_IN_SUCCESS: return authUserSignUpOrSignInSuccess(state, action.user)
     case actionTypes.AUTH_USER_SIGN_IN_FAIL: return updateObject(state, { error: action.error, loading: false })
     case actionTypes.AUTH_USER_SIGN_UP_START: return updateObject(state, { error: null, loading: true })
-    case actionTypes.AUTH_USER_SIGN_UP_SUCCESS: return updateObject(state, { loading: false })
+    case actionTypes.AUTH_USER_SIGN_UP_SUCCESS: return authUserSignUpOrSignInSuccess(state, action.user)
     case actionTypes.AUTH_USER_SIGN_UP_FAIL: return updateObject(state, { error: action.error, loading: false })
     case actionTypes.AUTH_USER_UPDATE_START: return updateObject(state, { error: null, loading: true })
     case actionTypes.AUTH_USER_UPDATE_SUCCESS: return authUserUpdateSuccess(state, action.response.data)
