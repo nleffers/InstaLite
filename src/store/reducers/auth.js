@@ -23,6 +23,17 @@ const initialState = {
   authRedirectPath: '/'
 }
 
+const authUserSignUpOrSignInSuccess = (state, action) => {
+  return updateObject(
+    state,
+    {
+      token: action.idToken,
+      userId: action.userId,
+      loading: false
+    }
+  )
+}
+
 const authUserFetchSuccess = (state, data) => {
   const userObjectId = Object.keys(data)[0]
   const userObject = data[userObjectId]
@@ -30,6 +41,7 @@ const authUserFetchSuccess = (state, data) => {
     state,
     {
       userObjectId: userObjectId,
+      userId: userObject.userId,
       username: userObject.username,
       fullName: userObject.fullName,
       website: userObject.website,
@@ -61,38 +73,17 @@ const authUserUpdateSuccess = (state, action) => {
 }
 
 const authUserLogoutSuccess = state => {
-  return updateObject(
-    state,
-    {
-      userObjectId: null,
-      token: null,
-      userId: null,
-      username: '',
-      fullName: '',
-      email: '',
-      phone: '',
-      website: '',
-      bio: '',
-      gender: '',
-      followers: [],
-      following: [],
-      directMessages: [],
-      pictures: [],
-      taggedPictures: [],
-      comments: [],
-      authRedirectPath: '/'
-    }
-  )
+  return updateObject(state, initialState)
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.AUTH_USER_LOGIN_START: return updateObject(state, { error: null, loading: true })
-    case actionTypes.AUTH_USER_LOGIN_SUCCESS: return updateObject(state, { token: action.idToken, userId: action.userId, loading: false })
-    case actionTypes.AUTH_USER_LOGIN_FAIL: return updateObject(state, { error: action.error, loading: false })
-    case actionTypes.AUTH_USER_CREATE_START: return updateObject(state, { error: null, loading: true })
-    case actionTypes.AUTH_USER_CREATE_SUCCESS: return updateObject(state, { loading: false })
-    case actionTypes.AUTH_USER_CREATE_FAIL: return updateObject(state, { error: action.error, loading: false })
+    case actionTypes.AUTH_USER_SIGN_IN_START: return updateObject(state, { error: null, loading: true })
+    case actionTypes.AUTH_USER_SIGN_IN_SUCCESS: return authUserSignUpOrSignInSuccess(state, action)
+    case actionTypes.AUTH_USER_SIGN_IN_FAIL: return updateObject(state, { error: action.error, loading: false })
+    case actionTypes.AUTH_USER_SIGN_UP_START: return updateObject(state, { error: null, loading: true })
+    case actionTypes.AUTH_USER_SIGN_UP_SUCCESS: return updateObject(state, { loading: false })
+    case actionTypes.AUTH_USER_SIGN_UP_FAIL: return updateObject(state, { error: action.error, loading: false })
     case actionTypes.AUTH_USER_UPDATE_START: return updateObject(state, { error: null, loading: true })
     case actionTypes.AUTH_USER_UPDATE_SUCCESS: return authUserUpdateSuccess(state, action.response.data)
     case actionTypes.AUTH_USER_UPDATE_FAIL: return updateObject(state, { error: action.error, loading: false })

@@ -10,7 +10,10 @@ const mobileToolbar = (props) => (
     <header className={classes.MobileFooter}>
       {/* <Search /> */}
       <nav className={classes.MobileOnly}>
-        <MobileNavigationItems isAuthenticated={props.isAuthenticated} />
+        <MobileNavigationItems
+          isAuthenticated={props.isAuthenticated}
+          userObjectId={props.userObjectId}
+        />
       </nav>
     </header>
   </Aux>

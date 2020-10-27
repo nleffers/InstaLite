@@ -113,16 +113,24 @@ const Auth = props => {
     setControls(updatedControls)
   }
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    props.onAuthUserLogin(
+  let submitHandler = (event) => {
+    event.preventDefault()
+    props.onAuthUserSignIn(
       controls.email.value,
-      controls.password.value,
-      isSignUp,
-      controls.username.value,
-      controls.fullName.value,
-      controls.phone.value
+      controls.password.value
     );
+  }
+  if (isSignUp) {
+    submitHandler = (event) => {
+      event.preventDefault()
+      props.onAuthUserSignUp(
+        controls.username.value,
+        controls.fullName.value,
+        controls.email.value,
+        controls.phone.value,
+        controls.password.value
+      )
+    }
   }
 
   const switchAuthModeHandler = () => {
@@ -227,7 +235,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuthUserLogin: (email, password, isSignUp, username, fullName, phone) => dispatch(actions.authUserLogin(email, password, isSignUp, username, fullName, phone)),
+    onAuthUserSignIn: (email, password) => dispatch(actions.authUserSignIn(email, password)),
+    onAuthUserSignUp: (email, password, username, fullName, phone) => dispatch(actions.authUserSignUp(email, password, username, fullName, phone)),
     onAuthSetRedirectPath: () => dispatch(actions.authSetRedirectPath('/'))
   };
 };

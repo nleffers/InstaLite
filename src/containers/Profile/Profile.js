@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useSelector } from 'react-redux';
 
+import { database } from '../../firebase/firebase'
 import axios from '../../axios/axios'
 import withErrorHandler from '../../hoc/withErrorHandler'
 import Header from '../../components/Profile/Header/Header'
@@ -10,7 +11,8 @@ import FileUploader from '../../components/UI/FileUploader/FileUploader'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import classes from './Profile.module.css'
 
-const Profile = () => {
+const Profile = props => {
+  const userObjectId = props.location.userObjectId
   const [activeTab, setActiveTab] = useState('POSTS')
   // const [openModal, setOpenModal] = useState(false)
 
@@ -30,48 +32,66 @@ const Profile = () => {
   })
 
   const token = useSelector(state => state.auth.token)
-  const isAuthUserPage = useSelector(state => state.auth.userId !== user.userId)
+  const isAuthUserPage = useSelector(state => state.auth.userObjectId !== userObjectId)
 
-  const userPicturesFetch = useCallback((userId, token) => {
-    setUser(prevUser => ({ ...prevUser, loading: true, error: null }))
-    axios.get(`/pictures.json?auth=${token}&userId=${userId}`)
-      .then(resp => {
-        const pictures = resp.data
-        const picturesArray = []
-        for (let key in pictures) {
-          picturesArray.push({
-            ...pictures[key],
-            id: key
-          })
-        }
-        setUser(prevUser => ({
-          ...prevUser,
-          pictures: picturesArray,
-          profilePicture: picturesArray.find(pic => pic.profilePicture)
-        }))
-      })
-  }, [])
+  // const userPicturesFetch = useCallback((userId, token) => {
+  //   setUser(prevUser => ({ ...prevUser, loading: true, error: null }))
+  //   axios.get(`/pictures.json?auth=${token}&userId=${userId}`)
+  //     .then(resp => {
+  //       const pictures = resp.data
+  //       const picturesArray = []
+  //       for (let key in pictures) {
+  //         picturesArray.push({
+  //           ...pictures[key],
+  //           id: key
+  //         })
+  //       }
+  //       setUser(prevUser => ({
+  //         ...prevUser,
+  //         pictures: picturesArray,
+  //         profilePicture: picturesArray.find(pic => pic.profilePicture)
+  //       }))
+  //     })
+  // }, [])
 
-  const userFetch = useCallback((userId, token) => {
-    setUser(prevUser => ({ ...prevUser, loading: true, error: null }))
-    axios.get(`/users.json?auth=${token}&userId=${userId}`)
-      .then(resp => {
-        const userObjectId = Object.keys(resp.data)[0]
-        const userObject = resp.data[userObjectId]
-        setUser(prevUser => ({ ...prevUser, ...userObject, loading: false }))
-      })
-      .catch(err => {
-        setUser(prevUser => ({ ...prevUser, loading: false, error: err.response.data.error }))
-      })
+  const userFetch = useCallback((userObjectId, token) => {
+    const user = database.ref(`/users/${userObjectId}`)
+
+    debugger
+
+    // database.ref(`/users/${userObjectId}`).once('value')
+    //   .then(snapShot => {
+    //     console.log(snapShot)
+    //   })
+    // database.users().on('value', snapShot=> {
+    //   console.log(snapShot)
+    // })
+
+
+
+    // setUser(prevUser => ({ ...prevUser, loading: true, error: null }))
+    // debugger
+    // axios.get(`/users.json?auth=${token}&userObjectId=${userObjectId}`)
+    //   .then(resp => {
+    //     debugger
+    //     const userObjectId = Object.keys(resp.data)[0]
+    //     const userObject = resp.data[userObjectId]
+    //     setUser(prevUser => ({ ...prevUser, ...userObject, loading: false }))
+    //   })
+    //   .catch(err => {
+    //     setUser(prevUser => ({ ...prevUser, loading: false, error: err.response.data.error }))
+    //   })
   }, [])
 
   useEffect(() => {
-    userFetch(user.userId, token)
-  }, [userFetch, user.userId, token])
+    if (userObjectId) {
+      userFetch(userObjectId, token)
+    }
+  }, [userFetch, userObjectId, token])
 
-  useEffect(() => {
-    userPicturesFetch(user.userId, token)
-  }, [userPicturesFetch, user.userId, token])
+  // useEffect(() => {
+  //   userPicturesFetch(userId, token)
+  // }, [userPicturesFetch, userId, token])
 
   // Add once I have more of these built
   // const openModalHandler = event => {

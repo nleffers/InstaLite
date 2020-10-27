@@ -1,15 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import Aux from '../Aux';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import classes from './Layout.module.css';
 
-const Layout = props => {
+const layout = props => {
   let toolbar = null
   if (props.isAuthenticated) {
     toolbar = (
-      <Toolbar isAuthenticated={props.isAuthenticated} />
+      <Toolbar
+        isAuthenticated={props.isAuthenticated}
+        userObjectId={props.userObjectId}
+      />
     )
   }
 
@@ -23,10 +25,4 @@ const Layout = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.auth.token !== null
-  }
-}
-
-export default connect(mapStateToProps)(Layout);
+export default layout

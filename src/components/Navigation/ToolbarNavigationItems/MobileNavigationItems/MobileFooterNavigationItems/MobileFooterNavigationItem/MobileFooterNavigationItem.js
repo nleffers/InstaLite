@@ -9,7 +9,10 @@ const mobileFooterNavigationItem = (props) => (
     <NavLink
       exact={props.exact}
       activeClassName={classes.active}
-      to={props.link}
+      to={{
+        pathname: props.link,
+        userObjectId: props.userObjectId
+      }}
       style={
         props.children && props.children.type && props.children.type.name === 'logo' ? { padding: "0" } : null
       }

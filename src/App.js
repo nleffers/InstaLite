@@ -31,7 +31,7 @@ const Profile = React.lazy(() => {
 // })
 
 const App = props => {
-  const { onTryAutoSignIn } = props
+  const { isAuthenticated, userObjectId, onTryAutoSignIn } = props
 
   useEffect(() => {
     onTryAutoSignIn()
@@ -44,7 +44,7 @@ const App = props => {
       <Redirect to="/" />
     </Switch>
   );
-  if (props.isAuthenticated) {
+  if (isAuthenticated) {
     routes = (
       <Switch>
         {/* <Route path="/inbox" component={props => <Inbox {...props} />} /> */}
@@ -60,7 +60,10 @@ const App = props => {
   }
   return (
     <div>
-      <Layout>
+      <Layout
+        isAuthenticated={isAuthenticated}
+        userObjectId={userObjectId}
+      >
         <Suspense fallback={<p>Loading...</p>}>
           {routes}
         </Suspense>
@@ -71,6 +74,7 @@ const App = props => {
 
 const mapStateToProps = state => {
   return {
+    userObjectId: state.auth.userObjectId,
     isAuthenticated: state.auth.token !== null
   }
 }

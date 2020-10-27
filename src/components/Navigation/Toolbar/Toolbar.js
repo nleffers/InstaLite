@@ -7,9 +7,19 @@ import classes from './Toolbar.module.css'
 
 const toolbar = props => (
   <div className={classes.Toolbar}>
-    <DesktopToolbar isAuthenticated={props.isAuthenticated} classes={classes.DesktopToolbar} />
-    <MobileToolbar classes={classes.MobileToolbar} />
-    <MobileFooter isAuthenticated={props.isAuthenticated} classes={classes.MobileFooter} />
+    <DesktopToolbar
+      classes={classes.DesktopToolbar}
+      isAuthenticated={props.isAuthenticated}
+      userObjectId={props.userObjectId}
+    />
+    <MobileToolbar
+      classes={classes.MobileToolbar}
+    />
+    <MobileFooter
+      classes={classes.MobileFooter}
+      isAuthenticated={props.isAuthenticated}
+      userObjectId={props.userObjectId}
+    />
   </div>
 )
 

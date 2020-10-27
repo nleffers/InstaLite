@@ -5,7 +5,8 @@ import WallTab from './WallTab/WallTab'
 import classes from './WallTabs.module.css'
 
 const wallTabs = props => {
-  const { activeTab, isAuthUserPage, tabClickHandler } = props
+  // const { activeTab, isAuthUserPage, tabClickHandler } = props
+  const { activeTab, tabClickHandler } = props
 
   let wallTabs = (
     <Aux>

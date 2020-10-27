@@ -10,7 +10,10 @@ const desktopToolbar = (props) => (
     <Logo />
     {/* <Search /> */}
     <nav className={classes.DesktopOnly}>
-      <DesktopToolbarNavigationItems isAuthenticated={props.isAuthenticated} />
+      <DesktopToolbarNavigationItems
+        isAuthenticated={props.isAuthenticated}
+        userObjectId={props.userObjectId}
+      />
     </nav>
   </header>
 )

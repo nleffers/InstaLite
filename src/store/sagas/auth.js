@@ -1,8 +1,8 @@
-import { delay } from 'redux-saga/effects';
-import { put, call } from 'redux-saga/effects';
-import axios from '../../axios/axios';
+import { call, delay, put } from 'redux-saga/effects'
 
-import * as actions from '../actions/index';
+import { auth, database } from '../../firebase/firebase'
+import axios from '../../axios/axios'
+import * as actions from '../actions/index'
 
 export function* logoutSaga() {
   yield call([localStorage, 'removeItem'], 'token')
@@ -16,33 +16,64 @@ export function* authCheckTimeoutSaga(action) {
   yield put(actions.authUserLogout())
 }
 
-export function* authUserLoginSaga(action) {
-  yield put(actions.authUserLoginStart())
-  const authData = {
-    email: action.email,
-    password: action.password,
-    returnSecureToken: true
-  }
-  let url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_API_KEY}`
-  if (!action.isSignUp) {
-    url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_API_KEY}`
-  }
-  try {
-    const resp = yield axios.post(url, authData)
 
-    const expirationDate = yield new Date(new Date().getTime() + resp.data.expiresIn * 1000)
-    yield call([localStorage, 'setItem'], 'token', resp.data.idToken)
-    yield call([localStorage, 'setItem'], 'expirationDate', expirationDate)
-    yield call([localStorage, 'setItem'], 'userId', resp.data.localId)
-    if (action.isSignUp) {
-      yield put(actions.authUserCreate(resp.data.localId, action.username, action.fullName, action.email, action.phone, resp.data.idToken))
-    }
-    yield put(actions.authUserLoginSuccess(resp.data.idToken, resp.data.localId))
-    yield put(actions.authUserCheckTimeout(resp.data.expiresIn))
+export function* authUserSignUpSaga(action) {
+  yield put(actions.authUserSignUpStart())
+  try {
+    const resp = yield auth.createUserWithEmailAndPassword(action.email, action.password)
+      .then(authUser => {
+        database.ref(`/users/${authUser.user.uid}`).set({
+          username: action.username,
+          email: action.email,
+          fullName: action.fullName,
+          phone: action.phone
+        })
+        return authUser
+      })
+    yield put(actions.authUserSignUpSuccess(resp))
   } catch (err) {
-    yield put(actions.authUserLoginFail(err.response.data.error))
+    console.log(err)
+    yield put(actions.authUserSignUpFail(err.response.data.error))
   }
 }
+
+export function* authUserSignInSaga(action) {
+  yield put(actions.authUserSignInStart())
+  try {
+    const resp = yield auth.signInWithEmailAndPassword(action.email, action.password)
+    yield put(actions.authUserSignInSuccess(resp))
+  } catch (err) {
+    yield put(actions.authUserSignInFail(err.response.data.error))
+  }
+}
+
+// export function* authUserLoginSaga(action) {
+//   yield put(actions.authUserLoginStart())
+//   const authData = {
+//     email: action.email,
+//     password: action.password,
+//     returnSecureToken: true
+//   }
+//   let url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_API_KEY}`
+//   if (!action.isSignUp) {
+//     url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_API_KEY}`
+//   }
+//   try {
+//     const resp = yield axios.post(url, authData)
+
+//     const expirationDate = yield new Date(new Date().getTime() + resp.data.expiresIn * 1000)
+//     yield call([localStorage, 'setItem'], 'token', resp.data.idToken)
+//     yield call([localStorage, 'setItem'], 'expirationDate', expirationDate)
+//     yield call([localStorage, 'setItem'], 'userId', resp.data.localId)
+//     if (action.isSignUp) {
+//       yield put(actions.authUserCreate(resp.data.localId, action.username, action.fullName, action.email, action.phone, resp.data.idToken))
+//     }
+//     yield put(actions.authUserLoginSuccess(resp.data.idToken, resp.data.localId))
+//     yield put(actions.authUserCheckTimeout(resp.data.expiresIn))
+//   } catch (err) {
+//     yield put(actions.authUserLoginFail(err.response.data.error))
+//   }
+// }
 
 export function* authCheckStateSaga() {
   const token = yield localStorage.getItem('token')
@@ -52,7 +83,7 @@ export function* authCheckStateSaga() {
     const expirationDate = yield new Date(localStorage.getItem('expirationDate'))
     if (expirationDate > new Date()) {
       const userId = yield localStorage.getItem('userId')
-      yield put(actions.authUserLoginSuccess(token, userId))
+      yield put(actions.authUserSignInSuccess(token, userId))
       yield put(actions.authUserCheckTimeout((expirationDate.getTime() - new Date().getTime()) / 1000))
     } else {
       yield put(actions.authUserLogout())
@@ -60,25 +91,25 @@ export function* authCheckStateSaga() {
   }
 }
 
-export function* authUserCreateSaga(action) {
-  yield put(actions.authUserCreateStart())
-  try {
-    const userData = {
-      userId: action.userId,
-      username: action.username,
-      email: action.email,
-      fullName: action.fullName,
-      phone: action.phone,
-      website: '',
-      bio: '',
-      gender: ''
-    }
-    yield axios.post(`/users.json?auth=${action.token}`, userData)
-    yield put(actions.authUserCreateSuccess())
-  } catch (err) {
-    yield put(actions.authUserCreateFail(err.response.data.error))
-  }
-}
+// export function* authUserCreateSaga(action) {
+//   yield put(actions.authUserCreateStart())
+//   try {
+//     const userData = {
+//       userId: action.userId,
+//       username: action.username,
+//       email: action.email,
+//       fullName: action.fullName,
+//       phone: action.phone,
+//       website: '',
+//       bio: '',
+//       gender: ''
+//     }
+//     yield axios.post(`/users.json?auth=${action.token}`, userData)
+//     yield put(actions.authUserCreateSuccess())
+//   } catch (err) {
+//     yield put(actions.authUserCreateFail(err.response.data.error))
+//   }
+// }
 
 export function* authUserFetchSaga(action) {
   yield put(actions.authUserFetchStart())

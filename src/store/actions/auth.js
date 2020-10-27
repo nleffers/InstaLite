@@ -1,34 +1,30 @@
 import * as actionTypes from './actionTypes';
 
-export const authUserLogin = (email, password, isSignUp, username, fullName, phone) => {
+export const authUserSignIn = (email, password) => {
   return {
-    type: actionTypes.AUTH_USER_LOGIN,
-    username: username,
-    fullName: fullName,
+    type: actionTypes.AUTH_USER_SIGN_IN,
     email: email,
-    phone: phone,
-    password: password,
-    isSignUp: isSignUp
+    password: password
   }
 }
 
-export const authUserLoginStart = () => {
+export const authUserSignInStart = () => {
   return {
-    type: actionTypes.AUTH_USER_LOGIN_START
+    type: actionTypes.AUTH_USER_SIGN_IN_START
   }
 }
 
-export const authUserLoginSuccess = (idToken, userId) => {
+export const authUserSignInSuccess = (idToken, userId) => {
   return {
-    type: actionTypes.AUTH_USER_LOGIN_SUCCESS,
+    type: actionTypes.AUTH_USER_SIGN_IN_SUCCESS,
     idToken: idToken,
     userId: userId
   }
 }
 
-export const authUserLoginFail = (err) => {
+export const authUserSignInFail = (err) => {
   return {
-    type: actionTypes.AUTH_USER_LOGIN_FAIL,
+    type: actionTypes.AUTH_USER_SIGN_IN_FAIL,
     error: err
   }
 }
@@ -94,33 +90,32 @@ export const authUserChangePasswordFail = error => {
   }
 }
 
-export const authUserCreate = (userId, username, fullName, email, phone, token) => {
+export const authUserSignUp = (username, fullName, email, phone, password) => {
   return {
-    type: actionTypes.AUTH_USER_CREATE,
-    userId: userId,
+    type: actionTypes.AUTH_USER_SIGN_UP,
     username: username,
     fullName: fullName,
     email: email,
     phone: phone,
-    token: token
+    password: password
   }
 }
 
-export const authUserCreateStart = () => {
+export const authUserSignUpStart = () => {
   return {
-    type: actionTypes.AUTH_USER_CREATE_START
+    type: actionTypes.AUTH_USER_SIGN_UP_START
   }
 }
 
-export const authUserCreateSuccess = () => {
+export const authUserSignUpSuccess = () => {
   return {
-    type: actionTypes.AUTH_USER_CREATE_SUCCESS
+    type: actionTypes.AUTH_USER_SIGN_UP_SUCCESS
   }
 }
 
-export const authUserCreateFail = error => {
+export const authUserSignUpFail = error => {
   return {
-    type: actionTypes.AUTH_USER_CREATE_FAIL,
+    type: actionTypes.AUTH_USER_SIGN_UP_FAIL,
     error: error
   }
 }
