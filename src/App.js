@@ -31,7 +31,7 @@ const Profile = React.lazy(() => {
 // })
 
 const App = props => {
-  const { isAuthenticated, userObjectId, onTryAutoSignIn } = props
+  const { isAuthenticated, userId, onTryAutoSignIn } = props
 
   useEffect(() => {
     onTryAutoSignIn()
@@ -62,7 +62,7 @@ const App = props => {
     <div>
       <Layout
         isAuthenticated={isAuthenticated}
-        userObjectId={userObjectId}
+        userId={userId}
       >
         <Suspense fallback={<p>Loading...</p>}>
           {routes}
@@ -74,7 +74,7 @@ const App = props => {
 
 const mapStateToProps = state => {
   return {
-    userObjectId: state.auth.userObjectId,
+    userId: state.auth.userId,
     isAuthenticated: state.auth.token !== null
   }
 }

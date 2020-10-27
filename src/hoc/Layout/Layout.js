@@ -10,7 +10,7 @@ const layout = props => {
     toolbar = (
       <Toolbar
         isAuthenticated={props.isAuthenticated}
-        userObjectId={props.userObjectId}
+        userId={props.userId}
       />
     )
   }

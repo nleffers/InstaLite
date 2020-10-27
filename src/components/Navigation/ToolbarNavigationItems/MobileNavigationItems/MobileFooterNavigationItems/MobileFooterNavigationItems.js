@@ -10,7 +10,7 @@ const mobileFooterNavigationItems = props => (
     <MobileFooterNavigationItem link="/explore" icon='Search' />
     <FileUploader icon="Plus" source="mobile" />
     <MobileFooterNavigationItem link="/activity" icon='Heart' />
-    <MobileFooterNavigationItem link="/profile" icon='User' userObjectId={props.userObjectId} />
+    <MobileFooterNavigationItem link="/profile" icon='User' userId={props.userId} />
   </ul>
 );
 

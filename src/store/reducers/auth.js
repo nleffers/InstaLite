@@ -35,6 +35,7 @@ const authUserSignUpOrSignInSuccess = (state, user) => {
 }
 
 const authUserFetchSuccess = (state, data) => {
+  debugger
   const userObjectId = Object.keys(data)[0]
   const userObject = data[userObjectId]
   return updateObject(

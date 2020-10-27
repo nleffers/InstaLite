@@ -10,7 +10,7 @@ const toolbar = props => (
     <DesktopToolbar
       classes={classes.DesktopToolbar}
       isAuthenticated={props.isAuthenticated}
-      userObjectId={props.userObjectId}
+      userId={props.userId}
     />
     <MobileToolbar
       classes={classes.MobileToolbar}
@@ -18,7 +18,7 @@ const toolbar = props => (
     <MobileFooter
       classes={classes.MobileFooter}
       isAuthenticated={props.isAuthenticated}
-      userObjectId={props.userObjectId}
+      userId={props.userId}
     />
   </div>
 )

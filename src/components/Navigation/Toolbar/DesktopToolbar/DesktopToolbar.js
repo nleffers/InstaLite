@@ -12,7 +12,7 @@ const desktopToolbar = (props) => (
     <nav className={classes.DesktopOnly}>
       <DesktopToolbarNavigationItems
         isAuthenticated={props.isAuthenticated}
-        userObjectId={props.userObjectId}
+        userId={props.userId}
       />
     </nav>
   </header>

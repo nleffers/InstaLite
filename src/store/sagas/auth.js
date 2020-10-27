@@ -67,7 +67,7 @@ export function* authCheckStateSaga() {
     const expirationDate = yield new Date(localStorage.getItem('expirationDate'))
     if (expirationDate > new Date()) {
       const userId = yield localStorage.getItem('userId')
-      yield put(actions.authUserAutoSignIn(token, userId))
+      yield put(actions.authUserAutoSignIn(userId, token))
     } else {
       yield put(actions.authUserLogout())
     }
@@ -77,7 +77,7 @@ export function* authCheckStateSaga() {
 export function* authUserFetchSaga(action) {
   yield put(actions.authUserFetchStart())
   try {
-    const resp = yield axios.get(`/users.json?auth=${action.token}&userId=${action.userId}`)
+    const resp = yield database.ref(`/users/${action.userId}`).once('value')
     yield put(actions.authUserFetchSuccess(resp))
   } catch (err) {
     yield put(actions.authUserFetchFail(err.response.data.error))

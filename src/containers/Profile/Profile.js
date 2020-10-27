@@ -12,7 +12,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import classes from './Profile.module.css'
 
 const Profile = props => {
-  const userObjectId = props.location.userObjectId
+  const userId = props.location.userId
   const [activeTab, setActiveTab] = useState('POSTS')
   // const [openModal, setOpenModal] = useState(false)
 
@@ -32,7 +32,7 @@ const Profile = props => {
   })
 
   const token = useSelector(state => state.auth.token)
-  const isAuthUserPage = useSelector(state => state.auth.userObjectId !== userObjectId)
+  const isAuthUserPage = useSelector(state => state.auth.userId !== userId)
 
   // const userPicturesFetch = useCallback((userId, token) => {
   //   setUser(prevUser => ({ ...prevUser, loading: true, error: null }))
@@ -54,8 +54,8 @@ const Profile = props => {
   //     })
   // }, [])
 
-  const userFetch = useCallback((userObjectId, token) => {
-    const user = database.ref(`/users/${userObjectId}`)
+  const userFetch = useCallback((userId, token) => {
+    const user = database.ref(`/users/${userId}`)
 
     debugger
 
@@ -84,10 +84,10 @@ const Profile = props => {
   }, [])
 
   useEffect(() => {
-    if (userObjectId) {
-      userFetch(userObjectId, token)
+    if (userId) {
+      userFetch(userId, token)
     }
-  }, [userFetch, userObjectId, token])
+  }, [userFetch, userId, token])
 
   // useEffect(() => {
   //   userPicturesFetch(userId, token)
