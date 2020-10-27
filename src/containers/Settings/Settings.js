@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import axios from '../../axios/axios'
-import withErrorHandler from '../../hoc/withErrorHandler'
 import SettingsPage from '../../components/Settings/SettingsPage/SettingsPage'
 import SettingsTabs from '../../components/Settings/SettingsTabs/SettingsTabs'
 import * as actions from '../../store/actions/index';
@@ -269,4 +267,4 @@ const Settings = props => {
   )
 }
 
-export default withErrorHandler(Settings, axios)
+export default Settings

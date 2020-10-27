@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import axios from '../../../axios/axios'
 import Aux from '../../../hoc/Aux'
-import withErrorHandler from '../../../hoc/withErrorHandler'
 import Button from '../Button/Button'
 import * as actions from '../../../store/actions/index'
 import classes from './FileUploader.module.css'
@@ -69,4 +67,4 @@ const FileUploader = props => {
   )
 }
 
-export default withErrorHandler(FileUploader, axios)
+export default FileUploader

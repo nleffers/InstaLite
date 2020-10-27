@@ -2,8 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { useSelector } from 'react-redux';
 
 import { database } from '../../firebase/firebase'
-import axios from '../../axios/axios'
-import withErrorHandler from '../../hoc/withErrorHandler'
 import Header from '../../components/Profile/Header/Header'
 import ProfileWall from '../../components/Profile/ProfileWall/ProfileWall'
 import FileUploader from '../../components/UI/FileUploader/FileUploader'
@@ -54,33 +52,16 @@ const Profile = props => {
   //     })
   // }, [])
 
-  const userFetch = useCallback((userId, token) => {
-    const user = database.ref(`/users/${userId}`)
-
-    debugger
-
-    // database.ref(`/users/${userObjectId}`).once('value')
-    //   .then(snapShot => {
-    //     console.log(snapShot)
-    //   })
-    // database.users().on('value', snapShot=> {
-    //   console.log(snapShot)
-    // })
-
-
-
-    // setUser(prevUser => ({ ...prevUser, loading: true, error: null }))
-    // debugger
-    // axios.get(`/users.json?auth=${token}&userObjectId=${userObjectId}`)
-    //   .then(resp => {
-    //     debugger
-    //     const userObjectId = Object.keys(resp.data)[0]
-    //     const userObject = resp.data[userObjectId]
-    //     setUser(prevUser => ({ ...prevUser, ...userObject, loading: false }))
-    //   })
-    //   .catch(err => {
-    //     setUser(prevUser => ({ ...prevUser, loading: false, error: err.response.data.error }))
-    //   })
+  const userFetch = useCallback(userId => {
+    setUser(prevUser => ({...prevUser, loading: true, error: null}))
+    database.ref(`/users/${userId}`).once('value')
+      .then(snapShot => {
+        const user = snapShot.val()
+        setUser(prevUser => ({...prevUser, ...user, loading: false}))
+      })
+      .catch(err => {
+        setUser(prevUser => ({...prevUser, loading: false, error: err.response.data.error}))
+      })
   }, [])
 
   useEffect(() => {
@@ -169,4 +150,4 @@ const Profile = props => {
   return profile
 }
 
-export default withErrorHandler(Profile, axios)
+export default Profile
