@@ -1,7 +1,6 @@
 import { call, delay, put } from 'redux-saga/effects'
 
 import { auth, database } from '../../firebase/firebase'
-import axios from '../../axios/axios'
 import * as actions from '../actions/index'
 
 export function* logoutSaga() {
@@ -90,21 +89,19 @@ export function* authUserUpdateSaga(action) {
   yield put(actions.authUserUpdateStart())
   try {
     const userData = {
-      [action.userObjectId]: {
-        userId: action.userId,
-        username: action.username,
-        fullName: action.fullName,
-        website: action.website,
-        bio: action.bio,
-        email: action.email,
-        phone: action.phone,
-        gender: action.gender
-      }
+      username: action.username,
+      fullName: action.fullName,
+      website: action.website,
+      bio: action.bio,
+      email: action.email,
+      phone: action.phone,
+      gender: action.gender
     }
-    const resp = yield axios.put(`/users.json?auth=${action.token}&userId=${action.userId}`, userData)
-    yield put(actions.authUserUpdateSuccess(resp))
+    const resp = yield database.ref(`/users/${action.userId}`).set(userData)
+    yield put(actions.authUserUpdateSuccess(userData))
   } catch (err) {
-    yield put(actions.authUserUpdateFail(err.response.data.error))
+    console.log(err)
+    // yield put(actions.authUserUpdateFail(err.response.data.error))
   }
 }
 

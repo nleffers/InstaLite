@@ -116,14 +116,14 @@ const Settings = props => {
   const loading = useSelector(state => state.auth.loading)
 
   const dispatch = useDispatch()
-  const onAuthUserFetch = useCallback((userId, token) => dispatch(actions.authUserFetch(userId, token)), [dispatch])
-  const onAuthUserUpdate = (fullName, username, website, bio, email, phone, gender, token) => (
-    dispatch(actions.authUserUpdate(userId, fullName, username, website, bio, email, phone, gender, token))
+  const onAuthUserFetch = useCallback(userId => dispatch(actions.authUserFetch(userId)), [dispatch])
+  const onAuthUserUpdate = (userId, fullName, username, website, bio, email, phone, gender) => (
+    dispatch(actions.authUserUpdate(userId, fullName, username, website, bio, email, phone, gender))
   )
 
   useEffect(() => {
-    onAuthUserFetch(userId, token)
-  }, [onAuthUserFetch, userId, token])
+    onAuthUserFetch(userId)
+  }, [onAuthUserFetch, userId])
 
   useEffect(() => {
     setProfileBio(prevState => ({
@@ -229,6 +229,7 @@ const Settings = props => {
   const editProfileSubmitHandler = (event) => {
     event.preventDefault();
     onAuthUserUpdate(
+      userId,
       profileFullName.value,
       profileUsername.value,
       profileWebsite.value,

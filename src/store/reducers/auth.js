@@ -52,19 +52,17 @@ const authUserFetchSuccess = (state, snapShot) => {
   )
 }
 
-const authUserUpdateSuccess = (state, action) => {
-  const userObjectId = Object.keys(action)[0]
-  const data = action[userObjectId]
+const authUserUpdateSuccess = (state, userData) => {
   return updateObject(
     state,
     {
-      username: data.username,
-      fullName: data.fullName,
-      website: data.website,
-      bio: data.bio,
-      email: data.email,
-      phone: data.phone,
-      gender: data.gender,
+      username: userData.username,
+      fullName: userData.fullName,
+      website: userData.website,
+      bio: userData.bio,
+      email: userData.email,
+      phone: userData.phone,
+      gender: userData.gender,
       loading: false
     }
   )
@@ -83,7 +81,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.AUTH_USER_SIGN_UP_SUCCESS: return authUserSignUpOrSignInSuccess(state, action.user)
     case actionTypes.AUTH_USER_SIGN_UP_FAIL: return updateObject(state, { error: action.error, loading: false })
     case actionTypes.AUTH_USER_UPDATE_START: return updateObject(state, { error: null, loading: true })
-    case actionTypes.AUTH_USER_UPDATE_SUCCESS: return authUserUpdateSuccess(state, action.response.data)
+    case actionTypes.AUTH_USER_UPDATE_SUCCESS: return authUserUpdateSuccess(state, action.userData)
     case actionTypes.AUTH_USER_UPDATE_FAIL: return updateObject(state, { error: action.error, loading: false })
     case actionTypes.AUTH_USER_FETCH_START: return updateObject(state, { error: null, loading: true })
     case actionTypes.AUTH_USER_FETCH_SUCCESS: return authUserFetchSuccess(state, action.snapShot)

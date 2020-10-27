@@ -113,11 +113,10 @@ export const authUserChangePasswordFail = error => {
   }
 }
 
-export const authUserFetch = (userId, token) => {
+export const authUserFetch = userId => {
   return {
     type: actionTypes.AUTH_USER_FETCH,
-    userId: userId,
-    token: token
+    userId: userId
   }
 }
 
@@ -141,19 +140,17 @@ export const authUserFetchFail = error => {
   }
 }
 
-export const authUserUpdate = (userId, userObjectId, fullName, username, website, bio, email, phone, gender, token) => {
+export const authUserUpdate = (userId, fullName, username, website, bio, email, phone, gender) => {
   return {
     type: actionTypes.AUTH_USER_UPDATE,
     userId: userId,
-    userObjectId: userObjectId,
     fullName: fullName,
     username: username,
     website: website,
     bio: bio,
     email: email,
     phone: phone,
-    gender: gender,
-    token: token
+    gender: gender
   }
 }
 
@@ -163,10 +160,10 @@ export const authUserUpdateStart = () => {
   }
 }
 
-export const authUserUpdateSuccess = response => {
+export const authUserUpdateSuccess = userData => {
   return {
     type: actionTypes.AUTH_USER_UPDATE_SUCCESS,
-    response: response
+    userData: userData
   }
 }
 
