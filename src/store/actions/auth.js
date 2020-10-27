@@ -176,3 +176,18 @@ export const authUserUpdateFail = error => {
     error: error
   }
 }
+
+export const authUserCheckTimeout = expirationTime => {
+  return {
+    type: actionTypes.AUTH_USER_CHECK_TIMEOUT,
+    expirationTime: expirationTime
+  }
+}
+
+export const authUserAutoSignIn = (userId, token) => {
+  return {
+    type: actionTypes.AUTH_USER_AUTO_SIGN_IN,
+    userId: userId,
+    token: token
+  }
+}
