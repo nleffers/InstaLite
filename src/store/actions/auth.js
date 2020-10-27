@@ -130,7 +130,7 @@ export const authUserFetchStart = () => {
 export const authUserFetchSuccess = snapShot => {
   return {
     type: actionTypes.AUTH_USER_FETCH_SUCCESS,
-    data: snapShot.data
+    snapShot: snapShot
   }
 }
 

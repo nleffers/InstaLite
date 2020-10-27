@@ -25,7 +25,10 @@ export function* authUserSignUpSaga(action) {
           username: action.username,
           email: action.email,
           fullName: action.fullName,
-          phone: action.phone
+          phone: action.phone,
+          website: '',
+          bio: '',
+          gender: ''
         })
         return authUser
       })
@@ -54,8 +57,7 @@ export function* authUserSignInSaga(action) {
     yield call([localStorage, 'setItem'], 'userId', user.uid)
     yield put(actions.authUserSignInSuccess(user))
   } catch (err) {
-    console.log(err)
-    // yield put(actions.authUserSignInFail(err.response.data.error))
+    yield put(actions.authUserSignInFail(err.response.data.error))
   }
 }
 

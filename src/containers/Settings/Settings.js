@@ -106,7 +106,6 @@ const Settings = props => {
 
   const userId = useSelector(state => state.auth.userId)
   const token = useSelector(state => state.auth.token)
-  const userObjectId = useSelector(state => state.auth.userObjectId)
   const username = useSelector(state => state.auth.username)
   const fullName = useSelector(state => state.auth.fullName)
   const website = useSelector(state => state.auth.website)
@@ -118,8 +117,8 @@ const Settings = props => {
 
   const dispatch = useDispatch()
   const onAuthUserFetch = useCallback((userId, token) => dispatch(actions.authUserFetch(userId, token)), [dispatch])
-  const onAuthUserUpdate = (userObjectId, fullName, username, website, bio, email, phone, gender, token) => (
-    dispatch(actions.authUserUpdate(userId, userObjectId, fullName, username, website, bio, email, phone, gender, token))
+  const onAuthUserUpdate = (fullName, username, website, bio, email, phone, gender, token) => (
+    dispatch(actions.authUserUpdate(userId, fullName, username, website, bio, email, phone, gender, token))
   )
 
   useEffect(() => {
@@ -230,7 +229,6 @@ const Settings = props => {
   const editProfileSubmitHandler = (event) => {
     event.preventDefault();
     onAuthUserUpdate(
-      userObjectId,
       profileFullName.value,
       profileUsername.value,
       profileWebsite.value,

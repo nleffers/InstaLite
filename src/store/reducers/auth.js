@@ -2,7 +2,6 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
 const initialState = {
-  userObjectId: null,
   token: null,
   userId: null,
   username: '',
@@ -34,22 +33,20 @@ const authUserSignUpOrSignInSuccess = (state, user) => {
   )
 }
 
-const authUserFetchSuccess = (state, data) => {
-  debugger
-  const userObjectId = Object.keys(data)[0]
-  const userObject = data[userObjectId]
+const authUserFetchSuccess = (state, snapShot) => {
+  const key = snapShot.key
+  const user = snapShot.val()
   return updateObject(
     state,
     {
-      userObjectId: userObjectId,
-      userId: userObject.userId,
-      username: userObject.username,
-      fullName: userObject.fullName,
-      website: userObject.website,
-      bio: userObject.bio,
-      email: userObject.email,
-      phone: userObject.phone,
-      gender: userObject.gender,
+      userId: key,
+      username: user.username,
+      fullName: user.fullName,
+      website: user.website,
+      bio: user.bio,
+      email: user.email,
+      phone: user.phone,
+      gender: user.gender,
       loading: false
     }
   )
@@ -89,7 +86,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.AUTH_USER_UPDATE_SUCCESS: return authUserUpdateSuccess(state, action.response.data)
     case actionTypes.AUTH_USER_UPDATE_FAIL: return updateObject(state, { error: action.error, loading: false })
     case actionTypes.AUTH_USER_FETCH_START: return updateObject(state, { error: null, loading: true })
-    case actionTypes.AUTH_USER_FETCH_SUCCESS: return authUserFetchSuccess(state, action.data)
+    case actionTypes.AUTH_USER_FETCH_SUCCESS: return authUserFetchSuccess(state, action.snapShot)
     case actionTypes.AUTH_USER_FETCH_FAIL: return updateObject(state, { error: null, loading: false })
     case actionTypes.AUTH_USER_CHANGE_PASSWORD_START: return updateObject(state, { error: null, loading: true })
     case actionTypes.AUTH_USER_CHANGE_PASSWORD_SUCCESS: return updateObject(state, { loading: false })
