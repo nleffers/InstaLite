@@ -4,12 +4,15 @@ import MobileNavigationItems from '../../ToolbarNavigationItems/MobileNavigation
 // import Search from '../Search/Search'
 import classes from './MobileToolbar.module.css'
 
-const desktopToolbar = (props) => (
+const mobileToolbar = (props) => (
   <header className={classes.MobileToolbar}>
     <nav className={classes.MobileOnly}>
-      <MobileNavigationItems isAuthenticated={props.isAuthenticated} />
+      <MobileNavigationItems
+        isAuthenticated={props.isAuthenticated}
+        userId={props.userId}
+      />
     </nav>
   </header>
 )
 
-export default desktopToolbar
+export default mobileToolbar

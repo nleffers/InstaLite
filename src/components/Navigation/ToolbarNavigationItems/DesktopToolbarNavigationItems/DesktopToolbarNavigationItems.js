@@ -4,13 +4,21 @@ import DesktopToolbarNavigationItem from './DesktopToolbarNavigationItem/Desktop
 // import Logo from '../../../Logo/Logo'
 import classes from './DesktopToolbarNavigationItems.module.css';
 
-const desktopToolbarNavigationItems = (props) => (
+const desktopToolbarNavigationItems = props => (
   <ul className={classes.DesktopToolbarNavigationItems}>
-    <DesktopToolbarNavigationItem link="/" exact icon='Home' />
-    <DesktopToolbarNavigationItem link="/inbox" icon='Envelope' />
-    <DesktopToolbarNavigationItem link="/explore" icon='Search' />
-    <DesktopToolbarNavigationItem link="/activity" icon='Heart' />
-    <DesktopToolbarNavigationItem link="/profile" icon='User' userId={props.userId} />
+    <DesktopToolbarNavigationItem
+      link="/"
+      exact
+      icon='Home'
+    />
+    {/* <DesktopToolbarNavigationItem link="/inbox" icon='Envelope' /> */}
+    {/* <DesktopToolbarNavigationItem link="/explore" icon='Search' /> */}
+    {/* <DesktopToolbarNavigationItem link="/activity" icon='Heart' /> */}
+    <DesktopToolbarNavigationItem
+      link="/profile"
+      icon='User'
+      userId={props.userId}
+    />
     <DesktopToolbarNavigationItem link="/settings" icon='Cog' />
     {props.isAuthenticated ? <DesktopToolbarNavigationItem link="/logout" icon="SignOut" /> : <DesktopToolbarNavigationItem link="/auth" icon="SignIn" />}
   </ul>

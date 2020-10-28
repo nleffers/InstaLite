@@ -14,6 +14,7 @@ const toolbar = props => (
     />
     <MobileToolbar
       classes={classes.MobileToolbar}
+      userId={props.userId}
     />
     <MobileFooter
       classes={classes.MobileFooter}
