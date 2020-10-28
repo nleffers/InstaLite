@@ -1,4 +1,4 @@
-@media (min-width: 500px) {
+@media (min-width: 736px) {
   .SettingsPage {
     border: 1px solid #ccc;
     width: calc(80% - 1px);

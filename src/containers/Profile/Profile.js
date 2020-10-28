@@ -29,7 +29,6 @@ const Profile = props => {
     error: null
   })
 
-  const token = useSelector(state => state.token)
   const isAuthUserPage = useSelector(state => state.userId !== userId)
 
   const getPicturesArray = pictures => {
@@ -73,9 +72,9 @@ const Profile = props => {
 
   useEffect(() => {
     if (userId) {
-      userFetch(userId, token)
+      userFetch(userId)
     }
-  }, [userFetch, userId, token])
+  }, [userFetch, userId])
 
   // Add once I have more of these built
   // const openModalHandler = event => {

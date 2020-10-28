@@ -2,12 +2,12 @@ import React from 'react'
 
 import classes from './PictureImage.module.css'
 
-const picture = props => {
+const pictureImage = props => {
   return (
-    <div className={classes.Picture}>
+    <div className={classes.PictureImage}>
       {props.pictureUrl ? <img className={classes.Image} src={props.pictureUrl} alt="alt" /> : null}
     </div>
   )
 }
 
-export default picture
+export default pictureImage
