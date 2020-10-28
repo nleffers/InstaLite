@@ -11,7 +11,6 @@ import classes from './Picture.module.css'
 
 const Picture = props => {
   const pictureId = props.location.pictureId
-  const pictureType = props.location.pictureType
 
   const [componentState, setComponentState] = useState({
     loading: false,
@@ -68,6 +67,7 @@ const Picture = props => {
         <PictureComments
           caption={picture.caption}
           comments={picture.comments}
+          username={user.username}
         />
         <PictureActions />
       </div>
@@ -80,6 +80,7 @@ const Picture = props => {
         <PictureComments
           caption={picture.caption}
           comments={picture.comments}
+          username={user.username}
         />
       </PictureActions>
     </Aux>
@@ -88,9 +89,7 @@ const Picture = props => {
   return (
     <div className={classes.Picture}>
       <div className={classes.DesktopOnly}>
-        {componentState.loading ? <Spinner /> : (
-          pictureType && pictureType === 'wide' ? wideComponent : longComponent
-        )}
+        {componentState.loading ? <Spinner /> : wideComponent}
       </div>
       <div className={classes.MobileOnly}>
         {componentState.loading ? <Spinner /> : longComponent}
