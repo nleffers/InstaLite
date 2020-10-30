@@ -40,10 +40,17 @@ const App = () => {
 
   const dispatch = useDispatch()
   const onTryAutoSignIn = useCallback(() => dispatch(actions.authUserCheckState()), [dispatch])
+  const onAuthUserFetch = useCallback(userId => dispatch(actions.authUserFetch(userId)), [dispatch])
 
   useEffect(() => {
     onTryAutoSignIn()
   }, [onTryAutoSignIn])
+
+  useEffect(() => {
+    if (userId) {
+      onAuthUserFetch(userId)
+    }
+  }, [onAuthUserFetch, userId])
 
   let routes = (
     <Switch>

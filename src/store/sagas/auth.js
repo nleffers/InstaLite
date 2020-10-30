@@ -39,7 +39,6 @@ export function* authUserSignUpSaga(action) {
     yield call([localStorage, 'setItem'], 'userId', user.uid)
     yield put(actions.authUserSignInSuccess(user))
   } catch (err) {
-    console.log(err)
     yield put(actions.authUserSignUpFail(err.response.data.error))
   }
 }

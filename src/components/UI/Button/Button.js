@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera, faPlusSquare, faHeart, faSearch, faHome, faUser, faEnvelope, faSignInAlt, faSignOutAlt, faCog } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
 
 import classes from './Button.module.css';
 
@@ -15,6 +16,9 @@ const button = props => {
       break
     case 'Heart':
       element = <FontAwesomeIcon icon={faHeart} />
+      break
+    case 'OpenHeart':
+      element = <FontAwesomeIcon icon={farHeart} />
       break
     case 'Search':
       element = <FontAwesomeIcon icon={faSearch} />

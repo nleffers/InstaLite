@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import SettingsPage from '../../components/Settings/SettingsPage/SettingsPage'
@@ -114,14 +114,9 @@ const Settings = props => {
   const loading = useSelector(state => state.loading)
 
   const dispatch = useDispatch()
-  const onAuthUserFetch = useCallback(userId => dispatch(actions.authUserFetch(userId)), [dispatch])
   const onAuthUserUpdate = (userId, fullName, username, website, bio, email, phone, gender) => (
     dispatch(actions.authUserUpdate(userId, fullName, username, website, bio, email, phone, gender))
   )
-
-  useEffect(() => {
-    onAuthUserFetch(userId)
-  }, [onAuthUserFetch, userId])
 
   useEffect(() => {
     setProfileBio(prevState => ({
