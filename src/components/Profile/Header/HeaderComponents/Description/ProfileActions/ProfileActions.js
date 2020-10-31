@@ -26,9 +26,9 @@ const profileActions = props => {
   if (props.isAuthUserPage) {
     followButton = null
   } else if (props.followers.some(follower => follower.userId === props.authUserId)) {
-    followButton = <Button clicked={props.unfollowClickHandler}>Unfollow</Button>
+    followButton = <Button btnType="Profile" clicked={props.unfollowClickHandler}>Unfollow</Button>
   } else {
-    followButton = <Button clicked={props.followClickHandler}>Follow</Button>
+    followButton = <Button btnType="Profile" clicked={props.followClickHandler}>Follow</Button>
   }
 
   // let messageButton = null

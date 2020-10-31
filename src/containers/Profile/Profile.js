@@ -15,7 +15,6 @@ const Profile = props => {
   // const [openModal, setOpenModal] = useState(false)
 
   const [user, setUser] = useState({
-    userId: null,
     username: null,
     fullName: null,
     website: null,
@@ -31,7 +30,7 @@ const Profile = props => {
 
   const authUserId = useSelector(state => state.userId)
   const authUsername = useSelector(state => state.username)
-  const isAuthUserPage = useSelector(state => state.userId === user.userId)
+  const isAuthUserPage = useSelector(state => state.userId === userId)
 
   const getPicturesArray = pictures => {
     const picturesArray = []
