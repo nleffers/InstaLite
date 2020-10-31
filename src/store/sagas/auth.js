@@ -99,8 +99,7 @@ export function* authUserUpdateSaga(action) {
     yield database.ref(`/users/${action.userId}`).set(userData)
     yield put(actions.authUserUpdateSuccess(userData))
   } catch (err) {
-    console.log(err)
-    // yield put(actions.authUserUpdateFail(err.response.data.error))
+    yield put(actions.authUserUpdateFail(err.response.data.error))
   }
 }
 

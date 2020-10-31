@@ -10,7 +10,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import classes from './Profile.module.css'
 
 const Profile = props => {
-  const userId = props.location.userId
+  const userId = props.location.userId || props.location.state.userId
   const [activeTab, setActiveTab] = useState('POSTS')
   // const [openModal, setOpenModal] = useState(false)
 
@@ -29,7 +29,9 @@ const Profile = props => {
     error: null
   })
 
-  const isAuthUserPage = useSelector(state => state.userId !== userId)
+  const authUserId = useSelector(state => state.userId)
+  const authUsername = useSelector(state => state.username)
+  const isAuthUserPage = useSelector(state => state.userId === user.userId)
 
   const getPicturesArray = pictures => {
     const picturesArray = []
@@ -43,6 +45,7 @@ const Profile = props => {
   }
 
   const getProfilePicture = picture => {
+    if (!picture) { return null }
     const profilePictureId = Object.keys(picture)[0]
     return {
       ...picture[profilePictureId],
@@ -50,23 +53,37 @@ const Profile = props => {
     }
   }
 
+  const getFollowers = followers => {
+    const followersArray = []
+    for (let key in followers) {
+      followersArray.push({
+        ...followers[key],
+        id: key
+      })
+    }
+    return followersArray
+  }
+
   const userFetch = useCallback(userId => {
-    setUser(prevUser => ({...prevUser, loading: true, error: null}))
+    setUser(prevUser => ({ ...prevUser, loading: true, error: null }))
     database.ref(`/users/${userId}`).once('value')
       .then(snapShot => {
         const userSnapShot = snapShot.val()
         const picturesArray = getPicturesArray(userSnapShot.pictures)
         const profilePicture = getProfilePicture(userSnapShot.profilePicture)
+        const followers = getFollowers(userSnapShot.followers)
 
         const user = {
           ...userSnapShot,
           pictures: picturesArray,
-          profilePicture: profilePicture
+          profilePicture: profilePicture,
+          followers: followers
         }
-        setUser(prevUser => ({...prevUser, ...user, loading: false}))
+        setUser(prevUser => ({ ...prevUser, ...user, loading: false }))
       })
       .catch(err => {
-        setUser(prevUser => ({...prevUser, loading: false, error: err.response.data.error}))
+        console.log(err)
+        setUser(prevUser => ({ ...prevUser, loading: false, error: err.response.data.error }))
       })
   }, [])
 
@@ -91,6 +108,30 @@ const Profile = props => {
   const tabClickHandler = event => {
     event.preventDefault()
     setActiveTab(event.target.innerText)
+  }
+
+  const followClickHandler = event => {
+    event.preventDefault()
+    const follower = database.ref(`/users/${user.userId}/followers`).push({
+      userId: authUserId,
+      username: authUsername
+    })
+    const clonedFollowers = [...user.followers]
+    clonedFollowers.push({
+      id: follower.id,
+      userId: authUserId,
+      username: authUsername
+    })
+    setUser(prevUser => ({ ...prevUser, followers: clonedFollowers }))
+  }
+
+  const unfollowClickHandler = event => {
+    event.preventDefault()
+    const followerIndex = user.followers.findIndex(follower => follower.userId === authUserId)
+    database.ref(`/users/${user.userId}/likes/${user.followers[followerIndex].id}`).remove()
+    let clonedFollowers = [...user.followers]
+    clonedFollowers.splice(followerIndex, 1)
+    setUser(prevUser => ({ ...prevUser, followers: clonedFollowers }))
   }
 
   // Add once I have more of these built
@@ -120,6 +161,7 @@ const Profile = props => {
       {/* {modal} */}
       <Header
         className={classes.Header}
+        authUserId={authUserId}
         username={user.username}
         fullName={user.fullName}
         bio={user.bio}
@@ -129,6 +171,8 @@ const Profile = props => {
         postCount={user.pictures.length}
         profilePictureUrl={user.profilePicture && user.profilePicture.url}
         isAuthUserPage={isAuthUserPage}
+        followClickHandler={followClickHandler}
+        unfollowClickHandler={unfollowClickHandler}
       // openModal={openModal}
       // openModalHandler={openModalHandler}
       />

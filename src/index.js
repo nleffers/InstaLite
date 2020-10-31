@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
@@ -9,6 +9,7 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import authReducer from './store/reducers/auth'
+import history from './utils/history'
 import { watchAuth } from './store/sagas/index'
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose
@@ -19,11 +20,13 @@ const store = createStore(authReducer, composeEnhancers(applyMiddleware(sagaMidd
 
 sagaMiddleware.run(watchAuth)
 
+// console.log(history.push)
+
 const app = (
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <App />
-    </BrowserRouter>
+    </Router>
   </Provider>
 )
 

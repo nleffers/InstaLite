@@ -10,6 +10,7 @@ const mobileToolbar = (props) => (
       <MobileNavigationItems
         isAuthenticated={props.isAuthenticated}
         userId={props.userId}
+        history={props.history}
       />
     </nav>
   </header>

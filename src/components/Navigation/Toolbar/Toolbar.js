@@ -11,10 +11,12 @@ const toolbar = props => (
       classes={classes.DesktopToolbar}
       isAuthenticated={props.isAuthenticated}
       userId={props.userId}
+      history={props.history}
     />
     <MobileToolbar
       classes={classes.MobileToolbar}
       userId={props.userId}
+      // history={props.history}
     />
     <MobileFooter
       classes={classes.MobileFooter}

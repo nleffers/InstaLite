@@ -34,7 +34,7 @@ const Picture = React.lazy(() => {
 //   return import('./containers/Activity/Activity')
 // })
 
-const App = () => {
+const App = props => {
   const userId = useSelector(state => state.userId)
   const isAuthenticated = useSelector(state => state.token !== null)
 
@@ -79,6 +79,7 @@ const App = () => {
       <Layout
         isAuthenticated={isAuthenticated}
         userId={userId}
+        history={props.history}
       >
         <Suspense fallback={<p>Loading...</p>}>
           {routes}

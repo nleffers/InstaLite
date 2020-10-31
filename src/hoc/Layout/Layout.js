@@ -9,6 +9,7 @@ const layout = props => {
   if (props.isAuthenticated) {
     toolbar = (
       <Toolbar
+        history={props.history}
         isAuthenticated={props.isAuthenticated}
         userId={props.userId}
       />

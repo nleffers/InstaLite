@@ -11,6 +11,7 @@ const header = props => (
       pictureUrl={props.profilePictureUrl}
     />
     <Description
+      authUserId={props.authUserId}
       username={props.username}
       fullName={props.fullName}
       bio={props.bio}
@@ -21,6 +22,8 @@ const header = props => (
       isAuthUserPage={props.isAuthUserPage}
       openModal={props.openModal}
       openModalHandler={props.openModalHandler}
+      followClickHandler={props.followClickHandler}
+      unfollowClickHandler={props.unfollowClickHandler}
     />
   </div>
 )

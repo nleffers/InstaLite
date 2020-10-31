@@ -5,6 +5,11 @@ import WallGrid from '../../UI/WallGrid/WallGrid'
 import classes from './ProfileWall.module.css'
 
 const profileWall = props => {
+  let pictures = props.pictures
+  if (props.activeTab === 'TAGGED') {
+    pictures = props.taggedPictures
+  }
+
   return (
     <div className={classes.ProfileWall}>
       <WallTabs
@@ -13,7 +18,7 @@ const profileWall = props => {
         tabClickHandler={props.tabClickHandler}
       />
       <WallGrid
-        pictures={props.pictures}
+        pictures={pictures}
       />
     </div>
   )

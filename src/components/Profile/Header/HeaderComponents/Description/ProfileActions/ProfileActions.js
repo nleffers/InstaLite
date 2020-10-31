@@ -5,7 +5,6 @@ import Button from '../../../../../UI/Button/Button'
 import classes from './ProfileActions.module.css'
 
 const profileActions = props => {
-
   let editProfileButton = null
   if (props.isAuthUserPage) {
     editProfileButton = (
@@ -16,11 +15,20 @@ const profileActions = props => {
   }
 
   let authUserActionsButton = null
+  // if (props.isAuthUserPage) {
+  //   authUserActionsButton = <Button
+  //     btnType="Cog"
+  //     clicked={props.clicked}
+  //   ></Button>
+  // }
+
+  let followButton = null
   if (props.isAuthUserPage) {
-    authUserActionsButton = <Button
-      btnType="Cog"
-      clicked={props.clicked}
-    ></Button>
+    followButton = null
+  } else if (props.followers.some(follower => follower.userId === props.authUserId)) {
+    followButton = <Button clicked={props.unfollowClickHandler}>Unfollow</Button>
+  } else {
+    followButton = <Button clicked={props.followClickHandler}>Follow</Button>
   }
 
   // let messageButton = null
@@ -36,6 +44,7 @@ const profileActions = props => {
     <div className={classes.ProfileActions}>
       {editProfileButton}
       {authUserActionsButton}
+      {followButton}
     </div>
   )
 }
