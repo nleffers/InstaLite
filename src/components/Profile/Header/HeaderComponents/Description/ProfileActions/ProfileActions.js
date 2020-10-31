@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 
 import Button from '../../../../../UI/Button/Button'
+// import ModalOpen from '../../../../../UI/ModalOpen/ModalOpen'
 import classes from './ProfileActions.module.css'
 
 const profileActions = props => {
@@ -14,13 +15,15 @@ const profileActions = props => {
     )
   }
 
-  let authUserActionsButton = null
-  // if (props.isAuthUserPage) {
-  //   authUserActionsButton = <Button
-  //     btnType="Cog"
-  //     clicked={props.clicked}
-  //   ></Button>
-  // }
+  let dropdownButton = null
+  if (props.isAuthUserPage) {
+    dropdownButton = <Button
+      btnType="Cog"
+      clicked={props.openAuthUserModalHandler}
+    ></Button>
+  // } else if (props.followers.length === 0 || !props.followers.filter(user => user.userId === props.authUserId)) {
+  //   dropdownButton = <ModalOpen />
+  }
 
   let followButton = null
   if (props.isAuthUserPage) {
@@ -43,8 +46,8 @@ const profileActions = props => {
   return (
     <div className={classes.ProfileActions}>
       {editProfileButton}
-      {authUserActionsButton}
       {followButton}
+      {dropdownButton}
     </div>
   )
 }

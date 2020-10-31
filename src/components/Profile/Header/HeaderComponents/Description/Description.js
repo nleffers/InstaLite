@@ -17,7 +17,7 @@ const description = props => {
             followers={props.followers}
             followClickHandler={props.followClickHandler}
             unfollowClickHandler={props.unfollowClickHandler}
-            // clicked={props.openModalHandler}
+            openAuthUserModalHandler={props.openAuthUserModalHandler}
           />
         </div>
       </div>

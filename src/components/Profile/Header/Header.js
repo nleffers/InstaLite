@@ -20,8 +20,7 @@ const header = props => (
       followers={props.followers}
       postCount={props.postCount}
       isAuthUserPage={props.isAuthUserPage}
-      openModal={props.openModal}
-      openModalHandler={props.openModalHandler}
+      openAuthUserModalHandler={props.openAuthUserModalHandler}
       followClickHandler={props.followClickHandler}
       unfollowClickHandler={props.unfollowClickHandler}
     />

@@ -4,16 +4,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { database } from '../../firebase/firebase'
 import Header from '../../components/Profile/Header/Header'
 import ProfileWall from '../../components/Profile/ProfileWall/ProfileWall'
+import Button from '../../components/UI/Button/Button'
 import FileUploader from '../../hoc/FileUploader/FileUploader'
-// import Modal from '../../components/UI/Modal/Modal'
+import Modal from '../../components/UI/Modal/Modal'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import classes from './Profile.module.css'
 import * as actions from '../../store/actions/index'
+import { NavLink } from 'react-router-dom';
 
 const Profile = props => {
   const userId = props.location.userId || props.location.state.userId
   const [activeTab, setActiveTab] = useState('POSTS')
-  // const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState('')
 
   const [user, setUser] = useState({
     username: null,
@@ -37,7 +39,7 @@ const Profile = props => {
   const onFollow = useCallback((userId, username) => dispatch(actions.authUserFollow(authUserId, userId, username)), [dispatch, authUserId])
   const onUnfollow = useCallback((followingUserId) => dispatch(actions.authUserUnfollow(authUserId, followingUserId)), [dispatch, authUserId])
 
-  const getPicturesArray = pictures => {
+  const getPicturesArray = (pictures, f) => {
     const picturesArray = []
     for (let key in pictures) {
       picturesArray.push({
@@ -45,7 +47,7 @@ const Profile = props => {
         id: key
       })
     }
-    return picturesArray
+    return picturesArray.reverse()
   }
 
   const getProfilePicture = picture => {
@@ -109,17 +111,20 @@ const Profile = props => {
     }
   }, [userFetch, userId])
 
-  // Add once I have more of these built
-  // const openModalHandler = event => {
-  //   event.preventDefault()
-  //   setOpenModal(true)
-  // }
+  const openAuthUserModalHandler = event => {
+    event.preventDefault()
+    setOpenModal('AuthUserModal')
+  }
 
-  // Add once I have more of these built
-  // const closeModalHandler = event => {
-  //   event.preventDefault()
-  //   setOpenModal(false)
-  // }
+  const pictureModalOpenHandler = event => {
+    event.preventDefault()
+    setOpenModal('PictureModal')
+  }
+
+  const closeModalHandler = event => {
+    event.preventDefault()
+    setOpenModal('')
+  }
 
   const tabClickHandler = event => {
     event.preventDefault()
@@ -152,31 +157,38 @@ const Profile = props => {
     onUnfollow(authFollowingUserId)
   }
 
-  // Add once I have more of these built
-  // let modal = null
-  // if (openModal) {
-  //   modal = <Modal
-  //     show={openModal}
-  //     modalClosed={closeModalHandler}
-  //   >
-  //     <ul className={classes.AuthProfileModal}>
-  //       <li>
-  //         <NavLink
-  //           to={{
-  //             pathname: "/settings",
-  //             activePage: 'Change Password'
-  //           }}
-  //         >
-  //           <Button btnType={props.icon}>Change Password</Button>
-  //         </NavLink>
-  //       </li>
-  //     </ul>
-  //   </Modal>
-  // }
+  let modalComponent = null
+  if (openModal === 'AuthUserModal') {
+    modalComponent = <ul className={classes.AuthProfileModal}>
+      <li>
+        <NavLink
+          to={{
+            pathname: "/settings",
+            activePage: 'Change Password'
+          }}
+        >
+          <Button btnType={props.icon}>Change Password</Button>
+        </NavLink>
+      </li>
+      <li>
+        <Button btnType={props.icon} clicked={closeModalHandler}>Cancel</Button>
+      </li>
+    </ul>
+  }
+
+  let modal = null
+  if (openModal !== '') {
+    modal = <Modal
+      show={true}
+      modalClosed={closeModalHandler}
+    >
+      {modalComponent}
+    </Modal>
+  }
 
   let profile = (
     <div className={classes.Profile}>
-      {/* {modal} */}
+      {modal}
       <Header
         className={classes.Header}
         authUserId={authUserId}
@@ -191,16 +203,15 @@ const Profile = props => {
         isAuthUserPage={isAuthUserPage}
         followClickHandler={followClickHandler}
         unfollowClickHandler={unfollowClickHandler}
-      // openModal={openModal}
-      // openModalHandler={openModalHandler}
+        openAuthUserModalHandler={openAuthUserModalHandler}
       />
       <ProfileWall
         className={classes.ProfileWall}
         activeTab={activeTab}
         isAuthUserPage={isAuthUserPage}
         pictures={user.pictures}
-        taggedPictures={user.taggedPictures}
         tabClickHandler={tabClickHandler}
+        pictureModalOpenHandler={pictureModalOpenHandler}
       />
       <div className={classes.DesktopUpload}>
         <FileUploader icon="DesktopUpload" source="desktop" />
