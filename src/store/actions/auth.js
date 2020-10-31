@@ -84,11 +84,10 @@ export const authUserCheckState = () => {
   }
 }
 
-export const authUserChangePassword = (userId, token, oldPassword, newPassword) => {
+export const authUserChangePassword = (email, oldPassword, newPassword) => {
   return {
     type: actionTypes.AUTH_USER_CHANGE_PASSWORD,
-    userId: userId,
-    token: token,
+    email: email,
     oldPassword: oldPassword,
     newPassword: newPassword
   }

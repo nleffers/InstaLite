@@ -106,6 +106,8 @@ export function* authUserUpdateSaga(action) {
 export function* authUserChangePasswordSaga(action) {
   yield put(actions.authUserChangePasswordStart())
   try {
+    yield auth.signInWithEmailAndPassword(action.email, action.oldPassword)
+    yield auth.currentUser.updatePassword(action.newPassword)
     yield put(actions.authUserChangePasswordSuccess())
   } catch (err) {
     yield put(actions.authUserChangePasswordFail(err.response.data.error))
@@ -132,7 +134,6 @@ export function* authUserUnfollowSaga(action) {
     yield database.ref(`/users/${action.authUserId}/following/${action.followingUserId}`).remove()
     yield put(actions.authUserUnfollowSuccess(action.followingUserId))
   } catch (err) {
-    console.log(err)
-    // yield put(actions.authUserUnfollowFail(err.response.data.error))
+    yield put(actions.authUserUnfollowFail(err.response.data.error))
   }
 }

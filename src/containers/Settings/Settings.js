@@ -101,6 +101,34 @@ const Settings = props => {
     valid: true,
     touched: false
   })
+  const [oldPassword, setOldPassword] = useState({
+    elementType: 'input',
+    elementConfig: {
+      type: 'oldPassword',
+      label: 'Old Password'
+    },
+    value: '',
+    validation: {
+      required: true,
+      minLength: 6
+    },
+    valid: false,
+    touched: false
+  })
+  const [newPassword, setNewPassword] = useState({
+    elementType: 'input',
+    elementConfig: {
+      type: 'newPassword',
+      label: 'New Password'
+    },
+    value: '',
+    validation: {
+      required: true,
+      minLength: 6
+    },
+    valid: false,
+    touched: false
+  })
 
   const userId = useSelector(state => state.userId)
   const token = useSelector(state => state.token)
@@ -117,6 +145,7 @@ const Settings = props => {
   const onAuthUserUpdate = (userId, fullName, username, website, bio, email, phone, gender) => (
     dispatch(actions.authUserUpdate(userId, fullName, username, website, bio, email, phone, gender))
   )
+  const onAuthUserChangePassword = (email, oldPassword, newPassword) => dispatch(actions.authUserChangePassword(email, oldPassword, newPassword))
 
   useEffect(() => {
     setProfileBio(prevState => ({
@@ -204,6 +233,14 @@ const Settings = props => {
         object = profileGender
         setStateFunction = setProfileGender
         break
+      case 'oldPassword':
+        object = oldPassword
+        setStateFunction = setOldPassword
+        break
+      case 'newPassword':
+        object = newPassword
+        setStateFunction = setNewPassword
+        break
       default:
         return
     }
@@ -219,7 +256,7 @@ const Settings = props => {
     setStateFunction(updatedElement)
   }
 
-  const editProfileSubmitHandler = (event) => {
+  const editProfileSubmitHandler = event => {
     event.preventDefault();
     onAuthUserUpdate(
       userId,
@@ -232,6 +269,19 @@ const Settings = props => {
       profileGender.value,
       token
     );
+  }
+
+  const changePasswordSubmitHandler = event => {
+    event.preventDefault()
+    onAuthUserChangePassword(email, oldPassword.value, newPassword.value)
+    setOldPassword(prevPassword => ({
+      ...prevPassword,
+      value: ''
+    }))
+    setNewPassword(prevPassword => ({
+      ...prevPassword,
+      value: ''
+    }))
   }
 
   return (
@@ -250,8 +300,11 @@ const Settings = props => {
           email={profileEmail}
           phone={profilePhone}
           gender={profileGender}
+          oldPassword={oldPassword}
+          newPassword={newPassword}
           editProfileInputChangedHandler={editProfileInputChangedHandler}
           editProfileSubmitHandler={editProfileSubmitHandler}
+          changePasswordSubmitHandler={changePasswordSubmitHandler}
           loading={loading}
         />
       </div>

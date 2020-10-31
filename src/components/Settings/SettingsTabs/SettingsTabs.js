@@ -14,10 +14,11 @@ const settingsTabs = props => {
           clicked={tabClickHandler}
           activeTab={activeTab === 'Edit Profile'}
         />
-        {/* <Tab
-        tab="changePassword"
-        clicked={tabClickHandler}
-      /> */}
+        <Tab
+          tab="Change Password"
+          clicked={tabClickHandler}
+          activeTab={activeTab === 'Change Password'}
+        />
       </ul>
     </div>
   )

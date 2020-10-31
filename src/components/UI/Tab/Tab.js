@@ -15,7 +15,7 @@ const tab = props => {
     case 'Edit Profile':
       label = 'Edit Profile'
       break
-    case 'change Password':
+    case 'Change Password':
       label = 'Change Password'
       break
     default:
