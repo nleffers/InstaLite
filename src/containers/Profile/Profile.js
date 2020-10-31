@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { database } from '../../firebase/firebase'
 import Header from '../../components/Profile/Header/Header'
@@ -8,6 +8,7 @@ import FileUploader from '../../hoc/FileUploader/FileUploader'
 // import Modal from '../../components/UI/Modal/Modal'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import classes from './Profile.module.css'
+import * as actions from '../../store/actions/index'
 
 const Profile = props => {
   const userId = props.location.userId || props.location.state.userId
@@ -21,7 +22,6 @@ const Profile = props => {
     bio: null,
     pictures: [],
     profilePicture: {},
-    taggedPictures: [],
     following: [],
     followers: [],
     loading: false,
@@ -31,6 +31,11 @@ const Profile = props => {
   const authUserId = useSelector(state => state.userId)
   const authUsername = useSelector(state => state.username)
   const isAuthUserPage = useSelector(state => state.userId === userId)
+  const authFollowingUserId = useSelector(state => state.following.length > 0 ? state.following.filter(following => following.userId === userId)[0].id : null)
+
+  const dispatch = useDispatch()
+  const onFollow = useCallback((userId, username) => dispatch(actions.authUserFollow(authUserId, userId, username)), [dispatch, authUserId])
+  const onUnfollow = useCallback((followingUserId) => dispatch(actions.authUserUnfollow(authUserId, followingUserId)), [dispatch, authUserId])
 
   const getPicturesArray = pictures => {
     const picturesArray = []
@@ -63,6 +68,17 @@ const Profile = props => {
     return followersArray
   }
 
+  const getFollowing = following => {
+    const followingArray = []
+    for (let key in following) {
+      followingArray.push({
+        ...following[key],
+        id: key
+      })
+    }
+    return followingArray
+  }
+
   const userFetch = useCallback(userId => {
     setUser(prevUser => ({ ...prevUser, loading: true, error: null }))
     database.ref(`/users/${userId}`).once('value')
@@ -71,17 +87,18 @@ const Profile = props => {
         const picturesArray = getPicturesArray(userSnapShot.pictures)
         const profilePicture = getProfilePicture(userSnapShot.profilePicture)
         const followers = getFollowers(userSnapShot.followers)
+        const following = getFollowing(userSnapShot.following)
 
         const user = {
           ...userSnapShot,
           pictures: picturesArray,
           profilePicture: profilePicture,
-          followers: followers
+          followers: followers,
+          following: following
         }
         setUser(prevUser => ({ ...prevUser, ...user, loading: false }))
       })
       .catch(err => {
-        console.log(err)
         setUser(prevUser => ({ ...prevUser, loading: false, error: err.response.data.error }))
       })
   }, [])
@@ -111,26 +128,28 @@ const Profile = props => {
 
   const followClickHandler = event => {
     event.preventDefault()
-    const follower = database.ref(`/users/${user.userId}/followers`).push({
+    const follower = database.ref(`/users/${userId}/followers`).push({
       userId: authUserId,
       username: authUsername
     })
     const clonedFollowers = [...user.followers]
     clonedFollowers.push({
-      id: follower.id,
+      id: follower.key,
       userId: authUserId,
       username: authUsername
     })
     setUser(prevUser => ({ ...prevUser, followers: clonedFollowers }))
+    onFollow(userId, user.username)
   }
 
   const unfollowClickHandler = event => {
     event.preventDefault()
     const followerIndex = user.followers.findIndex(follower => follower.userId === authUserId)
-    database.ref(`/users/${user.userId}/likes/${user.followers[followerIndex].id}`).remove()
+    database.ref(`/users/${userId}/followers/${user.followers[followerIndex].id}`).remove()
     let clonedFollowers = [...user.followers]
     clonedFollowers.splice(followerIndex, 1)
     setUser(prevUser => ({ ...prevUser, followers: clonedFollowers }))
+    onUnfollow(authFollowingUserId)
   }
 
   // Add once I have more of these built

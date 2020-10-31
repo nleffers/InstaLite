@@ -22,11 +22,11 @@ const wallTabs = props => {
           activeTab={activeTab === 'SAVED'}
         />
       ) : null} */}
-      <WallTab
+      {/* <WallTab
         clicked={tabClickHandler}
         tab='TAGGED'
         activeTab={activeTab === 'TAGGED'}
-      />
+      /> */}
     </Aux>
   )
 

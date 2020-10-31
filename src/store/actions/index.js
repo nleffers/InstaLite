@@ -24,5 +24,13 @@ export {
   authUserChangePassword,
   authUserChangePasswordStart,
   authUserChangePasswordSuccess,
-  authUserChangePasswordFail
+  authUserChangePasswordFail,
+  authUserFollow,
+  authUserFollowStart,
+  authUserFollowSuccess,
+  authUserFollowFail,
+  authUserUnfollow,
+  authUserUnfollowStart,
+  authUserUnfollowSuccess,
+  authUserUnfollowFail
 } from './auth'

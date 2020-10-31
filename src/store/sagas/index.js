@@ -1,7 +1,7 @@
 import { takeEvery, all } from 'redux-saga/effects';
 
 import * as actionTypes from '../actions/actionTypes';
-import { logoutSaga, authUserCheckTimeoutSaga, authUserSignInSaga, authCheckStateSaga, authUserSignUpSaga, authUserFetchSaga, authUserUpdateSaga, authUserChangePasswordSaga } from './auth'
+import { logoutSaga, authUserCheckTimeoutSaga, authUserSignInSaga, authCheckStateSaga, authUserSignUpSaga, authUserFetchSaga, authUserUpdateSaga, authUserChangePasswordSaga, authUserFollowSaga, authUserUnfollowSaga } from './auth'
 
 export function* watchAuth() {
   yield all([
@@ -12,6 +12,8 @@ export function* watchAuth() {
     takeEvery(actionTypes.AUTH_USER_SIGN_UP, authUserSignUpSaga),
     takeEvery(actionTypes.AUTH_USER_FETCH, authUserFetchSaga),
     takeEvery(actionTypes.AUTH_USER_UPDATE, authUserUpdateSaga),
+    takeEvery(actionTypes.AUTH_USER_FOLLOW, authUserFollowSaga),
+    takeEvery(actionTypes.AUTH_USER_UNFOLLOW, authUserUnfollowSaga),
     takeEvery(actionTypes.AUTH_USER_CHANGE_PASSWORD, authUserChangePasswordSaga)
   ])
 }

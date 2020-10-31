@@ -13,10 +13,7 @@ const initialState = {
   gender: '',
   followers: [],
   following: [],
-  directMessages: [],
   pictures: [],
-  taggedPictures: [],
-  comments: [],
   error: null,
   loading: false,
   authRedirectPath: '/'
@@ -68,6 +65,29 @@ const authUserUpdateSuccess = (state, userData) => {
   )
 }
 
+const authUserFollowSuccess = (state, action) => {
+  const authFollowing = [...state.following]
+  authFollowing.push({
+    id: action.response.key,
+    userId: action.userId,
+    username: action.username
+  })
+  return updateObject(
+    state,
+    { following: authFollowing }
+  )
+}
+
+const authUserUnfollowSuccess = (state, action) => {
+  const authFollowing = [...state.following]
+  const followingIndex = state.following.findIndex(following => following.userId === action.userId)
+  authFollowing.splice(followingIndex, 1)
+  return updateObject(
+    state,
+    { following: authFollowing }
+  )
+}
+
 const authUserLogoutSuccess = state => {
   return updateObject(state, initialState)
 }
@@ -92,6 +112,12 @@ const reducer = (state = initialState, action) => {
     case actionTypes.AUTH_USER_LOGOUT_SUCCESS: return authUserLogoutSuccess(state)
     case actionTypes.AUTH_SET_REDIRECT_PATH: return updateObject(state, { authRedirectPath: action.path })
     case actionTypes.AUTH_USER_AUTO_SIGN_IN: return updateObject(state, { userId: action.userId, token: action.token })
+    case actionTypes.AUTH_USER_FOLLOW_START: return updateObject(state, { error: null })
+    case actionTypes.AUTH_USER_FOLLOW_SUCCESS: return authUserFollowSuccess(state, action)
+    case actionTypes.AUTH_USER_FOLLOW_FAIL: return updateObject(state, { error: action.error })
+    case actionTypes.AUTH_USER_UNFOLLOW_START: return updateObject(state, { error: null })
+    case actionTypes.AUTH_USER_UNFOLLOW_SUCCESS: return authUserUnfollowSuccess(state, action)
+    case actionTypes.AUTH_USER_UNFOLLOW_FAIL: return updateObject(state, { error: action.error })
     default: return state;
   }
 }

@@ -188,3 +188,62 @@ export const authUserAutoSignIn = (userId, token) => {
     token: token
   }
 }
+
+export const authUserFollow = (authUserId, userId, username) => {
+  return {
+    type: actionTypes.AUTH_USER_FOLLOW,
+    authUserId: authUserId,
+    userId: userId,
+    username: username
+  }
+}
+
+export const authUserFollowStart = () => {
+  return {
+    type: actionTypes.AUTH_USER_FOLLOW_START
+  }
+}
+
+export const authUserFollowSuccess = (response, userId, username) => {
+  return {
+    type: actionTypes.AUTH_USER_FOLLOW_SUCCESS,
+    response: response,
+    userId: userId,
+    username: username
+  }
+}
+
+export const authUserFollowFail = error => {
+  return {
+    type: actionTypes.AUTH_USER_FOLLOW_FAIL,
+    error: error
+  }
+}
+
+export const authUserUnfollow = (authUserId, followingUserId) => {
+  return {
+    type: actionTypes.AUTH_USER_UNFOLLOW,
+    authUserId: authUserId,
+    followingUserId: followingUserId
+  }
+}
+
+export const authUserUnfollowStart = () => {
+  return {
+    type: actionTypes.AUTH_USER_UNFOLLOW_START
+  }
+}
+
+export const authUserUnfollowSuccess = followingUserId => {
+  return {
+    type: actionTypes.AUTH_USER_UNFOLLOW_SUCCESS,
+    followingUserId: followingUserId
+  }
+}
+
+export const authUserUnfollowFail = error => {
+  return {
+    type: actionTypes.AUTH_USER_UNFOLLOW_FAIL,
+    error: error
+  }
+}

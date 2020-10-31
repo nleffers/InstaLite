@@ -111,3 +111,28 @@ export function* authUserChangePasswordSaga(action) {
     yield put(actions.authUserChangePasswordFail(err.response.data.error))
   }
 }
+
+export function* authUserFollowSaga(action) {
+  yield put(actions.authUserFollowStart())
+  try {
+    const userData = {
+      username: action.username,
+      userId: action.userId
+    }
+    const resp = yield database.ref(`/users/${action.authUserId}/following`).push(userData)
+    yield put(actions.authUserFollowSuccess(resp, action.userId, action.username))
+  } catch (err) {
+    yield put(actions.authUserFollowFail(err.response.data.error))
+  }
+}
+
+export function* authUserUnfollowSaga(action) {
+  yield put(actions.authUserUnfollowStart())
+  try {
+    yield database.ref(`/users/${action.authUserId}/following/${action.followingUserId}`).remove()
+    yield put(actions.authUserUnfollowSuccess(action.followingUserId))
+  } catch (err) {
+    console.log(err)
+    // yield put(actions.authUserUnfollowFail(err.response.data.error))
+  }
+}
