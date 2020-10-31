@@ -30,9 +30,6 @@ const pictureComments = props => {
         <div className={classes.Caption}>
           {caption}
         </div>
-        <div className={classes.CreatedAtDesktopOnly}>
-          {/* {createdAt} */}
-        </div>
       </div>
       <div className={classes.Comments}>
         {commentElementsArray}

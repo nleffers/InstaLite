@@ -31,7 +31,7 @@ const NewPicture = props => {
               const pictureData = {
                 url: url,
                 userId: authUserId,
-                caption: newCaption
+                caption: newCaption.value
               }
               let updates = {}
               updates[`/pictures/${newPictureKey}`] = pictureData
