@@ -8,6 +8,7 @@ import PictureActions from '../../components/Picture/PictureActions/PictureActio
 import PictureComments from '../../components/Picture/PictureComments/PictureComments'
 import PictureHeader from '../../components/Picture/PictureHeader/PictureHeader'
 import PictureImage from '../../components/Picture/PictureImage/PictureImage'
+import FileUploader from '../../hoc/FileUploader/FileUploader'
 import classes from './Picture.module.css'
 
 const Picture = props => {
@@ -157,6 +158,9 @@ const Picture = props => {
           editCommentHandler={editCommentHandler}
           submitCommentHandler={submitCommentHandler}
         />
+      </div>
+      <div className={classes.DesktopUpload}>
+        <FileUploader icon="DesktopUpload" source="desktop" />
       </div>
     </Aux>
 

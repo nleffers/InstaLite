@@ -1,10 +1,10 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 
-import Button from '../Button/Button'
+import Button from '../../components/UI/Button/Button'
 import classes from './FileUploader.module.css'
 
-const fileUploader = props => {
+const FileUploader = props => {
   const { icon, isProfilePicture, source, history } = props
 
   const fileHandler = event => {
@@ -49,4 +49,4 @@ const fileUploader = props => {
   )
 }
 
-export default withRouter(fileUploader)
+export default withRouter(FileUploader)
