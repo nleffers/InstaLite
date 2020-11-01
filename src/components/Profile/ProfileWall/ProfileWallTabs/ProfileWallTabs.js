@@ -1,10 +1,10 @@
 import React from 'react'
 
-import Aux from '../../../hoc/Aux'
-import WallTab from './WallTab/WallTab'
-import classes from './WallTabs.module.css'
+import Aux from '../../../../hoc/Aux'
+import WallTab from './ProfileWallTab/ProfileWallTab'
+import classes from './ProfileWallTabs.module.css'
 
-const wallTabs = props => {
+const profileWallTabs = props => {
   // const { activeTab, isAuthUserPage, tabClickHandler } = props
   const { activeTab, tabClickHandler } = props
 
@@ -37,4 +37,4 @@ const wallTabs = props => {
   )
 }
 
-export default wallTabs
+export default profileWallTabs

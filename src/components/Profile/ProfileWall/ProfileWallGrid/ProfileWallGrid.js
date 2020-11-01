@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 
-import classes from './WallGrid.module.css'
+import classes from './ProfileWallGrid.module.css'
 
-const wallGrid = props => {
+const profileWallGrid = props => {
   const pictureRow = []
   const gridRowsArray = []
 
@@ -67,10 +67,10 @@ const wallGrid = props => {
   }
 
   return (
-    <div className={classes.WallGrid} >
+    <div className={classes.ProfileWallGrid} >
       {gridRowsArray}
     </div>
   )
 }
 
-export default wallGrid
+export default profileWallGrid

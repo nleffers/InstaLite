@@ -1,7 +1,7 @@
 import React from 'react'
 
-import WallTabs from '../../UI/WallTabs/WallTabs'
-import WallGrid from '../../UI/WallGrid/WallGrid'
+import ProfileWallTabs from './ProfileWallTabs/ProfileWallTabs'
+import ProfileWallGrid from './ProfileWallGrid/ProfileWallGrid'
 import classes from './ProfileWall.module.css'
 
 const profileWall = props => {
@@ -12,12 +12,12 @@ const profileWall = props => {
 
   return (
     <div className={classes.ProfileWall}>
-      <WallTabs
+      <ProfileWallTabs
         activeTab={props.activeTab}
         isAuthUserPage={props.isAuthUserPage}
         tabClickHandler={props.tabClickHandler}
       />
-      <WallGrid
+      <ProfileWallGrid
         pictures={pictures}
       />
     </div>

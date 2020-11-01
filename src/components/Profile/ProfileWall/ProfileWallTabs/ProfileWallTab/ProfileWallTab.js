@@ -1,8 +1,8 @@
 import React from 'react'
 
-import classes from './WallTab.module.css'
+import classes from './ProfileWallTab.module.css'
 
-const wallTab = props => {
+const profileWallTab = props => {
   const { activeTab, clicked, tab } = props
 
   const classNames = [classes.WallTab]
@@ -21,4 +21,4 @@ const wallTab = props => {
   )
 }
 
-export default wallTab
+export default profileWallTab
