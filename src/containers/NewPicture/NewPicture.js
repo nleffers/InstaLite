@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import { database, storage } from '../../firebase/firebase'
 import Button from '../../components/UI/Button/Button'
 import Input from '../../components/UI/Input/Input'
+import { updateObject } from '../../shared/utility';
 import classes from './NewPicture.module.css'
 
 const NewPicture = props => {
@@ -39,31 +41,41 @@ const NewPicture = props => {
               if (!!props.isProfilePicture) { updates[`/users/${authUserId}/profilePicture`] = { newPictureKey: pictureData } }
 
               database.ref().update(updates)
+                .then(() => {
+                  props.history.push({
+                    pathname: '/picture',
+                    state: {
+                      pictureId: newPictureKey
+                    }
+                  })
+                })
             })
         })
     }
   }
 
   const editCaptionHandler = event => {
-    event.preventDefault()
-    setNewCaption(prevCaption => ({ ...prevCaption, value: event.target.value }))
+    const updatedCaption = updateObject(newCaption, { value: event.target.value })
+    setNewCaption(updatedCaption)
   }
 
   return (
     <div className={classes.NewPicture}>
-      <Input
-        key="caption"
-        elementType={newCaption.elementType}
-        elementConfig={newCaption.elementConfig}
-        value={newCaption.value}
-        changed={editCaptionHandler}
-      />
-      <Button
-        btnType="Primary"
-        clicked={imageUploadHandler}
-      >Share</Button>
+      <form onSubmit={imageUploadHandler}>
+        <Input
+          key="caption"
+          elementType={newCaption.elementType}
+          elementConfig={newCaption.elementConfig}
+          value={newCaption.value}
+          changed={event => editCaptionHandler(event)}
+        />
+        <Button
+          btnType="Primary"
+        >Share</Button>
+      </form>
+
     </div>
   )
 }
 
-export default NewPicture
+export default withRouter(NewPicture)

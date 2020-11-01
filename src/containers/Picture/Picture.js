@@ -11,7 +11,7 @@ import PictureImage from '../../components/Picture/PictureImage/PictureImage'
 import classes from './Picture.module.css'
 
 const Picture = props => {
-  const pictureId = props.location.pictureId
+  const pictureId = props.location.pictureId || props.location.state.pictureId
 
   const authUserId = useSelector(state => state.userId)
   const authUsername = useSelector(state => state.username)
@@ -37,31 +37,43 @@ const Picture = props => {
     username: authUsername
   })
 
+  const getPictureLikes = likes => {
+    if (!likes) { return [] }
+    const likesArray = []
+    for (let key in likes) {
+      likesArray.push({
+        ...likes[key],
+        id: key
+      })
+    }
+    return likesArray
+  }
+
+  const getPictureComments = comments => {
+    if (!comments) { return [] }
+    const commentsArray = []
+    for (let key in comments) {
+      commentsArray.push({
+        ...comments[key],
+        id: key
+      })
+    }
+    return commentsArray
+  }
+
   useEffect(() => {
     if (pictureId !== '') {
-      setComponentState(() => ({ loading: true, error: null }))
+      setComponentState({ loading: true, error: null })
       database.ref(`/pictures/${pictureId}`).once('value')
         .then(snapShot => {
           const pictureSnapShot = snapShot.val()
-          const likesArray = []
-          for (let key in pictureSnapShot.likes) {
-            likesArray.push({
-              ...pictureSnapShot.likes[key],
-              id: key
-            })
-          }
-          const commentsArray = []
-          for (let key in pictureSnapShot.comments) {
-            commentsArray.push({
-              ...pictureSnapShot.comments[key],
-              id: key
-            })
-          }
-          const picture = { ...pictureSnapShot, likes: likesArray, comments: commentsArray }
+          const likes = getPictureLikes(pictureSnapShot.likes)
+          const comments = getPictureComments(pictureSnapShot.comments)
+          const picture = { ...pictureSnapShot, likes: likes, comments: comments }
           setPicture(prevPicture => ({ ...prevPicture, ...picture }))
         })
         .catch(err => {
-          setComponentState(() => ({ loading: false, error: err.response.data.error }))
+          setComponentState({ loading: false, error: err.response.data.error })
         })
     }
   }, [pictureId])
@@ -105,7 +117,6 @@ const Picture = props => {
   }
 
   const editCommentHandler = event => {
-    event.preventDefault()
     const value = event.target.value
     setNewComment(prevNewComment => ({ ...prevNewComment, comment: value }))
   }
