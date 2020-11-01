@@ -7,3 +7,34 @@
   padding: 0;
   position: relative;
 }
+
+.DesktopOnly {
+  display: none;
+}
+
+.MobileOnly {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 736px) {
+  .DesktopOnly {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .LeftDesktop {
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    margin-right: 30px;
+  }
+
+  .RightDesktop {
+
+  }
+
+  .MobileOnly {
+    display: none;
+  }
+}

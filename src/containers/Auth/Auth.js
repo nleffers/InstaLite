@@ -11,7 +11,7 @@ import classes from './Auth.module.css'
 import * as actions from '../../store/actions/index'
 import { updateObject, checkValidity } from '../../shared/utility'
 
-const Auth = props => {
+const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(true)
   const [controls, setControls] = useState({
     email: {
@@ -90,7 +90,6 @@ const Auth = props => {
   })
 
   const loading = useSelector(state => state.loading)
-  // const error = useSelector(state => state.error)
   const authRedirectPath = useSelector(state => state.authRedirectPath)
   const isAuthenticated = useSelector(state => state.token !== null)
 

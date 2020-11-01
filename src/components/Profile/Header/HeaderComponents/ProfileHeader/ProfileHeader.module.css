@@ -1,0 +1,12 @@
+.ProfileHeader {
+  display: flex;
+}
+
+.ProfileHeaderUsername {
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 32px;
+  margin: -5px 0 -6px;
+  flex-direction: row;
+  flex-shrink: 1;
+}

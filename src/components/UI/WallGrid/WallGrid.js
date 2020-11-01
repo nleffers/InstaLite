@@ -23,8 +23,10 @@ const wallGrid = props => {
               <NavLink
                 to={{
                   pathname: "/picture",
-                  pictureId: pic.id,
-                  pictureType: 'wide'
+                  state: {
+                    pictureId: pic.id,
+                    pictureType: 'wide'
+                  }
                 }}
               >
                 <img src={pic.url} alt="Thumbnail" />
@@ -50,8 +52,10 @@ const wallGrid = props => {
             <NavLink
               to={{
                 pathname: "/picture",
-                pictureId: pic.id,
-                pictureType: 'wide'
+                state: {
+                  pictureId: pic.id,
+                  pictureType: 'wide'
+                }
               }}
             >
               <img src={pic.url} alt="Thumbnail" />

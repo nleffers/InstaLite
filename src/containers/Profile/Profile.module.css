@@ -1,9 +1,6 @@
 .Profile {
-  padding: 30px 20px 0;
-  width: calc(100% - 40px);
-  margin-bottom: 0px;
-  margin: 0 auto 30px;
-  max-width: 935px;
+  width: calc(100% - 4px);
+  margin: 0;
   box-sizing: content-box;
 }
 
@@ -12,6 +9,14 @@
 }
 
 @media (min-width: 736px) {
+  .Profile {
+    padding: 30px 20px 0;
+    width: calc(100% - 40px);
+    margin-bottom: 0;
+    margin: 0 auto 30px;
+    max-width: 935px;
+    box-sizing: content-box;
+  }
   .DesktopUpload {
     display: initial;
   }

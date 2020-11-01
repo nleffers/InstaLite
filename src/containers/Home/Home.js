@@ -11,7 +11,7 @@ const Home = () => {
 
   let homePage = <Redirect to="/auth" />
   if (isAuthenticated) {
-    homePage = <Profile location={{ userId: userId }} />
+    homePage = <Profile location={{ state: { userId: userId } }} />
   }
 
   return (

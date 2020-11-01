@@ -13,10 +13,10 @@ import * as actions from '../../store/actions/index'
 import { NavLink } from 'react-router-dom';
 
 const Profile = props => {
-  const userId = props.location.userId || props.location.state.userId
+  const userId = props.location.state.userId
+
   const [activeTab, setActiveTab] = useState('POSTS')
   const [openModal, setOpenModal] = useState('')
-
   const [user, setUser] = useState({
     username: null,
     fullName: null,
@@ -164,7 +164,9 @@ const Profile = props => {
         <NavLink
           to={{
             pathname: "/settings",
-            activePage: 'Change Password'
+            state: {
+              activePage: 'Change Password'
+            }
           }}
         >
           <Button btnType={props.icon}>Change Password</Button>

@@ -12,7 +12,7 @@ import FileUploader from '../../hoc/FileUploader/FileUploader'
 import classes from './Picture.module.css'
 
 const Picture = props => {
-  const pictureId = props.location.pictureId || props.location.state.pictureId
+  const pictureId = props.location.state.pictureId
 
   const authUserId = useSelector(state => state.userId)
   const authUsername = useSelector(state => state.username)

@@ -11,7 +11,9 @@ const desktopToolbarNavigationItem = (props) => (
       activeClassName={classes.active}
       to={{
         pathname: props.link,
-        userId: props.userId
+        state: {
+          userId: props.userId
+        }
       }}
       style={
         props.children && props.children.type && props.children.type.name === 'logo' ? { padding: "0" } : null
