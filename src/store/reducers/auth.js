@@ -14,6 +14,7 @@ const initialState = {
   followers: [],
   following: [],
   pictures: [],
+  profilePicture: {},
   error: null,
   loading: false,
   authRedirectPath: '/'
@@ -30,6 +31,48 @@ const authUserSignUpOrSignInSuccess = (state, user) => {
   )
 }
 
+const authFetchPictures = (pictures, f) => {
+  const picturesArray = []
+  for (let key in pictures) {
+    picturesArray.push({
+      ...pictures[key],
+      id: key
+    })
+  }
+  return picturesArray.reverse()
+}
+
+const authFetchProfilePicture = picture => {
+  if (!picture) { return null }
+  const profilePictureId = Object.keys(picture)[0]
+  return {
+    ...picture[profilePictureId],
+    id: profilePictureId
+  }
+}
+
+const authFetchFollowers = followers => {
+  const followersArray = []
+  for (let key in followers) {
+    followersArray.push({
+      ...followers[key],
+      id: key
+    })
+  }
+  return followersArray
+}
+
+const authFetchFollowing = following => {
+  const followingArray = []
+  for (let key in following) {
+    followingArray.push({
+      ...following[key],
+      id: key
+    })
+  }
+  return followingArray
+}
+
 const authUserFetchSuccess = (state, snapShot) => {
   const key = snapShot.key
   const user = snapShot.val()
@@ -44,6 +87,10 @@ const authUserFetchSuccess = (state, snapShot) => {
       email: user.email,
       phone: user.phone,
       gender: user.gender,
+      pictures: authFetchPictures(user.pictures),
+      profilePicture: authFetchProfilePicture(user.profilePicture),
+      followers: authFetchFollowers(user.followers),
+      following: authFetchFollowing(user.following),
       loading: false
     }
   )

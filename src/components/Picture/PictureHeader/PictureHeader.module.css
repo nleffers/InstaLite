@@ -1,10 +1,61 @@
 .PictureHeader {
+  height: 72px;
+  width: 335px;
+  right: 0;
+  border-bottom: 1px solid rgb(240, 240, 240);
+  margin-right: 0;
+  position: absolute;
+  top: 0;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+}
+
+.ProfilePicture {
+  display: block;
+  height: fit-content;
+  width: fit-content;
+  position: relative;
+  align-items: stretch;
+  box-sizing: border-box;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  -webkit-box-align: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+}
+
+.ProfilePicture img {
+  left: 15px;
+  width: 42px;
+  height: 42px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  border-radius: 100%;
 }
 
 .Username {
-  float: left;
+  margin-left: 14px;
+  align-items: flex-start;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: hidden;
+  -webkit-box-align: start;
+  -webkit-box-flex: 1;
 }
 
-.MoreOptions {
-  float: right;
+.Username a,
+.Username a:visited {
+  color: rgb(39, 39, 39);
+  text-decoration: none;
 }
+
+/* .MoreOptions {
+  float: right;
+} */

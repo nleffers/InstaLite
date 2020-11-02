@@ -30,7 +30,8 @@ const Picture = props => {
   })
   const [user, setUser] = useState({
     userId: '',
-    username: ''
+    username: '',
+    profilePicture: null
   })
   const [newComment, setNewComment] = useState({
     comment: '',
@@ -84,7 +85,8 @@ const Picture = props => {
       database.ref(`/users/${picture.userId}`).once('value')
         .then(snapShot => {
           const userSnapShot = snapShot.val()
-          setUser(() => ({ userId: picture.userId, username: userSnapShot.username }))
+          const profilePicture = getProfilePicture(userSnapShot.profilePicture)
+          setUser(prevUser => ({ ...prevUser, userId: picture.userId, username: userSnapShot.username, profilePicture: profilePicture }))
           setComponentState(prevState => ({ ...prevState, loading: false }))
         })
         .catch(err => {
@@ -92,6 +94,15 @@ const Picture = props => {
         })
     }
   }, [picture.userId])
+
+  const getProfilePicture = picture => {
+    if (!picture) { return null }
+    const profilePictureId = Object.keys(picture)[0]
+    return {
+      ...picture[profilePictureId],
+      id: profilePictureId
+    }
+  }
 
   const likeClickedHandler = event => {
     event.preventDefault()
@@ -140,14 +151,20 @@ const Picture = props => {
   let longComponent = null
   if (user.userId !== '') {
     wideComponent = <Aux>
-      <div className={classes.ModalLeftSide}>
+      <div className={classes.WideLeftSide}>
         <PictureImage url={picture.url} />
       </div>
-      <div className={classes.ModalRightSide}>
-        <PictureHeader username={user.username} />
+      <div className={classes.WideRightSide}>
+        <PictureHeader
+          profilePicture={user.profilePicture}
+          userId={user.userId}
+          username={user.username}
+        />
         <PictureComments
           caption={picture.caption}
           comments={picture.comments}
+          profilePicture={user.profilePicture}
+          userId={user.userId}
           username={user.username}
         />
         <PictureActions
@@ -165,7 +182,11 @@ const Picture = props => {
     </Aux>
 
     longComponent = <Aux>
-      <PictureHeader username={user.username} />
+      <PictureHeader
+        profilePicture={user.profilePicture}
+        userId={props.userId}
+        username={user.username}
+      />
       <PictureImage url={picture.url} />
       <PictureActions
         authLiked={picture.likes.some(like => like.userId === authUserId)}
@@ -178,6 +199,8 @@ const Picture = props => {
         <PictureComments
           caption={picture.caption}
           comments={picture.comments}
+          profilePicture={user.profilePicture}
+          userId={user.userId}
           username={user.username}
         />
       </PictureActions>

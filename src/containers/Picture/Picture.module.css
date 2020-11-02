@@ -1,8 +1,9 @@
 .Picture {
   width: 100%;
-  margin-bottom: 0px;
+  margin-bottom: 16px;
   margin: 0;
   box-sizing: content-box;
+  max-width: 935px;
 }
 
 .DesktopOnly {
@@ -16,25 +17,38 @@
 
 @media (min-width: 736px) {
   .Picture {
+    box-sizing: content-box;
+    justify-content: normal;
+    margin: 0 auto 30px;
     padding: 4vh 20px 0;
     width: calc(100% - 40px);
-    margin-bottom: 0px;
-    margin: 0 auto 30px;
-    max-width: 935px;
-    box-sizing: content-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
   }
 
   .DesktopOnly {
     display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    -webkit-box-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-shrink: 0;
+    padding: 0;
+    position: relative;
+    border: 1px solid rgb(220, 220, 220);
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
   }
 
-  .ModalLeftSide {
-    max-width: 598px;
+  .WideLeftSide {
+    width: 598px;
   }
 
-  .ModalRightSide {
+  .WideRightSide {
     display: inline-flex;
-    max-width: 335px;
+    width: 335px;
   }
 
   .MobileOnly {
