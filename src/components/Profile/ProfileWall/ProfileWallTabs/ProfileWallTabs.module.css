@@ -1,4 +1,4 @@
-.WallTabs {
+.ProfileWallTabs {
   align-items: center;
   border-top: 1px solid rgb(220, 220, 220);
   color: #8e8e8f;
@@ -10,4 +10,8 @@
   letter-spacing: 1px;
   text-align: center;
   list-style-type: none;
+  -webkit-box-align: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-box-pack: center;
 }

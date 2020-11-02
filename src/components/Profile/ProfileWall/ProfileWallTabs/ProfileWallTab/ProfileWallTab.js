@@ -5,7 +5,7 @@ import classes from './ProfileWallTab.module.css'
 const profileWallTab = props => {
   const { activeTab, clicked, tab } = props
 
-  const classNames = [classes.WallTab]
+  const classNames = [classes.ProfileWallTab]
   if (activeTab) {
     classNames.push(classes.ActiveTab)
   }

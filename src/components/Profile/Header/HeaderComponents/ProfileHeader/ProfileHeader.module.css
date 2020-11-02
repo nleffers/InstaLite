@@ -1,5 +1,12 @@
 .ProfileHeader {
   display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-shrink: 1;
+  min-width: 0;
+  -webkit-box-align: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
 }
 
 .ProfileHeaderUsername {
@@ -9,4 +16,10 @@
   margin: -5px 0 -6px;
   flex-direction: row;
   flex-shrink: 1;
+}
+
+@media (min-width: 736px) {
+  .ProfileHeader {
+    margin-bottom: 20px;
+  }
 }

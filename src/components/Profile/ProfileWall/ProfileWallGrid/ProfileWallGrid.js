@@ -12,7 +12,7 @@ const profileWallGrid = props => {
     if (pictureRow.length === 3) {
       gridRowsArray.push(
         <div
-          className={classes.WallGridRow}
+          className={classes.ProfileWallGridRow}
           key={`${pic.id}-row`}
         >
           {pictureRow.map(pic => (
@@ -41,7 +41,7 @@ const profileWallGrid = props => {
   if (pictureRow.length > 0) {
     gridRowsArray.push(
       <div
-        className={classes.WallGridRow}
+        className={classes.ProfileWallGridRow}
         key={`${pictureRow[0].id}-row`}
       >
         {pictureRow.map(pic => (

@@ -6,10 +6,21 @@
   flex-shrink: 0;
   padding: 0;
   position: relative;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: row;
 }
 
 .DesktopOnly {
   display: none;
+}
+
+.LeftDesktop {
+  flex-shrink: 0;
+}
+
+.RightDesktop {
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .MobileOnly {
@@ -18,20 +29,27 @@
 }
 
 @media (min-width: 736px) {
+  .Header {
+    margin-bottom: 44px;
+  }
+
   .DesktopOnly {
     display: flex;
     flex-direction: row;
+    width: 100%;
   }
 
   .LeftDesktop {
     flex-basis: 0;
     flex-grow: 1;
-    flex-shrink: 0;
     margin-right: 30px;
+    -webkit-box-flex: 1;
   }
 
   .RightDesktop {
-
+    flex-basis: 30px;
+    flex-grow: 2;
+    -webkit-box-flex: 2;
   }
 
   .MobileOnly {

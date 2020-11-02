@@ -31,7 +31,7 @@ const profileWallTabs = props => {
   )
 
   return (
-    <div className={classes.WallTabs}>
+    <div className={classes.ProfileWallTabs}>
       {wallTabs}
     </div>
   )
