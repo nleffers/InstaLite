@@ -1,10 +1,19 @@
 .EditProfilePage {
   margin: 20px;
+  padding-right: 20px;
 }
 
 .EditProfilePage p {
   color: rgb(141, 141, 141);
   float: right;
   font-size: 12px;
-  width: 79%;
+  width: 72.5%;
+}
+
+@media (min-width: 736px) {
+  .EditProfilePage label {
+    padding-left: 32px;
+    padding-right: 32px;
+    text-align: right;
+  }
 }

@@ -7,7 +7,6 @@ import classes from './ChangePasswordPage.module.css'
 const changePasswordPage = props => {
   return (
     <div className={classes.ChangePasswordPage}>
-      <h2>{props.username.value}</h2>
       <form onSubmit={props.changePasswordSubmitHandler}>
         <InputWithLabel
           key="oldPassword"
@@ -29,7 +28,7 @@ const changePasswordPage = props => {
           touched={props.newPassword.touched}
           changed={event => props.editProfileInputChangedHandler(event, 'newPassword')}
         />
-        <Button btnType="ChangePassword">Change Password</Button>
+        <Button btnType="UpdateUser">Change Password</Button>
       </form>
     </div>
   )

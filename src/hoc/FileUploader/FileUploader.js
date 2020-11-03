@@ -30,7 +30,7 @@ const FileUploader = props => {
 
   const form = (
     <form>
-      <Button btnType={icon} clicked={handleClick}></Button>
+      <Button btnType={icon} clicked={handleClick}>{props.children}</Button>
       <input
         className={classes.FileUploaderInput}
         type="file"
@@ -43,6 +43,8 @@ const FileUploader = props => {
   let element = <li className={classes.LiFileUploader}>{form}</li>
   if (source === 'desktop') {
     element = <div className={classes.DivFileUploader}>{form}</div>
+  } else if (source === 'settings') {
+    element = <div className={classes.ProfileFileUploader}>{form}</div>
   }
 
   return (

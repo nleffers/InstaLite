@@ -122,3 +122,20 @@
     margin-left: 0;
   }
 }
+
+.Settings {
+  text-align: left;
+  color: rgb(1, 150, 247);
+  display: inline;
+  padding: 0;
+  position: relative;
+  border: 0;
+  appearance: none;
+  background: 0 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: inherit;
+  text-overflow: ellipsis;
+  user-select: none;
+}

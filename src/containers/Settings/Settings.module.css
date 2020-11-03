@@ -12,6 +12,7 @@
     margin: auto;
     padding-top: 25px;
     width: 90%;
+    max-width: 935px;
     height: 80vh;
   }
 

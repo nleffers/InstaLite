@@ -140,6 +140,7 @@ const Settings = props => {
   const phone = useSelector(state => state.phone)
   const gender = useSelector(state => state.gender)
   const loading = useSelector(state => state.loading)
+  const profilePictureUrl = useSelector(state => state.profilePicture.url)
 
   const dispatch = useDispatch()
   const onAuthUserUpdate = (userId, fullName, username, website, bio, email, phone, gender) => (
@@ -302,6 +303,7 @@ const Settings = props => {
           gender={profileGender}
           oldPassword={oldPassword}
           newPassword={newPassword}
+          profilePictureUrl={profilePictureUrl}
           editProfileInputChangedHandler={editProfileInputChangedHandler}
           editProfileSubmitHandler={editProfileSubmitHandler}
           changePasswordSubmitHandler={changePasswordSubmitHandler}

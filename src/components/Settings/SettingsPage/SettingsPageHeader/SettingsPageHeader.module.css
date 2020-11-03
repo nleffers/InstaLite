@@ -1,0 +1,46 @@
+.SettingsPageHeader {
+  display: flex;
+  flex-direction: row;
+  margin: 32px 0 0;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-shrink: 0;
+  padding: 0;
+  position: relative;
+  -webkit-box-align: stretch;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+}
+
+.SettingsProfilePicture img {
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+}
+
+.SettingsProfileUsername {
+  flex: 0 1 auto;
+  margin-right: 20px;
+  overflow-x: hidden;
+  -webkit-box-flex: 0;
+}
+
+.SettingsProfileUsername h1 {
+  font-size: 20px;
+  line-height: 22px;
+  margin: 2px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+@media (min-width: 736px) {
+  .SettingsProfilePicture {
+    margin: 2px 32px 0 124px;
+  }
+
+  .SettingsProfileUsername {
+
+  }
+}

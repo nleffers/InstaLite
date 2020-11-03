@@ -106,7 +106,6 @@ const editProfilePage = props => {
 
   return (
     <div className={classes.EditProfilePage}>
-      <h2>{username.value}</h2>
       <form onSubmit={editProfileSubmitHandler}>
         {form}
         {errorMessage}

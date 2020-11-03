@@ -1,5 +1,6 @@
 import React from 'react'
 
+import SettingsPageHeader from './SettingsPageHeader/SettingsPageHeader'
 import EditProfilePage from './SettingsPageOptions/EditProfilePage/EditProfilePage'
 import ChangePasswordPage from './SettingsPageOptions/ChangePasswordPage/ChangePasswordPage'
 import Spinner from '../../UI/Spinner/Spinner'
@@ -39,6 +40,11 @@ const settingsPage = props => {
 
   return (
     <div className={classes.SettingsPage}>
+      <SettingsPageHeader
+        activePage={props.activePage}
+        profilePictureUrl={props.profilePictureUrl}
+        username={props.username.value}
+      />
       {component}
     </div>
   )

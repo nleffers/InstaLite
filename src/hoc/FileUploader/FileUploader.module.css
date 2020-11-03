@@ -11,6 +11,16 @@
   right: 100px;
 }
 
-.LiFileUploader input, .DivFileUploader input {
+.ProfileFileUploader {
+  display: block;
+}
+
+.LiFileUploader input, .DivFileUploader input, .ProfileFileUploader input {
   display: none;
+}
+
+@media (min-width: 736px) {
+  .ProfileFileUploader button {
+    margin: 0;
+  }
 }
