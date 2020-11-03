@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 
+import Aux from '../Aux'
 import Button from '../../components/UI/Button/Button'
 import classes from './FileUploader.module.css'
 
@@ -45,7 +46,9 @@ const FileUploader = props => {
   }
 
   return (
-    <div className={classes.FileUploader}>{element}</div>
+    <Aux>
+      {element}
+    </Aux>
   )
 }
 
