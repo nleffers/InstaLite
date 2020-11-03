@@ -4,21 +4,21 @@ import Tab from '../../UI/Tab/Tab'
 import classes from './SettingsTabs.module.css'
 
 const settingsTabs = props => {
-  const { activeTab, tabClickHandler } = props
+  const { activeTab, settingsTabs, tabClickHandler } = props
+
+  const tabsArray = settingsTabs.map(tab => (
+    <Tab
+      key={tab}
+      tab={tab}
+      clicked={tabClickHandler}
+      activeTab={activeTab === tab}
+    />
+  ))
 
   return (
     <div className={classes.SettingsTabs}>
       <ul>
-        <Tab
-          tab="Edit Profile"
-          clicked={tabClickHandler}
-          activeTab={activeTab === 'Edit Profile'}
-        />
-        <Tab
-          tab="Change Password"
-          clicked={tabClickHandler}
-          activeTab={activeTab === 'Change Password'}
-        />
+        {tabsArray}
       </ul>
     </div>
   )

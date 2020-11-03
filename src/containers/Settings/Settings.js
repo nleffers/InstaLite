@@ -9,6 +9,10 @@ import { updateObject, checkValidity } from '../../shared/utility';
 
 const Settings = props => {
   const [activePage, setActivePage] = useState(props.location.state.activePage || 'Edit Profile')
+  const [settingsTabs] = useState([
+    'Edit Profile',
+    'Change Password'
+  ])
   const [profileFullName, setProfileFullName] = useState({
     elementType: 'input',
     elementConfig: {
@@ -290,6 +294,7 @@ const Settings = props => {
       <div className={classes.DesktopOnly}>
         <SettingsTabs
           activeTab={activePage}
+          settingsTabs={settingsTabs}
           tabClickHandler={tabClickHandler}
         />
         <SettingsPage
@@ -311,7 +316,11 @@ const Settings = props => {
         />
       </div>
       <div className={classes.MobileOnly}>
-        <SettingsTabs />
+        <SettingsTabs
+          activeTab={activePage}
+          settingsTabs={settingsTabs}
+          tabClickHandler={tabClickHandler}
+        />
       </div>
     </div>
   )
