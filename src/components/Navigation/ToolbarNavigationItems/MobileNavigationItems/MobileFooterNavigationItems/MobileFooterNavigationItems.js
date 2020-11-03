@@ -17,7 +17,7 @@ const mobileFooterNavigationItems = props => (
     <MobileFooterNavigationItem
       link="/profile"
       icon='User'
-      userId={props.userId}
+      state={{ userId: props.userId }}
     />
   </ul>
 );

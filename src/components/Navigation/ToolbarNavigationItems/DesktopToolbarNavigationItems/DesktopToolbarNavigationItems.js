@@ -17,9 +17,9 @@ const desktopToolbarNavigationItems = props => (
     <DesktopToolbarNavigationItem
       link="/profile"
       icon='User'
-      userId={props.userId}
+      state={{ userId: props.userId }}
     />
-    <DesktopToolbarNavigationItem link="/settings" icon='Cog' />
+    <DesktopToolbarNavigationItem link="/settings" icon='Cog' state={{ activePage: 'Edit Profile' }}/>
     {props.isAuthenticated ? <DesktopToolbarNavigationItem link="/logout" icon="SignOut" /> : <DesktopToolbarNavigationItem link="/auth" icon="SignIn" />}
   </ul>
 );

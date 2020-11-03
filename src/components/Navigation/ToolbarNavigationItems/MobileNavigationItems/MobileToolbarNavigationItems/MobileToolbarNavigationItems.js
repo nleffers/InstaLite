@@ -14,7 +14,7 @@ const mobileToolbarNavigationItems = props => (
       icon="Home"
     />
     {/* <MobileToolbarNavigationItem link="/inbox" icon="Envelope" /> */}
-    <MobileToolbarNavigationItem link="/settings" icon="Cog" />
+    <MobileToolbarNavigationItem link="/settings" icon="Cog" state={{ activePage: '' }} />
   </ul>
 );
 

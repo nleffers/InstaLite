@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import SettingsPage from '../../components/Settings/SettingsPage/SettingsPage'
-import SettingsTabs from '../../components/Settings/SettingsTabs/SettingsTabs'
+import DesktopSettings from '../../components/Settings/DesktopSettings/DesktopSettings'
+import MobileSettings from '../../components/Settings/MobileSettings/MobileSettings'
 import * as actions from '../../store/actions/index';
 import classes from './Settings.module.css'
 import { updateObject, checkValidity } from '../../shared/utility';
 
 const Settings = props => {
-  const [activePage, setActivePage] = useState(props.location.state.activePage || 'Edit Profile')
+  const [activePage, setActivePage] = useState(props.location.state && props.location.state.activePage)
   const [settingsTabs] = useState([
     'Edit Profile',
     'Change Password'
@@ -292,20 +292,18 @@ const Settings = props => {
   return (
     <div className={classes.Settings}>
       <div className={classes.DesktopOnly}>
-        <SettingsTabs
+        <DesktopSettings
           activeTab={activePage}
           settingsTabs={settingsTabs}
           tabClickHandler={tabClickHandler}
-        />
-        <SettingsPage
           activePage={activePage}
-          fullName={profileFullName}
-          username={profileUsername}
-          website={profileWebsite}
-          bio={profileBio}
-          email={profileEmail}
-          phone={profilePhone}
-          gender={profileGender}
+          profileFullName={profileFullName}
+          profileUsername={profileUsername}
+          profileWebsite={profileWebsite}
+          profileBio={profileBio}
+          profileEmail={profileEmail}
+          profilePhone={profilePhone}
+          profileGender={profileGender}
           oldPassword={oldPassword}
           newPassword={newPassword}
           profilePictureUrl={profilePictureUrl}
@@ -316,10 +314,25 @@ const Settings = props => {
         />
       </div>
       <div className={classes.MobileOnly}>
-        <SettingsTabs
+        <MobileSettings
           activeTab={activePage}
           settingsTabs={settingsTabs}
           tabClickHandler={tabClickHandler}
+          activePage={activePage}
+          profileFullName={profileFullName}
+          profileUsername={profileUsername}
+          profileWebsite={profileWebsite}
+          profileBio={profileBio}
+          profileEmail={profileEmail}
+          profilePhone={profilePhone}
+          profileGender={profileGender}
+          oldPassword={oldPassword}
+          newPassword={newPassword}
+          profilePictureUrl={profilePictureUrl}
+          editProfileInputChangedHandler={editProfileInputChangedHandler}
+          editProfileSubmitHandler={editProfileSubmitHandler}
+          changePasswordSubmitHandler={changePasswordSubmitHandler}
+          loading={loading}
         />
       </div>
     </div>
