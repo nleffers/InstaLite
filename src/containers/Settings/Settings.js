@@ -289,6 +289,11 @@ const Settings = props => {
     }))
   }
 
+  const resetActivePageHandler = event => {
+    event.preventDefault()
+    setActivePage('')
+  }
+
   return (
     <div className={classes.Settings}>
       <div className={classes.DesktopOnly}>
@@ -317,7 +322,6 @@ const Settings = props => {
         <MobileSettings
           activeTab={activePage}
           settingsTabs={settingsTabs}
-          tabClickHandler={tabClickHandler}
           activePage={activePage}
           profileFullName={profileFullName}
           profileUsername={profileUsername}
@@ -332,6 +336,8 @@ const Settings = props => {
           editProfileInputChangedHandler={editProfileInputChangedHandler}
           editProfileSubmitHandler={editProfileSubmitHandler}
           changePasswordSubmitHandler={changePasswordSubmitHandler}
+          resetActivePageHandler={resetActivePageHandler}
+          tabClickHandler={tabClickHandler}
           loading={loading}
         />
       </div>

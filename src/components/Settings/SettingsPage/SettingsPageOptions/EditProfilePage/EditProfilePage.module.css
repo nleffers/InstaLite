@@ -10,6 +10,12 @@
   width: 72.5%;
 }
 
+@media (max-width: 735px) {
+  .EditProfilePage {
+
+  }
+}
+
 @media (min-width: 736px) {
   .EditProfilePage label {
     padding-left: 32px;
