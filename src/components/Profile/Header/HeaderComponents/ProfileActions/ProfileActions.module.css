@@ -1,8 +1,13 @@
 .ProfileActions {
-  margin-left: 20px;
   flex: 0 1 auto;
   justify-content: flex-start;
   align-items: stretch;
   align-content: stretch;
   display: block;
+}
+
+@media (min-width: 736px) {
+  .ProfileActions {
+    margin-left: 20px;
+  }
 }

@@ -18,20 +18,25 @@ const pictureActions = props => {
         {likeButton}
       </div>
       {props.children}
-      <div className={classes.WriteComment}>
-        <form onSubmit={submitCommentHandler}>
-          <Input
-            key="comment"
-            elementType="input"
-            elementConfig={{
-              type: 'comment',
-              placeholder: 'Add a comment...'
-            }}
-            value={comment.comment}
-            changed={editCommentHandler}
-          />
-          <Button btnType="Comment">Post</Button>
-        </form>
+      <div className={classes.WriteCommentSection}>
+        <div className={classes.WriteComment}>
+          <form
+            classes={classes.WriteCommentForm}
+            onSubmit={submitCommentHandler}
+          >
+            <Input
+              key="comment"
+              elementType="textarea"
+              elementConfig={{
+                type: 'comment',
+                placeholder: 'Add a comment...'
+              }}
+              value={comment.comment}
+              changed={editCommentHandler}
+            />
+            <Button btnType="Comment">Post</Button>
+          </form>
+        </div>
       </div>
     </div>
   )

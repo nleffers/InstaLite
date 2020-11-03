@@ -116,3 +116,9 @@
   font-weight: 600;
   padding: 5px 9px;
 }
+
+@media (max-width: 735px) {
+  .Profile {
+    margin-left: 0;
+  }
+}

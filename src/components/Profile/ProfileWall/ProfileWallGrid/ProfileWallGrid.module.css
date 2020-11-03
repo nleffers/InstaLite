@@ -1,5 +1,11 @@
 :root{
-  --size: 29%;
+  --size: 33%;
+}
+
+@media (min-width: 736px) {
+  :root{
+    --size: 29%;
+  }
 }
 
 .ProfileWallGrid {
@@ -20,6 +26,12 @@
   -webkit-box-direction: normal;
 }
 
+@media (max-width: 735px) {
+  .ProfileWallGridRow:last-child {
+    margin-bottom: 20px;
+  }
+}
+
 .ProfileWallGridRow>* {
   flex: 1 0 0%;
   -webkit-box-flex: 1;
@@ -28,12 +40,23 @@
 .Thumbnail {
   position: relative;
   flex: 1 0 22rem;
-  margin: 1rem;
   color: #fff;
   cursor: pointer;
   max-width: var(--size);
   width: var(--size);
   height: var(--size);
+}
+
+@media (max-width: 735px) {
+  .Thumbnail {
+    margin: 0;
+  }
+}
+
+@media (min-width: 736px) {
+  .Thumbnail {
+    margin: 1rem;
+  }
 }
 
 .Thumbnail:after {

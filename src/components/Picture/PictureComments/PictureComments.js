@@ -1,16 +1,13 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 
 import Comment from '../../UI/Comment/Comment'
 import classes from './PictureComments.module.css'
 
 const pictureComments = props => {
-  const { caption, comments, username } = props
-
   const commentsArray = []
-  for (let key in comments) {
+  for (let key in props.comments) {
     commentsArray.push({
-      ...comments[key],
+      ...props.comments[key],
       id: key
     })
   }
@@ -24,38 +21,9 @@ const pictureComments = props => {
 
   return (
     <div className={classes.PictureComments}>
-      <div className={classes.Caption}>
-        <div className={classes.ProfilePicture}>
-          <canvas height="42" width="21" />
-          {!!props.profilePicture ? (
-            <NavLink
-              to={{
-                pathname: '/profile',
-                state: {
-                  userId: props.userId
-                }
-              }}
-            >
-              <img src={props.profilePicture.url} alt={props.profilePicture.id} />
-            </NavLink>
-          ) : null}
-        </div>
-        <div className={classes.Username}>
-          <NavLink
-            to={{
-              pathname: '/profile',
-              state: {
-                userId: props.userId
-              }
-            }}
-          >
-            {props.username}
-          </NavLink>
-        </div>
-      </div>
-      <div className={classes.Comments}>
+      <ul>
         {commentElementsArray}
-      </div>
+      </ul>
     </div>
   )
 }

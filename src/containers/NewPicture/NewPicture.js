@@ -12,7 +12,7 @@ const NewPicture = props => {
   const file = props.location.state.file
 
   const [newCaption, setNewCaption] = useState({
-    elementType: 'input',
+    elementType: 'textarea',
     elementConfig: {
       type: 'caption',
       placeholder: 'Write a caption...'
@@ -21,6 +21,7 @@ const NewPicture = props => {
   })
 
   const authUserId = useSelector(state => state.userId)
+  const authUsername = useSelector(state => state.username)
 
   const imageUploadHandler = event => {
     event.preventDefault()
@@ -28,15 +29,34 @@ const NewPicture = props => {
       storage.ref(`/images/${file.name}`).put(file)
         .then(snapShot => {
           const newPictureKey = database.ref('pictures/').push().key
+          let newCommentKey
+          if (newCaption.value !== '') {
+            newCommentKey = database.ref(`/pictures/${newPictureKey}/comments/`).push().key
+          }
           storage.ref(`/${snapShot.metadata.fullPath}`).getDownloadURL()
             .then(url => {
               const pictureData = {
                 url: url,
                 userId: authUserId,
-                caption: newCaption.value
+                comments: [{
+                  id: newCommentKey,
+                  comment: newCaption.value,
+                  userId: authUserId,
+                  username: authUsername
+                }]
               }
+              let commentData
+              if (newCommentKey) {
+                commentData = {
+                  id: newCommentKey,
+                  comment: newCaption.value,
+                  userId: authUserId,
+                  username: authUsername
+                }
+              }
+
               let updates = {}
-              updates[`/pictures/${newPictureKey}`] = pictureData
+              updates[`/pictures/${newPictureKey}`] = {...pictureData, comments: [commentData]}
               updates[`/users/${authUserId}/pictures/${newPictureKey}`] = pictureData
               if (!!props.isProfilePicture) { updates[`/users/${authUserId}/profilePicture`] = { newPictureKey: pictureData } }
 

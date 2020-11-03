@@ -1,19 +1,54 @@
 .ProfilePicture {
-  margin: 0 30px 30px 30px;
-  padding: 0;
+  align-items: stretch;
+  border: 0;
+  box-sizing: border-box;
   display: flex;
-  flex-basis: 0;
-  flex-grow: 0;
-  flex-shrink: 0;
   flex-direction: column;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
   position: relative;
+  -webkit-box-align: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
 }
 
 .Image {
-  border-radius: 100%;
+  border-radius: 50%;
+}
+
+@media (max-width: 735px) {
+  .ProfilePicture {
+    justify-content: center;
+    margin-right: 28px;
+    -webkit-box-pack: center;
+  }
+
+  .Image {
+    width: 77px;
+    max-height: 77px;
+    background-color: rgb(251, 251, 251);
+    box-sizing: border-box;
+    display: block;
+    flex: auto;
+    overflow: hidden;
+    position: relative;
+    -webkit-box-flex: 0;
+  }
 }
 
 @media (min-width: 736px) {
+  .ProfilePicture {
+    margin: 0 30px 30px 30px;
+    padding: 0;
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-direction: column;
+    position: relative;
+  }
+
   .Image {
     width: 150px;
     height: 150px;

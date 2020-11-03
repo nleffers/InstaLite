@@ -1,6 +1,7 @@
 .Profile {
-  width: calc(100% - 4px);
-  margin: 0;
+  width: 100%;
+  max-width: 935px;
+  margin: 0 auto 30px;
   box-sizing: content-box;
 }
 
@@ -14,9 +15,9 @@
     width: calc(100% - 40px);
     margin-bottom: 0;
     margin: 0 auto 30px;
-    max-width: 935px;
     box-sizing: content-box;
   }
+
   .DesktopUpload {
     display: initial;
   }

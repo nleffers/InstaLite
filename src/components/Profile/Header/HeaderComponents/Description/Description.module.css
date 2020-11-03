@@ -4,8 +4,8 @@
   display: inline-block;
 }
 
-.TopRow {
-  display: flex;
+.DesktopOnly {
+  display: none;
 }
 
 .Username {
@@ -28,23 +28,19 @@
 .CountRow {
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
   list-style: none;
-  padding: 0;
-  color: rgb(39, 39, 39)
+  color: rgb(142, 142, 142);
+  width: 100%;
 }
 
 .CountRow li {
   font-size: 16px;
-  margin-right: 40px;
+  width: 33.3%;
 }
 
 .Count {
+  color: rgb(39, 39, 39);
   font-weight: 600;
-}
-
-.CountRow li:first-child {
-  margin-left: 0;
 }
 
 .ProfileDescription {
@@ -74,4 +70,48 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@media (max-width: 735px) {
+  .Description {
+    width: 100%;
+  }
+
+  .ProfileDescription {
+    font-size: 14px;
+    line-height: 20px;
+    overflow: hidden;
+    padding: 0 16px 21px;
+    text-overflow: ellipsis;
+  }
+
+  .CountRow {
+    border-top: 1px solid rgb(220, 220, 220);
+    padding: 12px 0;
+    margin-bottom: 0;
+  }
+
+  .CountRow li {
+    text-align: center;
+  }
+}
+
+@media (min-width: 736px) {
+  .DesktopOnly {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .MobileOnly {
+    display: none;
+  }
+
+  .Description {
+    width: 75%;
+  }
+
+  .CountRow {
+    margin-bottom: 20px;
+    padding: 0;
+  }
 }
