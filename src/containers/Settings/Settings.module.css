@@ -1,9 +1,11 @@
-.Settings {
-  width: 100%;
-}
+@media (max-width: 735px) {
+  .Settings {
+    width: 100%;
+  }
 
-.DesktopOnly {
-  display: none;
+  .DesktopOnly {
+    display: none;
+  }
 }
 
 @media (min-width: 736px) {

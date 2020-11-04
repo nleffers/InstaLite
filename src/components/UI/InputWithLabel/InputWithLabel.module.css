@@ -1,5 +1,4 @@
 .InputWithLabel {
-  display: inline-flex;
   width: 100%;
 }
 
@@ -13,4 +12,16 @@
 
 .Input {
   width: 75%;
+}
+
+@media (max-width: 735px) {
+  .InputWithLabel {
+    display: block;
+  }
+}
+
+@media (min-width: 736px) {
+  .InputWithLabel {
+    display: inline-flex;
+  }
 }

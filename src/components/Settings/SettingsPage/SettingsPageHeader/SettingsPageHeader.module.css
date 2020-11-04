@@ -1,7 +1,6 @@
 .SettingsPageHeader {
   display: flex;
   flex-direction: row;
-  margin: 32px 0 0;
   justify-content: flex-start;
   align-items: stretch;
   flex-shrink: 0;
@@ -35,12 +34,14 @@
   font-weight: 400;
 }
 
+@media (max-width: 735px) {
+  .SettingsProfilePicture {
+    margin: 2px 20px 0;
+  }
+}
+
 @media (min-width: 736px) {
   .SettingsProfilePicture {
     margin: 2px 32px 0 124px;
-  }
-
-  .SettingsProfileUsername {
-
   }
 }

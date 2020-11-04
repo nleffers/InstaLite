@@ -5,10 +5,15 @@
   outline: none;
   cursor: pointer;
   font: inherit;
-  padding: 10px;
-  margin: 10px;
   font-weight: normal;
   border-radius: 5px;
+}
+
+@media (max-width: 735px) {
+  .Button {
+    padding: 10px;
+    margin: 0;
+  }
 }
 
 @media (min-width: 736px) {

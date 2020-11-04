@@ -12,7 +12,11 @@
 
 @media (max-width: 735px) {
   .EditProfilePage {
+    margin-bottom: 75px;
+  }
 
+  .EditProfilePage p {
+    width: 100%;
   }
 }
 
