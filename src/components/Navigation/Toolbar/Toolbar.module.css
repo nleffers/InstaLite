@@ -1,17 +1,24 @@
+.Toolbar {
+  height: 55px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  z-index: 90;
+  border-bottom: 1px solid #ccc;
+}
+
 .DesktopToolbar {
   display: none;
 }
 
-@media(min-width: 736px) {
+@media (min-width: 736px) {
   .DesktopToolbar {
     display: initial;
   }
 
   .MobileToolbar {
-    display: none;
-  }
-
-  .MobileFooter {
     display: none;
   }
 }

@@ -1,6 +1,5 @@
 .PictureHeader {
   height: 72px;
-  width: 335px;
   right: 0;
   border-bottom: 1px solid rgb(240, 240, 240);
   border-left: 1px solid rgb(240, 240, 240);
@@ -14,6 +13,18 @@
   -webkit-box-align: center;
   -webkit-box-direction: normal;
   -webkit-box-orient: horizontal;
+}
+
+@media (min-width: 736px) {
+  .PictureHeader {
+    width: 335px;
+  }
+}
+
+@media (max-width: 735px) {
+  .PictureHeader {
+    width: 100%;
+  }
 }
 
 .ProfilePicture {

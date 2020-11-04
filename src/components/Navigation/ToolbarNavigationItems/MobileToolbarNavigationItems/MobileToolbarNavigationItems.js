@@ -1,7 +1,7 @@
 import React from 'react';
 
 import MobileToolbarNavigationItem from './MobileToolbarNavigationItem/MobileToolbarNavigationItem'
-import FileUploader from '../../../../../hoc/FileUploader/FileUploader'
+import FileUploader from '../../../../hoc/FileUploader/FileUploader'
 // import Logo from '../../../Logo/Logo';
 import classes from './MobileToolbarNavigationItems.module.css';
 
@@ -14,7 +14,16 @@ const mobileToolbarNavigationItems = props => (
       icon="Home"
     />
     {/* <MobileToolbarNavigationItem link="/inbox" icon="Envelope" /> */}
-    <MobileToolbarNavigationItem link="/settings" icon="Cog" state={{ activePage: '' }} />
+    <MobileToolbarNavigationItem
+      link="/profile"
+      icon='User'
+      state={{ userId: props.userId }}
+    />
+    <MobileToolbarNavigationItem
+      link="/settings"
+      icon="Cog"
+      state={{ activePage: '' }}
+    />
   </ul>
 );
 

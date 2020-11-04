@@ -1,7 +1,10 @@
 .DesktopToolbar {
   height: 55px;
   width: 100%;
-  position: fixed;
+  max-width: 935px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
   top: 0;
   left: 0;
   display: flex;
@@ -9,9 +12,6 @@
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
-  z-index: 90;
-  border-bottom: 1px solid #ccc;
-  background: #fff;
 }
 
 .DesktopToolbar nav {
