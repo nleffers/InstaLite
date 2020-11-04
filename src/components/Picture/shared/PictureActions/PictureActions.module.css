@@ -4,7 +4,7 @@
   padding-right: 16px;
   order: 3;
   border-top: 1px solid rgb(240, 240, 240);
-  flex-grow: 1;
+  flex-grow: 0;
   flex-shrink: 1;
   font-size: 14px;
   line-height: 18px;
@@ -13,6 +13,10 @@
   -webkit-box-ordinal-group: 6;
   -webkit-box-pack: center;
   -webkit-box-flex: 1;
+}
+
+.ButtonActions {
+  margin-top: 10px;
 }
 
 .WriteCommentSection {

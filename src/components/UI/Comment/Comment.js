@@ -8,7 +8,7 @@ const comment = props => {
     <li className={classes.CommentListItem}>
       <div className={classes.Comment}>
         <div className={classes.CommentContents}>
-          <div className={classes.CommentUsername}>
+          <span className={classes.CommentUsername}>
             <NavLink
               to={{
                 pathname: '/profile',
@@ -19,10 +19,8 @@ const comment = props => {
             >
               {props.comment.username}
             </NavLink>
-          </div>
-          <span className={classes.CommentComment}>
-            {props.comment.comment}
           </span>
+          {props.comment.comment}
         </div>
       </div>
 

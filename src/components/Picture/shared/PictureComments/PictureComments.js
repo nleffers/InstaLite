@@ -21,7 +21,7 @@ const pictureComments = props => {
 
   return (
     <div className={classes.PictureComments}>
-      <ul>
+      <ul className={classes.PictureCommentsList}>
         {commentElementsArray}
       </ul>
     </div>

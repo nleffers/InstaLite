@@ -30,6 +30,8 @@
   }
 
   .PictureInteractionSection {
+    display: flex;
+    flex-direction: column;
     border-left: 1px solid rgb(240, 240, 240);
     top: 72px;
     padding: 0;
@@ -37,7 +39,5 @@
     position: absolute;
     right: 0;
     width: 335px;
-    display: flex;
-    flex-direction: column;
   }
 }
