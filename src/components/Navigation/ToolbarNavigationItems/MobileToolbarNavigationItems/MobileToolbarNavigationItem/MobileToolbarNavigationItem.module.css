@@ -1,7 +1,5 @@
 .MobileToolbarNavigationItem {
   box-sizing: border-box;
-  display: block;
-  margin: 10px;
   width: 25%;
   text-align: center;
 }

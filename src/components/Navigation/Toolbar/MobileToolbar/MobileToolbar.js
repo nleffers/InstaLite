@@ -5,7 +5,7 @@ import MobileNavigationItems from '../../ToolbarNavigationItems/MobileToolbarNav
 import classes from './MobileToolbar.module.css'
 
 const mobileToolbar = (props) => (
-  <header className={classes.MobileToolbar}>
+  <div className={classes.MobileToolbar}>
     <nav className={classes.MobileOnly}>
       <MobileNavigationItems
         isAuthenticated={props.isAuthenticated}
@@ -13,7 +13,7 @@ const mobileToolbar = (props) => (
         history={props.history}
       />
     </nav>
-  </header>
+  </div>
 )
 
 export default mobileToolbar

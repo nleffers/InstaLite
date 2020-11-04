@@ -6,7 +6,7 @@ import Search from '../../../../hoc/Search/Search'
 import classes from './DesktopToolbar.module.css'
 
 const desktopToolbar = (props) => (
-  <header className={classes.DesktopToolbar}>
+  <div className={classes.DesktopToolbar}>
     <Logo />
     <Search history={props.history} />
     <nav className={classes.DesktopOnly}>
@@ -16,7 +16,7 @@ const desktopToolbar = (props) => (
         history={props.history}
       />
     </nav>
-  </header>
+  </div>
 )
 
 export default desktopToolbar
