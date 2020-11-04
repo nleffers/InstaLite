@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { database } from '../../firebase/firebase'
-import Aux from '../../hoc/Aux'
 import Spinner from '../../components/UI/Spinner/Spinner'
-import PictureActions from '../../components/Picture/PictureActions/PictureActions'
-import PictureComments from '../../components/Picture/PictureComments/PictureComments'
-import PictureHeader from '../../components/Picture/PictureHeader/PictureHeader'
-import PictureImage from '../../components/Picture/PictureImage/PictureImage'
+import LongPicture from '../../components/Picture/LongPicture/LongPicture'
+import WidePicture from '../../components/Picture/WidePicture/WidePicture'
 import classes from './Picture.module.css'
 
 const Picture = props => {
@@ -148,56 +145,27 @@ const Picture = props => {
   let wideComponent = null
   let longComponent = null
   if (user.userId !== '') {
-    wideComponent = <Aux>
-      <div className={classes.WideLeftSide}>
-        <PictureImage url={picture.url} />
-      </div>
-      <div className={classes.WideRightSide}>
-        <PictureHeader
-          profilePicture={user.profilePicture}
-          userId={user.userId}
-          username={user.username}
-        />
-        <PictureComments
-          comments={picture.comments}
-          profilePicture={user.profilePicture}
-          userId={user.userId}
-          username={user.username}
-        />
-        <PictureActions
-          authLiked={picture.likes.some(like => like.userId === authUserId)}
-          likeClickedHandler={likeClickedHandler}
-          unlikeClickedHandler={unlikeClickedHandler}
-          comment={newComment}
-          editCommentHandler={editCommentHandler}
-          submitCommentHandler={submitCommentHandler}
-        />
-      </div>
-    </Aux>
+    wideComponent = <WidePicture
+      authUserId={authUserId}
+      picture={picture}
+      user={user}
+      newComment={newComment}
+      likeClickedHandler={likeClickedHandler}
+      unlikeClickedHandler={unlikeClickedHandler}
+      editCommentHandler={editCommentHandler}
+      submitCommentHandler={submitCommentHandler}
+    />
 
-    longComponent = <Aux>
-      <PictureHeader
-        profilePicture={user.profilePicture}
-        userId={props.userId}
-        username={user.username}
-      />
-      <PictureImage url={picture.url} />
-      <PictureActions
-        authLiked={picture.likes.some(like => like.userId === authUserId)}
-        likeClicked={likeClickedHandler}
-        unlikeClicked={unlikeClickedHandler}
-        comment={newComment}
-        editCommentHandler={editCommentHandler}
-        submitCommentHandler={submitCommentHandler}
-      >
-        <PictureComments
-          comments={picture.comments}
-          profilePicture={user.profilePicture}
-          userId={user.userId}
-          username={user.username}
-        />
-      </PictureActions>
-    </Aux>
+    longComponent = <LongPicture
+      authUserId={authUserId}
+      picture={picture}
+      user={user}
+      newComment={newComment}
+      likeClickedHandler={likeClickedHandler}
+      unlikeClickedHandler={unlikeClickedHandler}
+      editCommentHandler={editCommentHandler}
+      submitCommentHandler={submitCommentHandler}
+    />
   }
 
   return (

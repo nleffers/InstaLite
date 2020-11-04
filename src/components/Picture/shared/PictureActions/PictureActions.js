@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Button from '../../UI/Button/Button'
-import Input from '../../UI/Input/Input'
+import Button from '../../../UI/Button/Button'
+import Input from '../../../UI/Input/Input'
 import classes from './PictureActions.module.css'
 
 const pictureActions = props => {
@@ -21,7 +21,7 @@ const pictureActions = props => {
       <div className={classes.WriteCommentSection}>
         <div className={classes.WriteComment}>
           <form
-            classes={classes.WriteCommentForm}
+            className={classes.WriteCommentForm}
             onSubmit={submitCommentHandler}
           >
             <Input

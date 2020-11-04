@@ -3,12 +3,14 @@
   width: 335px;
   right: 0;
   border-bottom: 1px solid rgb(240, 240, 240);
+  border-left: 1px solid rgb(240, 240, 240);
   margin-right: 0;
   position: absolute;
   top: 0;
   align-items: center;
   flex-direction: row;
   display: flex;
+  order: 1;
   -webkit-box-align: center;
   -webkit-box-direction: normal;
   -webkit-box-orient: horizontal;

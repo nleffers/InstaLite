@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Comment from '../../UI/Comment/Comment'
+import Comment from '../../../UI/Comment/Comment'
 import classes from './PictureComments.module.css'
 
 const pictureComments = props => {
