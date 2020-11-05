@@ -10,6 +10,7 @@ import classes from './NewPicture.module.css'
 
 const NewPicture = props => {
   const file = props.location.state.file
+  const isProfilePicture = props.location.state.isProfilePicture
 
   const [newCaption, setNewCaption] = useState({
     elementType: 'textarea',
@@ -39,20 +40,22 @@ const NewPicture = props => {
                 url: url,
                 userId: authUserId
               }
-              let commentData
+              const commentDataArray = []
               if (newCommentKey) {
-                commentData = {
+                commentDataArray.push({
                   id: newCommentKey,
                   comment: newCaption.value,
                   userId: authUserId,
                   username: authUsername
-                }
+                })
               }
 
               let updates = {}
-              updates[`/pictures/${newPictureKey}`] = {...pictureData, comments: [commentData]}
+              updates[`/pictures/${newPictureKey}`] = { ...pictureData, comments: commentDataArray }
               updates[`/users/${authUserId}/pictures/${newPictureKey}`] = pictureData
-              if (!!props.isProfilePicture) { updates[`/users/${authUserId}/profilePicture`] = { newPictureKey: pictureData } }
+              if (isProfilePicture) {
+                updates[`/users/${authUserId}/profilePicture`] = { [newPictureKey]: pictureData }
+              }
 
               database.ref().update(updates)
                 .then(() => {

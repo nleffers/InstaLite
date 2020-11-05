@@ -75,6 +75,15 @@ const Picture = props => {
     }
   }, [pictureId])
 
+  const getProfilePicture = picture => {
+    if (!picture) { return null }
+    const profilePictureId = Object.keys(picture)[0]
+    return {
+      ...picture[profilePictureId],
+      id: profilePictureId
+    }
+  }
+
   useEffect(() => {
     if (picture.userId) {
       database.ref(`/users/${picture.userId}`).once('value')
@@ -89,15 +98,6 @@ const Picture = props => {
         })
     }
   }, [picture.userId])
-
-  const getProfilePicture = picture => {
-    if (!picture) { return null }
-    const profilePictureId = Object.keys(picture)[0]
-    return {
-      ...picture[profilePictureId],
-      id: profilePictureId
-    }
-  }
 
   const likeClickedHandler = event => {
     event.preventDefault()

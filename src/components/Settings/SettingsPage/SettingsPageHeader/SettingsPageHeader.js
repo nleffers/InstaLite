@@ -9,7 +9,7 @@ const settingsPageHeader = props => {
     profilePictureChangeUploader = (
       <FileUploader
         icon="Settings"
-        isProfilePicture="true"
+        isProfilePicture={true}
         source="settings"
       >
         Change Profile Photo
