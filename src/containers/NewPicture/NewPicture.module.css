@@ -4,4 +4,24 @@
   margin: 0;
   box-sizing: content-box;
   max-width: 935px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 736px) {
+  .NewPicture h2 {
+    margin-left: 25px;
+  }
+}
+
+@media (min-width: 736px) {
+  .NewPicture {
+    box-sizing: content-box;
+    justify-content: normal;
+    margin: 0 auto 30px;
+    padding: 4vh 20px 0;
+    width: calc(100% - 40px);
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+  }
 }

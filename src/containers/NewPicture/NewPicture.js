@@ -78,6 +78,7 @@ const NewPicture = props => {
 
   return (
     <div className={classes.NewPicture}>
+      <h2>New photo by {authUsername}</h2>
       <form onSubmit={imageUploadHandler}>
         <Input
           key="caption"
@@ -87,7 +88,7 @@ const NewPicture = props => {
           changed={event => editCaptionHandler(event)}
         />
         <Button
-          btnType="Primary"
+          btnType="NewPicture"
         >Share</Button>
       </form>
 

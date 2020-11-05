@@ -32,12 +32,21 @@
   cursor: not-allowed;
 }
 
-.Primary {
+.Primary,
+.NewPicture {
   color: #FFFFFF;
   background-color: #2495f6;
   margin: auto;
+}
+
+.Primary {
   width: 100%;
   padding: 8px 0;
+}
+
+.NewPicture {
+  padding: 10px;
+  margin-left: 25px;
 }
 
 .Primary:disabled {
