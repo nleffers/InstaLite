@@ -96,7 +96,7 @@ export function* authUserUpdateSaga(action) {
       phone: action.phone,
       gender: action.gender
     }
-    yield database.ref(`/users/${action.userId}`).set(userData)
+    yield database.ref(`/users/${action.userId}`).update(userData)
     yield put(actions.authUserUpdateSuccess(userData))
   } catch (err) {
     yield put(actions.authUserUpdateFail(err.response.data.error))

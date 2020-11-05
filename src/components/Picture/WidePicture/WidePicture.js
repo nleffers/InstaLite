@@ -4,6 +4,7 @@ import PictureActions from '../shared/PictureActions/PictureActions'
 import PictureComments from '../shared/PictureComments/PictureComments'
 import PictureHeader from '../shared/PictureHeader/PictureHeader'
 import PictureImage from '../shared/PictureImage/PictureImage'
+import PictureWriteComment from '../shared/PictureWriteComment/PictureWriteComment'
 import classes from './WidePicture.module.css'
 
 const widePicture = props => {
@@ -31,6 +32,8 @@ const widePicture = props => {
             authLiked={picture.likes.some(like => like.userId === authUserId)}
             likeClickedHandler={likeClickedHandler}
             unlikeClickedHandler={unlikeClickedHandler}
+          />
+          <PictureWriteComment
             comment={newComment}
             editCommentHandler={editCommentHandler}
             submitCommentHandler={submitCommentHandler}

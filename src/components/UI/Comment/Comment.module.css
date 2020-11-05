@@ -3,7 +3,6 @@
   padding-bottom: 16px;
   margin-left: -12px;
   margin-right: 0;
-  padding: 12px 16px;
   width: auto;
   overflow: hidden;
   position: relative;
@@ -12,7 +11,22 @@
 
 .CommentListItem:last-child {
   border-bottom: 0;
-  padding-bottom: 0;
+}
+
+@media (max-width: 735px) {
+  .CommentListItem {
+    padding: 0;
+  }
+}
+
+@media (min-width: 736px) {
+  .CommentListItem {
+    padding: 12px 16px
+  }
+
+  .CommentListItem:last-child {
+    padding-bottom: 0;
+  }
 }
 
 .Comment {

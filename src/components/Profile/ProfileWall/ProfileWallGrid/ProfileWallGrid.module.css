@@ -26,12 +26,6 @@
   -webkit-box-direction: normal;
 }
 
-@media (max-width: 735px) {
-  .ProfileWallGridRow:last-child {
-    margin-bottom: 20px;
-  }
-}
-
 .ProfileWallGridRow>* {
   flex: 1 0 0%;
   -webkit-box-flex: 1;

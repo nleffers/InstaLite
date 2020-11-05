@@ -7,7 +7,6 @@
   flex-direction: column;
   font-size: 14px;
   line-height: 18px;
-  min-height: 56px;
   justify-content: center;
   -webkit-box-ordinal-group: 6;
   -webkit-box-pack: center;
@@ -16,69 +15,8 @@
 
 .ButtonActions {
   order: 1;
-}
-
-.WriteCommentSection {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
+  flex-grow: 0;
   flex-shrink: 0;
-  position: relative;
-  -webkit-box-align: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-box-flex: 1;
-}
-
-.WriteComment {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  border: 0;
-  flex-grow: 1;
-  flex-shrink: 0;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  -webkit-box-align: stretch;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-}
-
-.WriteCommentForm {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  flex-shrink: 1;
-  position: relative;
-  -webkit-box-align: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-}
-
-.WriteComment textarea {
-  border: 0;
-  resize: none;
-}
-
-.WriteComment button {
-  opacity: 0.3;
-  appearance: none;
-  background: 0 0;
-  box-sizing: border-box;
-  cursor: pointer;
-  font-weight: 600;
-  text-align: center;
-  text-transform: inherit;
-  text-overflow: ellipsis;
-  user-select: none;
-  border: 0;
-  color: rgb(1, 150, 247);
-  display: inline;
-  padding: 0;
-  position: relative;
 }
 
 @media (max-width: 735px) {
@@ -86,10 +24,6 @@
     flex-grow: 1;
     flex-shrink: 0;
     width: 100%;
-  }
-
-  .WriteCommentSection {
-    order: 3;
   }
 }
 
@@ -102,9 +36,5 @@
 
   .ButtonActions {
     margin-top: 10px;
-  }
-
-  .WriteCommentSection {
-    order: 2;
   }
 }

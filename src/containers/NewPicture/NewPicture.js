@@ -37,13 +37,7 @@ const NewPicture = props => {
             .then(url => {
               const pictureData = {
                 url: url,
-                userId: authUserId,
-                comments: [{
-                  id: newCommentKey,
-                  comment: newCaption.value,
-                  userId: authUserId,
-                  username: authUsername
-                }]
+                userId: authUserId
               }
               let commentData
               if (newCommentKey) {
