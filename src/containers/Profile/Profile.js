@@ -33,7 +33,9 @@ const Profile = props => {
   const authUserId = useSelector(state => state.userId)
   const authUsername = useSelector(state => state.username)
   const isAuthUserPage = useSelector(state => state.userId === userId)
-  const authFollowingUserId = useSelector(state => state.following.length > 0 ? state.following.filter(following => following.userId === userId)[0].id : null)
+  const authFollowingUserId = useSelector(state => state.following.length > 0 && state.following.some(following => following.userId === userId)
+    ? state.following.filter(following => following.userId === userId)[0].id
+    : null)
 
   const dispatch = useDispatch()
   const onFollow = useCallback((userId, username) => dispatch(actions.authUserFollow(authUserId, userId, username)), [dispatch, authUserId])

@@ -43,6 +43,10 @@
   font-weight: 600;
 }
 
+.Bio {
+  white-space: pre;
+}
+
 .ProfileDescription {
   font-size: 16px;
   line-height: 24px;
@@ -62,7 +66,8 @@
   font-weight: 600;
 }
 
-.Website {
+.Website,
+.Website:visited {
   color: rgb(1, 56, 108);
   text-decoration: none;
   font-weight: 600;
