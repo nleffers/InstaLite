@@ -1,4 +1,4 @@
-InstaLite - A smaller version of Instagram
+InstaLite - A lighter version of Instagram
 
 Frontend built in React
 
