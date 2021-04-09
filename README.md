@@ -12,7 +12,7 @@ Built to show knowledge of React and Redux (state management), amongst other too
 
 Database, Storage, Authentication, and Hosting handled by Firebase.
 
-Visit [this link](instagram-react-33e3f.web.app) to see the app in a production environment.
+Visit [this link](https://instagram-react-33e3f.web.app) to see the app in a production environment.
 
 For demo purposes, log in as `test@test.com`/`testtest`
 
